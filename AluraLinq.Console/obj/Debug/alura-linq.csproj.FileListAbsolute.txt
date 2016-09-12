@@ -1,0 +1,2 @@
+C:\Users\caelum\Repos\alura-linq\alura-linq\bin\Debug\alura-linq.exe.config
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\alura-linq.exe.config
