@@ -116,6 +116,9 @@
     <Compile Include="ProblemSolution\3. criar uma nova coleção simples e pequena %28músicas%29\Problem3.cs" />
     <Compile Include="ProblemSolution\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problem4.cs" />
     <Compile Include="ProblemSolution\5. consultar um arquivo XML %28banco de dados%29 para listar os nomes dos artistas que existem na nossa loja\Problem5.cs" />
+    <Compile Include="ProblemSolution\6. Acessar uma nova fonte de dados %28sql server%29\Problem6.cs" />
+    <Compile Include="ProblemSolution\7. procurar o artista por nome\Problem7.cs" />
+    <Compile Include="ProblemSolution\8. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problem8.cs" />
     <Compile Include="ProblemSolution\ProblemSolutionBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
