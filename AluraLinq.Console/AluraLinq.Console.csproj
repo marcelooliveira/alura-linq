@@ -116,6 +116,7 @@
     <Compile Include="Problemas\12. ordenar os álbuns do led zeppelin por nome\Problema12.cs" />
     <Compile Include="Problemas\10. procurar os álbuns do led zeppelin, sem usar join %28otimizado%29\Problema10.cs" />
     <Compile Include="Problemas\11. refinar a busca anterior para filtrar por título\Problema11.cs" />
+    <Compile Include="Problemas\18. obter o valor da compra mediana dos totais de notas fiscais\Problema18.cs" />
     <Compile Include="Problemas\17. obter o valor da maior compra realizada, da menor compra e da média aritmética\Problema17.cs" />
     <Compile Include="Problemas\16. calcular valor total de vendas de músicas do led zeppelin, por álbum\Problema16.cs" />
     <Compile Include="Problemas\15. calcular valor total de vendas de músicas do led zeppelin\Problema15.cs" />
