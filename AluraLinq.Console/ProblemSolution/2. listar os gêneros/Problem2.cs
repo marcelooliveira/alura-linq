@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace alura_linq.ProblemSolution._1._criar_uma_coleção_simples_e_pequena
+namespace alura_linq.ProblemSolution._2._listar_os_gêneros
 {
-    class Problem1 : ProblemSolutionBase
+    class Problem2 : ProblemSolutionBase
     {
         public override void Solve(string[] args)
         {
@@ -16,6 +16,11 @@ namespace alura_linq.ProblemSolution._1._criar_uma_coleção_simples_e_pequena
                 new Genero { Id = 2, Nome = "Reggae" },
                 new Genero { Id = 3, Nome = "Classica" }
             };
+
+            foreach (var genero in generos)
+            {
+                Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
+            }
         }
     }
 

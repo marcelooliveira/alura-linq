@@ -1,4 +1,5 @@
 ﻿using alura_linq.ProblemSolution._1._criar_uma_coleção_simples_e_pequena;
+using alura_linq.ProblemSolution._2._listar_os_gêneros;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +13,9 @@ namespace alura_linq
     {
         static void Main(string[] args)
         {
-            Problem1.Solve(args);
-
-            //LinqToEntities();
-
+            new Problem1().Solve(args);
+            new Problem2().Solve(args);
+            
             Console.ReadKey();
         }
 
