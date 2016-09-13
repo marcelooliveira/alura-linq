@@ -119,6 +119,7 @@
     <Compile Include="Problemas\6. Acessar uma nova fonte de dados %28sql server%29\Problema6.cs" />
     <Compile Include="Problemas\7. procurar o artista por nome\Problema7.cs" />
     <Compile Include="Problemas\8. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema8.cs" />
+    <Compile Include="Problemas\9. procurar os álbuns do led zeppelin\Problema9.cs" />
     <Compile Include="Problemas\ProblemaBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
