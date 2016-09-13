@@ -15,20 +15,20 @@ namespace alura_linq.Problemas.Problema16
                 var query = 
                         from inf in contexto.ItemsNotaFiscal
                         where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
-                        group inf by inf.Faixa.AlbumId into agrupado
+                        group inf by inf.Faixa.Album into agrupado
+                        let valorTotal = agrupado.Sum(a => a.PrecoUnitario * a.Quantidade)
+                        orderby valorTotal descending
                         select new
                         {
-                            Nome = agrupado.Key,
-                            Valor = agrupado.Sum(a => a.PrecoUnitario * a.Quantidade)
+                            Album = agrupado.Key.Titulo,
+                            Valor = valorTotal,
+                            NumeroVendas = agrupado.Count()
                         };
 
-                var total = 0M;
                 foreach (var grupo in query)
                 {
-                    total += grupo.Valor;
-                    Console.WriteLine("{0}: {1}", grupo.Nome, grupo.Valor);
+                    Console.WriteLine("{0}: R$ {1} ({2})", grupo.Album.PadRight(35), grupo.Valor, grupo.NumeroVendas);
                 }
-                Console.WriteLine(total);
                 Console.WriteLine();
 
             }
