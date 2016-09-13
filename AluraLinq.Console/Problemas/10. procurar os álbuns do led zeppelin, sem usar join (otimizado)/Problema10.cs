@@ -17,8 +17,9 @@ namespace alura_linq.Problemas.Problema10
                             select art;
 
                 var artista = query.Single();
+                var albums = artista.Albums;
                 
-                foreach (var album in artista.Albums)
+                foreach (var album in albums)
                 {
                     Console.WriteLine(album.Titulo);
                 }
