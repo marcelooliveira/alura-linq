@@ -1,4 +1,5 @@
-﻿using System;
+﻿using alura_linq.ProblemSolution._1._criar_uma_coleção_simples_e_pequena;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,6 +12,15 @@ namespace alura_linq
     {
         static void Main(string[] args)
         {
+            Problem1.Solve(args);
+
+            //LinqToEntities();
+
+            Console.ReadKey();
+        }
+
+        private static void LinqToEntities()
+        {
             using (var context = new AluraTunesEntities())
             {
                 foreach (var genero in context.Generos)
@@ -18,30 +28,23 @@ namespace alura_linq
                     Console.WriteLine(genero.Nome);
                 }
             }
+        }
 
-            Console.WriteLine();
-
-            using (var context = new AluraTunesEntities())
-            {
-                foreach (var cliente in context.Clientes.Take(3))
-                {
-                    Console.WriteLine(cliente.Sobrenome);
-                }
-            }
-
-            Console.WriteLine();
-
+        private static void LinqToXML()
+        {
             XElement root = XElement.Load(@"C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\Data\Generos.xml");
 
             var query = from g in root.Descendants("Genero")
-                        select g.Descendants("Nome").First().FirstNode;
+                        select new
+                        {
+                            GeneroId = g.Elements("GeneroId").First().Value,
+                            Nome = g.Elements("Nome").First().Value
+                        };
 
             foreach (var genero in query)
             {
-                Console.WriteLine("{0}", genero);
+                Console.WriteLine("{0} - {1}", genero.GeneroId, genero.Nome);
             }
-
-            Console.ReadKey();
         }
     }
 }

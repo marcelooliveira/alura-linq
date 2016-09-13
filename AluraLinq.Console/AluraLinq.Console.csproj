@@ -111,6 +111,8 @@
     <Compile Include="Playlist.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProblemSolution\1. criar uma coleção simples e pequena\Problem1.cs" />
+    <Compile Include="ProblemSolution\ProblemSolutionBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TipoMidia.cs">
