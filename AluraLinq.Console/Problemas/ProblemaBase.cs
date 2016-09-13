@@ -5,14 +5,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace alura_linq.ProblemSolution
+namespace alura_linq.Problemas
 {
-    public abstract class ProblemSolutionBase
+    public abstract class ProblemaBase
     {
-        public ProblemSolutionBase()
+        public ProblemaBase()
         {
             var ns = this.GetType().Namespace;
-            var problema = new Regex(@"(\d+\..*)").Match(ns).Captures[0].Value.Replace("_", " ");
+            var problema = ns.Split('.').Last();
             Console.WriteLine("\n" + problema + "\n");
             Console.Clear();
         }

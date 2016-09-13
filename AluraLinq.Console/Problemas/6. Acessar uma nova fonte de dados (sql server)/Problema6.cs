@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace alura_linq.ProblemSolution._6._Acessar_uma_nova_fonte_de_dados__sql_server_
+namespace alura_linq.Problemas.Problema6
 {
-    public class Problem6 : ProblemSolutionBase
+    public class Problema6 : ProblemaBase
     {
         public override void Solve(string[] args)
         {

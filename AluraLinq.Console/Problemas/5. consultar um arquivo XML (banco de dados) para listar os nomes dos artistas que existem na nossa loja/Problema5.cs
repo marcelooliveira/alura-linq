@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace alura_linq.ProblemSolution._5._consultar_um_arquivo_XML__banco_de_dados__para_listar_os_nomes_dos_artistas_que_existem_na_nossa_loja
+namespace alura_linq.Problemas.Problema5
 {
-    class Problem5 : ProblemSolutionBase
+    class Problema5 : ProblemaBase
     {
         public override void Solve(string[] args)
         {

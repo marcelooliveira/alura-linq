@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace alura_linq.ProblemSolution._4._fazer_uma_listagem_mostrando_a_músicas_e_gêneros_na_mesma_linha
+namespace alura_linq.Problemas.Problema4
 {
-    public class Problem4 : ProblemSolutionBase
+    public class Problema4 : ProblemaBase
     {
         public override void Solve(string[] args)
         {

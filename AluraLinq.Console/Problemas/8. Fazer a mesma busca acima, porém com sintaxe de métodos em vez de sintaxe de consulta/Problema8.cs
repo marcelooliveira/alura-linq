@@ -4,17 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace alura_linq.ProblemSolution._7._procurar_o_artista_por_nome
+namespace alura_linq.Problemas.Problema8
 {
-    class Problem7 : ProblemSolutionBase
+    class Problema8 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
             using (var contexto = new AluraTunesEntities())
             {
-                var query = from a in contexto.Artistas
-                            where a.Nome.StartsWith("Led")
-                            select a;
+                var query =
+                    contexto
+                        .Artistas
+                        .Where(a => a.Nome.StartsWith("Led"));
 
                 foreach (var artista in query)
                 {

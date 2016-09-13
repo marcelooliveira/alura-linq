@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace alura_linq.ProblemSolution._3._criar_uma_nova_coleção_simples_e_pequena__músicas_
+namespace alura_linq.Problemas.Problema3
 {
-    public class Problem3 : ProblemSolutionBase
+    public class Problema3 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
