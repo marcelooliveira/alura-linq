@@ -16,7 +16,7 @@ namespace alura_linq
                 foreach (var genero in context.Generos)
                 {
                     Console.WriteLine(genero.Nome);
-                }                
+                }
             }
 
             Console.WriteLine();
