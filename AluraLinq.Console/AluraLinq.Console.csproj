@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,8 +48,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,11 +69,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Album.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AluraTunes.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AluraTunes.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AluraTunes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AluraTunes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Artista.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Cliente.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Faixa.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Funcionario.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Genero.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemNotaFiscal.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotaFiscal.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Playlist.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TipoMidia.cs">
+      <DependentUpon>AluraTunes.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EntityDeploy Include="AluraTunes.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AluraTunes.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AluraTunes.edmx.diagram">
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+    </None>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
@@ -77,6 +141,23 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AluraTunes.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+      <LastGenOutput>AluraTunes.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="AluraTunes.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AluraTunes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AluraTunes.edmx</DependentUpon>
+      <LastGenOutput>AluraTunes.cs</LastGenOutput>
+    </Content>
+    <Content Include="AluraTunes_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>AluraTunes.mdf</DependentUpon>
+    </Content>
     <Content Include="Data\AluraTunes.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -87,6 +168,9 @@
       <DependentUpon>AluraTunes.mdf</DependentUpon>
     </Content>
     <Content Include="Data\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
