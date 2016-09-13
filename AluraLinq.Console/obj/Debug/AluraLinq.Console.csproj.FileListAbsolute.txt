@@ -1,2 +1,15 @@
 C:\Users\marcelo\Source\Repos\alura-linq\AluraLinq.Console\bin\Debug\alura-linq.exe.config
 C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\alura-linq.exe.config
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\AluraTunes.mdf
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\AluraTunes_log.ldf
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\Data\AluraTunes.mdf
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\Data\AluraTunes_log.ldf
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\alura-linq.exe
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\alura-linq.pdb
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\EntityFramework.dll
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\EntityFramework.xml
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\obj\Debug\AluraLinq.Console.csprojResolveAssemblyReference.cache
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.exe
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.pdb

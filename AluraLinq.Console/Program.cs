@@ -10,6 +10,15 @@ namespace alura_linq
     {
         static void Main(string[] args)
         {
+            using (var context = new AluraTunesEntities())
+            {
+                foreach (var genero in context.Generos)
+                {
+                    Console.WriteLine(genero.Nome);
+                }                
+            }
+
+            Console.ReadKey();
         }
     }
 }
