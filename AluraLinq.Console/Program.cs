@@ -18,7 +18,13 @@ namespace alura_linq
                 }                
             }
 
-
+            using (var context = new AluraTunesEntities())
+            {
+                foreach (var cliente in context.Clientes.Take(3))
+                {
+                    Console.WriteLine(cliente.Sobrenome);
+                }
+            }
 
             Console.ReadKey();
         }
