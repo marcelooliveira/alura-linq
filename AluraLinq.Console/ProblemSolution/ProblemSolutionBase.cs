@@ -14,6 +14,7 @@ namespace alura_linq.ProblemSolution
             var ns = this.GetType().Namespace;
             var problema = new Regex(@"(\d+\..*)").Match(ns).Captures[0].Value.Replace("_", " ");
             Console.WriteLine("\n" + problema + "\n");
+            Console.Clear();
         }
 
         public virtual void Solve(string[] args)

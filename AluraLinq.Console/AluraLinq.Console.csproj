@@ -113,6 +113,8 @@
     </Compile>
     <Compile Include="ProblemSolution\1. criar uma coleção simples e pequena\Problem1.cs" />
     <Compile Include="ProblemSolution\2. listar os gêneros\Problem2.cs" />
+    <Compile Include="ProblemSolution\3. criar uma nova coleção simples e pequena %28músicas%29\Problem3.cs" />
+    <Compile Include="ProblemSolution\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problem4.cs" />
     <Compile Include="ProblemSolution\ProblemSolutionBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

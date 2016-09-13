@@ -17,7 +17,10 @@ namespace alura_linq.ProblemSolution._2._listar_os_gêneros
                 new Genero { Id = 3, Nome = "Classica" }
             };
 
-            foreach (var genero in generos)
+            var query = from g in generos
+                        select g;
+
+            foreach (var genero in query)
             {
                 Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
             }
