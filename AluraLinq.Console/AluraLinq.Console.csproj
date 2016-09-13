@@ -111,15 +111,16 @@
     <Compile Include="Playlist.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Problemas\1. criar uma coleção simples e pequena\Problema1.cs" />
-    <Compile Include="Problemas\2. listar os gêneros\Problema2.cs" />
-    <Compile Include="Problemas\3. criar uma nova coleção simples e pequena %28músicas%29\Problema3.cs" />
-    <Compile Include="Problemas\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema4.cs" />
-    <Compile Include="Problemas\5. consultar um arquivo XML %28banco de dados%29 para listar os nomes dos artistas que existem na nossa loja\Problema5.cs" />
-    <Compile Include="Problemas\6. Acessar uma nova fonte de dados %28sql server%29\Problema6.cs" />
-    <Compile Include="Problemas\7. procurar o artista por nome\Problema7.cs" />
-    <Compile Include="Problemas\8. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema8.cs" />
-    <Compile Include="Problemas\9. procurar os álbuns do led zeppelin\Problema9.cs" />
+    <Compile Include="Problemas\1. criar uma coleção simples e pequena\Problema01.cs" />
+    <Compile Include="Problemas\10. procurar os álbuns do led zeppelin, sem usar join %28otimizado%29\Problema10.cs" />
+    <Compile Include="Problemas\2. listar os gêneros\Problema02.cs" />
+    <Compile Include="Problemas\3. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
+    <Compile Include="Problemas\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
+    <Compile Include="Problemas\5. consultar um arquivo XML %28banco de dados%29 para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
+    <Compile Include="Problemas\6. Acessar uma nova fonte de dados %28sql server%29\Problema06.cs" />
+    <Compile Include="Problemas\7. procurar o artista por nome\Problema07.cs" />
+    <Compile Include="Problemas\8. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema08.cs" />
+    <Compile Include="Problemas\9. procurar os álbuns do led zeppelin\Problema09.cs" />
     <Compile Include="Problemas\ProblemaBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
