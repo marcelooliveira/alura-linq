@@ -18,6 +18,8 @@ namespace alura_linq
                 }                
             }
 
+
+
             Console.ReadKey();
         }
     }
