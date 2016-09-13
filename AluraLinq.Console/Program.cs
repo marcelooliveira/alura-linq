@@ -6,6 +6,7 @@ using alura_linq.Problemas.Problema13;
 using alura_linq.Problemas.Problema14;
 using alura_linq.Problemas.Problema15;
 using alura_linq.Problemas.Problema16;
+using alura_linq.Problemas.Problema17;
 using alura_linq.Problemas.Problema2;
 using alura_linq.Problemas.Problema3;
 using alura_linq.Problemas.Problema4;
@@ -38,6 +39,7 @@ namespace alura_linq
             new Problema14().Solve(args);
             new Problema15().Solve(args);
             new Problema16().Solve(args);
+            new Problema17().Solve(args);
 
             Console.ReadKey();
         }
