@@ -167,6 +167,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>AluraTunes.mdf</DependentUpon>
     </Content>
+    <Content Include="Data\Generos.xml" />
     <Content Include="Data\LICENSE.txt" />
   </ItemGroup>
   <ItemGroup>

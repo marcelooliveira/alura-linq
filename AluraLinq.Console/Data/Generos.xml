@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Generos>
+  <Genero>
+    <GeneroId>1</GeneroId>
+    <Nome>Rock</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>2</GeneroId>
+    <Nome>Jazz</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>3</GeneroId>
+    <Nome>Metal</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>4</GeneroId>
+    <Nome>Alternative &amp; Punk</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>5</GeneroId>
+    <Nome>Rock And Roll</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>6</GeneroId>
+    <Nome>Blues</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>7</GeneroId>
+    <Nome>Latin</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>8</GeneroId>
+    <Nome>Reggae</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>9</GeneroId>
+    <Nome>Pop</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>10</GeneroId>
+    <Nome>Soundtrack</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>11</GeneroId>
+    <Nome>Bossa Nova</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>12</GeneroId>
+    <Nome>Easy Listening</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>13</GeneroId>
+    <Nome>Heavy Metal</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>14</GeneroId>
+    <Nome>R&amp;B/Soul</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>15</GeneroId>
+    <Nome>Electronica/Dance</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>16</GeneroId>
+    <Nome>World</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>17</GeneroId>
+    <Nome>Hip Hop/Rap</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>18</GeneroId>
+    <Nome>Science Fiction</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>19</GeneroId>
+    <Nome>TV Shows</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>20</GeneroId>
+    <Nome>Sci Fi &amp; Fantasy</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>21</GeneroId>
+    <Nome>Drama</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>22</GeneroId>
+    <Nome>Comedy</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>23</GeneroId>
+    <Nome>Alternative</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>24</GeneroId>
+    <Nome>Classical</Nome>
+  </Genero>
+  <Genero>
+    <GeneroId>25</GeneroId>
+    <Nome>Opera</Nome>
+  </Genero>
+</Generos>
