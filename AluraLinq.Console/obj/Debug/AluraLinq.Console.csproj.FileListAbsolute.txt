@@ -13,3 +13,4 @@ C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\EntityFramework.Sql
 C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\obj\Debug\AluraLinq.Console.csprojResolveAssemblyReference.cache
 C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.exe
 C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.pdb
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\Data\AluraTunes.xml

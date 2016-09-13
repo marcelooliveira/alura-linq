@@ -2,6 +2,7 @@
 using alura_linq.ProblemSolution._2._listar_os_gêneros;
 using alura_linq.ProblemSolution._3._criar_uma_nova_coleção_simples_e_pequena__músicas_;
 using alura_linq.ProblemSolution._4._fazer_uma_listagem_mostrando_a_músicas_e_gêneros_na_mesma_linha;
+using alura_linq.ProblemSolution._5._consultar_um_arquivo_XML__banco_de_dados__para_listar_os_nomes_dos_artistas_que_existem_na_nossa_loja;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace alura_linq
             new Problem2().Solve(args);
             new Problem3().Solve(args);
             new Problem4().Solve(args);
+            new Problem5().Solve(args);
 
             Console.ReadKey();
         }
