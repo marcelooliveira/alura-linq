@@ -17,6 +17,11 @@ namespace alura_linq.Problemas
             Console.WriteLine("\n" + problema + "\n");
         }
 
+        protected AluraTunesEntities GetContextoComLog()
+        {
+            return new AluraTunesEntities();
+        }
+
         public virtual void Solve(string[] args)
         {
             

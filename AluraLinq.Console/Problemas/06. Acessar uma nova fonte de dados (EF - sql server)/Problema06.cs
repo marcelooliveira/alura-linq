@@ -116,6 +116,9 @@ namespace alura_linq.Problemas.Problema6
                 //  - "Qualquer tolo pode escrever código que um computador possa entender.
                 //      Bons programadores escrevem código que humanos podem entender." (Martin Fowler)
 
+                //É claro, se não houver propriedades de navegação (como nos nossos exemplos de Linq to Objects e Linq to
+                //XML), o join deverá ser usado.
+
                 var querySemJoin = 
                     from f in contexto.Faixas
                     select new
