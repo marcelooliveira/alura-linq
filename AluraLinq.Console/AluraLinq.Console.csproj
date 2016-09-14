@@ -127,6 +127,7 @@
     <Compile Include="Problemas\21. todos os clientes que compraram o produto mais vendido\Problema21.cs" />
     <Compile Include="Problemas\22. produtos comprados por quem comprou o produto X, ordenado por count desses produtos\Problema22.cs" />
     <Compile Include="Problemas\23. idem a de cima, mas que seja do mesmo genero\Problema23.cs" />
+    <Compile Include="Problemas\24. modificar a consulta para que o resultado dependa de uma nova função de cálculo que exige intenso processamento\Problema24.cs" />
     <Compile Include="Problemas\3. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
     <Compile Include="Problemas\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
     <Compile Include="Problemas\5. consultar um arquivo XML para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />

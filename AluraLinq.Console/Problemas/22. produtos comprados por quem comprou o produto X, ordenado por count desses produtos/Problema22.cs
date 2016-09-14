@@ -25,13 +25,15 @@ namespace alura_linq.Problemas.Problema22
                                   orderby quantidade
                                   select new
                                   {
+                                      Artista = agrupado.Key.Faixa.Album.Artista.Nome,
                                       Faixa = agrupado.Key.Faixa.Nome,
+                                      Genero = agrupado.Key.Faixa.Genero.Nome,
                                       Quantidade = quantidade
                                   };
 
                 foreach (var item in comprouTambem)
                 {
-                    Console.WriteLine("{0}\t{1}", item.Faixa, item.Quantidade);
+                    Console.WriteLine("{0}\t{1}\t{2}\t{3}", item.Artista, item.Faixa, item.Genero, item.Quantidade);
                 }
             }
         }
