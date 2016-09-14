@@ -47,6 +47,8 @@ namespace alura_linq.Problemas.Problema4
                 }
             }
 
+            Console.WriteLine();
+
             // De novo, no código acima, estamos misturando lógica de consulta com lógica de exibição do resultado.
             // ...isso não é bom.
 

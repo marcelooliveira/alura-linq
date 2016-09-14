@@ -40,8 +40,8 @@ namespace alura_linq.Problemas.Problema5
             foreach (var genero in queryXML)
             {
                 Console.WriteLine("{0}\t{1}",
-                    g.Element("GeneroId").Value,
-                    g.Element("Nome").Value);
+                    genero.Element("GeneroId").Value,
+                    genero.Element("Nome").Value);
             }
 
             Console.WriteLine();
