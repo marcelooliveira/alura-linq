@@ -6,20 +6,26 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema15
 {
+    /// <summary>
+    /// 15. calcular valor total de vendas de músicas do led zeppelin
+    /// </summary>
     class Problema15 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
             using (var contexto = GetContextoComLog())
             {
-                var query = from f in contexto.Faixas
-                            join inf in contexto.ItemsNotaFiscal on f.FaixaId equals inf.FaixaId //posso remover este join
-                            where f.Album.Artista.Nome == "Led Zeppelin"
+                //Como a entidade ItemNotaFiscal não contém o valor total, precisamos
+                //calcular multiplicando o preço unitário pela quantidade
+                var query = from inf in contexto.ItemsNotaFiscal
+                            where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
                             select inf.PrecoUnitario * inf.Quantidade;
+
+                //Note como navegamos do item da nota fiscal até o nome do artista: ItemNotaFiscal > Faixa > Album > Artista
 
                 var valorTotal = query.Sum();
 
-                Console.WriteLine("Total de músicas do Led Zeppelin vendidas: R$ {0}.", valorTotal);
+                Console.WriteLine("Valor total de músicas vendidas do Led Zeppelin: R$ {0}.", valorTotal);
             }
         }
     }
