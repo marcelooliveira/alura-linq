@@ -12,14 +12,11 @@ namespace alura_linq.Problemas.Problema10
         {
             using (var contexto = new AluraTunesEntities())
             {
-                var query = from art in contexto.Artistas
-                            where art.Nome == "Led Zeppelin"
-                            select art;
-
-                var artista = query.Single();
-                var albums = artista.Albums;
-                
-                foreach (var album in albums)
+                var query = from alb in contexto.Albums
+                            where alb.Artista.Nome == "Led Zeppelin"
+                            select alb;
+              
+                foreach (var album in query)
                 {
                     Console.WriteLine(album.Titulo);
                 }

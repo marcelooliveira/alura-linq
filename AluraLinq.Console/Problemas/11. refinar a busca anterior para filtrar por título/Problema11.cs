@@ -12,11 +12,13 @@ namespace alura_linq.Problemas.Problema11
         {
             using (var contexto = new AluraTunesEntities())
             {
+                contexto.Database.Log = Console.WriteLine;
+
                 var query = from art in contexto.Artistas
                             where art.Nome == "Led Zeppelin"
                             select art;
 
-                var artista = query.Single();
+                var artista = query.Single(); //explicar o que ocorre quando não encontra nenhum ou encontra vários
                 var albums = artista.Albums;
                 var filtrado = albums.Where(alb => alb.Titulo.Contains("Graffiti"));
 

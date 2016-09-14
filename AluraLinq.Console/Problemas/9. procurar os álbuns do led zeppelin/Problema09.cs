@@ -12,6 +12,9 @@ namespace alura_linq.Problemas.Problema9
         {
             using (var contexto = new AluraTunesEntities())
             {
+                //criar um método GetContextoComLog para automatizar esse log
+                contexto.Database.Log = Console.WriteLine;
+
                 var query = from art in contexto.Artistas
                             join alb in contexto.Albums
                                 on art.ArtistaId equals alb.ArtistaId

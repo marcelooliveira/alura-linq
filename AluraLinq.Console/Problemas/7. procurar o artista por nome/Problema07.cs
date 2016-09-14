@@ -16,6 +16,7 @@ namespace alura_linq.Problemas.Problema7
                             where a.Nome.StartsWith("Led")
                             select a;
 
+                //explicar que o 'a' é um apelido
                 foreach (var artista in query)
                 {
                     Console.WriteLine("{0}\t{1}", artista.ArtistaId, artista.Nome);

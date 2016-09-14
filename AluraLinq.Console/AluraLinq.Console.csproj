@@ -126,10 +126,11 @@
     <Compile Include="Problemas\20. obter um relatório das notas fiscais cujo total está acima da média\Problema20.cs" />
     <Compile Include="Problemas\21. todos os clientes que compraram o produto mais vendido\Problema21.cs" />
     <Compile Include="Problemas\22. produtos comprados por quem comprou o produto X, ordenado por count desses produtos\Problema22.cs" />
+    <Compile Include="Problemas\23. idem a de cima, mas que seja do mesmo genero\Problema23.cs" />
     <Compile Include="Problemas\3. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
     <Compile Include="Problemas\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
-    <Compile Include="Problemas\5. consultar um arquivo XML %28banco de dados%29 para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
-    <Compile Include="Problemas\6. Acessar uma nova fonte de dados %28sql server%29\Problema06.cs" />
+    <Compile Include="Problemas\5. consultar um arquivo XML para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
+    <Compile Include="Problemas\6. Acessar uma nova fonte de dados %28EF - sql server%29\Problema06.cs" />
     <Compile Include="Problemas\7. procurar o artista por nome\Problema07.cs" />
     <Compile Include="Problemas\8. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema08.cs" />
     <Compile Include="Problemas\9. procurar os álbuns do led zeppelin\Problema09.cs" />

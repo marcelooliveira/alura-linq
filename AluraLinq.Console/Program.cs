@@ -38,7 +38,7 @@ namespace alura_linq
             //new Problema8().Solve(args);
             //new Problema9().Solve(args);
             //new Problema10().Solve(args);
-            //new Problema11().Solve(args);
+            new Problema11().Solve(args);
             //new Problema12().Solve(args);
             //new Problema13().Solve(args);
             //new Problema14().Solve(args);
@@ -49,7 +49,7 @@ namespace alura_linq
             //new Problema19().Solve(args);
             //new Problema20().Solve(args);
             //new Problema21().Solve(args);
-            new Problema22().Solve(args);
+            //new Problema22().Solve(args);
 
             Console.ReadKey();
         }

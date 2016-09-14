@@ -13,7 +13,7 @@ namespace alura_linq.Problemas.Problema15
             using (var contexto = new AluraTunesEntities())
             {
                 var query = from f in contexto.Faixas
-                            join inf in contexto.ItemsNotaFiscal on f.FaixaId equals inf.FaixaId
+                            join inf in contexto.ItemsNotaFiscal on f.FaixaId equals inf.FaixaId //posso remover este join
                             where f.Album.Artista.Nome == "Led Zeppelin"
                             select inf.PrecoUnitario * inf.Quantidade;
 
