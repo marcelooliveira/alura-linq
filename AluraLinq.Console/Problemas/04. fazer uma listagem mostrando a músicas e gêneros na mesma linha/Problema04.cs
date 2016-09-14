@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema4
 {
+    /// <summary>
+    /// 04. fazer uma listagem mostrando a músicas e gêneros na mesma linha
+    /// </summary>
     public class Problema4 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
+            //Estamos colocando as 2 listas no mesmo código agora
             var generos = new List<Genero>
             {
                 new Genero { Id = 1, Nome = "Rock" },
@@ -26,6 +30,22 @@ namespace alura_linq.Problemas.Problema4
                 new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
                 new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
             };
+
+            //Sem o Linq faríamos algo como...
+
+            foreach (var m in musicas)
+            {
+                foreach (var g in generos)
+                {
+                    if (g.Id == m.GeneroId)
+                    {
+                        Console.WriteLine("{0}\t{1}\t{2}",
+                            m.Id,
+                            m.Nome.PadRight(20),
+                            g.Nome);
+                    }
+                }
+            }
 
             var query = from m in musicas
                         join g in generos on m.GeneroId equals g.Id

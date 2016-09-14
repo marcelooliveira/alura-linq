@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema3
 {
+    /// <summary>
+    /// 03. criar uma nova coleção simples e pequena (músicas)
+    /// </summary>
     public class Problema3 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
+            //Ok, já fizemos algo parecido com isso...
             var musicas = new List<Musica>
             {
                 new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },

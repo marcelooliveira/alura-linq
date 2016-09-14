@@ -33,6 +33,8 @@ namespace alura_linq.Problemas.Problema2
                 }
             }
 
+            Console.WriteLine();
+
             //O filtro que fizemos acima atende as nossas necessidades nesse caso, porém
             //essa abordagem tem alguns problemas:
             // - Se aumentar a complexidade do nosso problema, o código se torna menos legível (mais IFs / IF NOTs)
@@ -42,7 +44,7 @@ namespace alura_linq.Problemas.Problema2
             //- Foi baseado na sintaxe de consultas SQL de bancos relacionais
             //- funciona sobre fontes de dados IEnumerable (List, Array, Collection, Sistema de Arquivos, XML, 
             // Entity Framework, etc)
-            
+
             //generos é do tipo List, portanto é um IEnumerable e pode ser usado pelo Linq
 
             var query = from g in generos
@@ -64,6 +66,39 @@ namespace alura_linq.Problemas.Problema2
             // - a consulta já está preparada, separada da exibição
             // - dentro do nosso loop não há nenhum filtro, apenas código para exibir dados.
             
+            foreach (var genero in query)
+            {
+                Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
+            }
+            Console.WriteLine();
+
+            //o que vimos acima se chama "Sintaxe de Consulta". Agora faremos a mesma consulta, porém 
+            //usaremos a "Sintaxe de Método"
+
+            query = generos.Where(g => g.Nome.Contains("Rock"));
+
+            //É a mesma consulta, porém usando método.
+            //A variável query será idêntica nos dois casos
+
+            //Atenção acima para o método "Where".
+            // - vá para definição de Where (F12). Veja que ele faz parte de System.Linq.Enumerable
+            // - Ele é um método de extensão que tem a assinatura:
+            //          IEnumerable<TSource> Where<TSource>(this IEnumerable<TSource> source
+            //                                              , Func<TSource, bool> predicate)
+            // onde:
+            //  - source: é o objeto da classe que está sendo extendida (no caso, a lista generos)
+            //  - predicate: é o delegate do predicado (no caso, o filtro "g => g.Nome.Contains("Rock")")
+            //
+            // Perg: que é g => g.Nome.Contains("Rock")???
+            // Resp: é uma EXPRESSÃO LAMBDA
+            //
+            // P: o que é uma expressão lambda? O que é um lambda?
+            // R: é uma Função Anônima (que não tem nome) que é passada como parâmetro. Estamos dizendo
+            //      para o Where: "Pegue essa lista, filtre para mim, usando essa função, execute para cada genero 
+            //      e me traga só os que retornarem TRUE."
+            // Nossa função recebe um parâmetro g (objeto da classe Genero) e retorna um bool (se
+            //  g.Nome contém ou não a palavra "Rock").
+
             foreach (var genero in query)
             {
                 Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
