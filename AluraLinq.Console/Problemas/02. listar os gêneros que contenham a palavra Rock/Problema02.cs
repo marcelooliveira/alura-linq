@@ -13,6 +13,7 @@ namespace alura_linq.Problemas.Problema2
     {
         public override void Solve(string[] args)
         {
+            //Voltando à nossa lista de gêneros...
             var generos = new List<Genero>
             {
                 new Genero { Id = 1, Nome = "Rock" },
@@ -103,6 +104,13 @@ namespace alura_linq.Problemas.Problema2
             {
                 Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
             }
+
+            //P: Se a definição de consulta "query" não faz nada sozinha, quando é que a consulta é de fato
+            //  realizada?
+            //R: Quando o laço foreach começa a acessar os elementos, na linha: "foreach (var genero in query)"
+
+            //A modalidade de Linq que acabamos de ver se chama "Linq To Objects", porque é Linq atuando sobre
+            //objetos em memória.
         }
     }
 
