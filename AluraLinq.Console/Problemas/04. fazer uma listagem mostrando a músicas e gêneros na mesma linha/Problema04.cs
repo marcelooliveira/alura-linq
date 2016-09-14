@@ -47,14 +47,53 @@ namespace alura_linq.Problemas.Problema4
                 }
             }
 
+            // De novo, no código acima, estamos misturando lógica de consulta com lógica de exibição do resultado.
+            // ...isso não é bom.
+
+            //Com o Linq, faríamos primeiro...
+
+            var musicaQuery = from m in musicas
+                        select m;
+
+            //... porém objeto Musica não tem nome do gênero. Para isso, precisamos combinar esses dados com a lista generos
+
+            var querySimples1 = 
+                    from m in musicas
+                    join g in generos on m.GeneroId equals g.Id
+                    select m;
+
+            // Hm, agora ficou mais parecido ainda com consulta SQL.
+            // Preste atenção nesse JOIN:
+            // - Ele vai combinar os dados de músicas e de generos através do GeneroId
+            // - Ele associa a propriedade de um com a propriedade do outro objeto
+            // - Ele usa o operador EQUALS, em vez do sinal de igualdade "=". É assim mesmo.
+
+            // Perceba que acima estamos trazendo somente a música (m). Precisamos trazer também dados de gênero.
+
+            var querySimples2 =
+                from m in musicas
+                join g in generos on m.GeneroId equals g.Id
+                select new { m, g };
+
+            // P: O que é "new { m, g }"?
+            // R: É um objeto anônimo, que usamos para "transformar" o resultado da query. Estamos definindo
+            //  como saída um objeto com duas propriedades (m e g) e elas contém os objetos Musica e Genero,
+            //  respectivamente. Mas podemos melhorar um pouco esse resultado:
+
             var query = from m in musicas
-                        join g in generos on m.GeneroId equals g.Id
-                        select new
-                        {
-                            MusicaId = m.Id,
-                            Musica = m.Nome,
-                            Genero = g.Nome
-                        };
+                    join g in generos on m.GeneroId equals g.Id
+                    select new
+                    {
+                        MusicaId = m.Id,
+                        Musica = m.Nome,
+                        Genero = g.Nome
+                    };
+
+            //Agora o resultado não fez muita diferença, porém ficou mais legível, o que é ótimo.
+            //Podemos sempre transformar/projetar o resultado da nossa consulta da maneira que quisermos. O nome disso
+            //é "Projeção de Dados" 
+
+            //Agora varremos a nossa query, tabulando os dados conforme desejamos.
 
             foreach (var musicaXgenero in query)
             {
