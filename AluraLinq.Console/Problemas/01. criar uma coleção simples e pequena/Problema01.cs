@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace alura_linq.Problemas.Problema2
+namespace alura_linq.Problemas.Problema1
 {
-    class Problema2 : ProblemaBase
+    /// <summary>
+    /// 1. criar uma coleção simples e pequena
+    /// </summary>
+    class Problema1 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
@@ -16,14 +19,6 @@ namespace alura_linq.Problemas.Problema2
                 new Genero { Id = 2, Nome = "Reggae" },
                 new Genero { Id = 3, Nome = "Classica" }
             };
-
-            var query = from g in generos
-                        select g;
-
-            foreach (var genero in query)
-            {
-                Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
-            }
         }
     }
 

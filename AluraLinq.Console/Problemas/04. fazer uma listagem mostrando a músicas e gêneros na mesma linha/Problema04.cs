@@ -14,14 +14,17 @@ namespace alura_linq.Problemas.Problema4
             {
                 new Genero { Id = 1, Nome = "Rock" },
                 new Genero { Id = 2, Nome = "Reggae" },
-                new Genero { Id = 3, Nome = "Classica" }
+                new Genero { Id = 3, Nome = "Rock Progressivo" },
+                new Genero { Id = 4, Nome = "Jazz" },
+                new Genero { Id = 5, Nome = "Punk Rock" },
+                new Genero { Id = 6, Nome = "Classica" }
             };
 
             var musicas = new List<Musica>
             {
                 new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
                 new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
-                new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 3 }
+                new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
             };
 
             var query = from m in musicas

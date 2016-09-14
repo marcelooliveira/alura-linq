@@ -112,7 +112,7 @@
     <Compile Include="Playlist.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Problemas\1. criar uma coleção simples e pequena\Problema01.cs" />
+    <Compile Include="Problemas\01. criar uma coleção simples e pequena\Problema01.cs" />
     <Compile Include="Problemas\13. ordenar os álbuns do led zeppelin por nome, decrescente\Problema13.cs" />
     <Compile Include="Problemas\12. ordenar os álbuns do led zeppelin por nome\Problema12.cs" />
     <Compile Include="Problemas\10. procurar os álbuns do led zeppelin, sem usar join %28otimizado%29\Problema10.cs" />
@@ -123,7 +123,7 @@
     <Compile Include="Problemas\15. calcular valor total de vendas de músicas do led zeppelin\Problema15.cs" />
     <Compile Include="Problemas\14. contar quantas músicas do led zeppelin existem na loja\Problema14.cs" />
     <Compile Include="Problemas\19. buscar dados das vendas %28num. nota fiscal, data, cliente, total%29 ordenado por data na nota fiscal, porém sem trazer tudo ao mesmo tempo\Problema19.cs" />
-    <Compile Include="Problemas\2. listar os gêneros\Problema02.cs" />
+    <Compile Include="Problemas\02. listar os gêneros que contenham a palavra Rock\Problema02.cs" />
     <Compile Include="Problemas\20. obter um relatório das notas fiscais cujo total está acima da média\Problema20.cs" />
     <Compile Include="Problemas\21. todos os clientes que compraram o produto mais vendido\Problema21.cs" />
     <Compile Include="Problemas\22. produtos comprados por quem comprou o produto X, ordenado por count desses produtos\Problema22.cs" />
@@ -132,13 +132,13 @@
     <Compile Include="Problemas\24. modificar a consulta para que o resultado dependa de uma nova função de cálculo que exige intenso processamento\Problema24.cs" />
     <Compile Include="Problemas\26. inserir um novo artista, inserir um álbum dele e uma faixa de música\Problema26.cs" />
     <Compile Include="Problemas\27. inserir um novo artista, inserir um álbum dele e uma faixa de música, mas quando nossos clientes consultarem esse artista, a faixa já deverá estar disponível no banco de dados\Problema27.cs" />
-    <Compile Include="Problemas\3. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
-    <Compile Include="Problemas\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
-    <Compile Include="Problemas\5. consultar um arquivo XML para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
-    <Compile Include="Problemas\6. Acessar uma nova fonte de dados %28EF - sql server%29\Problema06.cs" />
-    <Compile Include="Problemas\7. procurar o artista por nome\Problema07.cs" />
-    <Compile Include="Problemas\8. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema08.cs" />
-    <Compile Include="Problemas\9. procurar os álbuns do led zeppelin\Problema09.cs" />
+    <Compile Include="Problemas\03. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
+    <Compile Include="Problemas\04. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
+    <Compile Include="Problemas\05. consultar um arquivo XML para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
+    <Compile Include="Problemas\06. Acessar uma nova fonte de dados %28EF - sql server%29\Problema06.cs" />
+    <Compile Include="Problemas\07. procurar o artista por nome\Problema07.cs" />
+    <Compile Include="Problemas\08. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema08.cs" />
+    <Compile Include="Problemas\09. procurar os álbuns do led zeppelin\Problema09.cs" />
     <Compile Include="Problemas\ProblemaBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
