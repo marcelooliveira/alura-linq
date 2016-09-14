@@ -22,7 +22,7 @@ namespace alura_linq.Problemas.Problema6
                                 Genero = g.Nome
                             };
 
-                foreach (var faixaGenero in query)
+                foreach (var faixaGenero in query.Take(10))
                 {
                     Console.WriteLine("{0}\t{1}\t{2}",
                         faixaGenero.FaixaId,

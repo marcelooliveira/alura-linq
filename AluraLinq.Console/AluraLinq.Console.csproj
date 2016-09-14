@@ -121,7 +121,10 @@
     <Compile Include="Problemas\16. calcular valor total de vendas de músicas do led zeppelin, por álbum\Problema16.cs" />
     <Compile Include="Problemas\15. calcular valor total de vendas de músicas do led zeppelin\Problema15.cs" />
     <Compile Include="Problemas\14. contar quantas músicas do led zeppelin existem na loja\Problema14.cs" />
+    <Compile Include="Problemas\19. buscar dados das vendas %28num. nota fiscal, data, cliente, total%29 ordenado por data na nota fiscal, porém sem trazer tudo ao mesmo tempo\Problema19.cs" />
     <Compile Include="Problemas\2. listar os gêneros\Problema02.cs" />
+    <Compile Include="Problemas\20. obter um relatório das notas fiscais cujo total está acima da média\Problema20.cs" />
+    <Compile Include="Problemas\21. todos os clientes que compraram o produto mais vendido\Problema21.cs" />
     <Compile Include="Problemas\3. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
     <Compile Include="Problemas\4. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
     <Compile Include="Problemas\5. consultar um arquivo XML %28banco de dados%29 para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
@@ -194,6 +197,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

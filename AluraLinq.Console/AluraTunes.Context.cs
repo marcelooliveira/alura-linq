@@ -34,6 +34,6 @@ namespace alura_linq
         public virtual DbSet<ItemNotaFiscal> ItemsNotaFiscal { get; set; }
         public virtual DbSet<NotaFiscal> NotasFiscais { get; set; }
         public virtual DbSet<Playlist> Playlists { get; set; }
-        public virtual DbSet<TipoMidia> TiposMidia { get; set; }
+        public virtual DbSet<TipoMidia> TipoMidias { get; set; }
     }
 }
