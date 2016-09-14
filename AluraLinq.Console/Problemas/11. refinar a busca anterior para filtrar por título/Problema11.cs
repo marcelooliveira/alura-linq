@@ -15,17 +15,14 @@ namespace alura_linq.Problemas.Problema11
         {
             using (var contexto = GetContextoComLog())
             {
-                contexto.Database.Log = Console.WriteLine;
+                var query = from alb in contexto.Albums
+                            where alb.Artista.Nome == "Led Zeppelin"
+                            select alb;
 
-                var query = from art in contexto.Artistas
-                            where art.Nome == "Led Zeppelin"
-                            select art;
+                //Agora queremos mudar a consulta para filtrar pelos álbuns que contenham "Graffiti"
+                query = query.Where(alb => alb.Titulo.Contains("Graffiti"));
 
-                var artista = query.Single(); //explicar o que ocorre quando não encontra nenhum ou encontra vários
-                var albums = artista.Albums;
-                var filtrado = albums.Where(alb => alb.Titulo.Contains("Graffiti"));
-
-                foreach (var album in filtrado)
+                foreach (var album in query)
                 {
                     Console.WriteLine(album.Titulo);
                 }
