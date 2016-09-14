@@ -12,6 +12,7 @@ using alura_linq.Problemas.Problema19;
 using alura_linq.Problemas.Problema2;
 using alura_linq.Problemas.Problema20;
 using alura_linq.Problemas.Problema21;
+using alura_linq.Problemas.Problema22;
 using alura_linq.Problemas.Problema3;
 using alura_linq.Problemas.Problema4;
 using alura_linq.Problemas.Problema5;
@@ -27,27 +28,28 @@ namespace alura_linq
     {
         static void Main(string[] args)
         {
-            new Problema1().Solve(args);
-            new Problema2().Solve(args);
-            new Problema3().Solve(args);
-            new Problema4().Solve(args);
-            new Problema5().Solve(args);
-            new Problema6().Solve(args);
-            new Problema7().Solve(args);
-            new Problema8().Solve(args);
-            new Problema9().Solve(args);
-            new Problema10().Solve(args);
-            new Problema11().Solve(args);
-            new Problema12().Solve(args);
-            new Problema13().Solve(args);
-            new Problema14().Solve(args);
-            new Problema15().Solve(args);
-            new Problema16().Solve(args);
-            new Problema17().Solve(args);
-            new Problema18().Solve(args);
-            new Problema19().Solve(args);
-            new Problema20().Solve(args);
-            new Problema21().Solve(args);
+            //new Problema1().Solve(args);
+            //new Problema2().Solve(args);
+            //new Problema3().Solve(args);
+            //new Problema4().Solve(args);
+            //new Problema5().Solve(args);
+            //new Problema6().Solve(args);
+            //new Problema7().Solve(args);
+            //new Problema8().Solve(args);
+            //new Problema9().Solve(args);
+            //new Problema10().Solve(args);
+            //new Problema11().Solve(args);
+            //new Problema12().Solve(args);
+            //new Problema13().Solve(args);
+            //new Problema14().Solve(args);
+            //new Problema15().Solve(args);
+            //new Problema16().Solve(args);
+            //new Problema17().Solve(args);
+            //new Problema18().Solve(args);
+            //new Problema19().Solve(args);
+            //new Problema20().Solve(args);
+            //new Problema21().Solve(args);
+            new Problema22().Solve(args);
 
             Console.ReadKey();
         }
