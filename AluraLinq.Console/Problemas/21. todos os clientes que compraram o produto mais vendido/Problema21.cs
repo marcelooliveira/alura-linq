@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema21
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var produtoMaisVendido =
                     (from f in contexto.Faixas

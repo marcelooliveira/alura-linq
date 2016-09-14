@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema23
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var minhaFaixa = contexto.Faixas.Where(f => f.Nome == "Smells Like Teen Spirit").First();
 

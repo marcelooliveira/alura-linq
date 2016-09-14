@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema20
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var valorMedio = contexto.NotasFiscais.Average(nf => nf.Total);
 

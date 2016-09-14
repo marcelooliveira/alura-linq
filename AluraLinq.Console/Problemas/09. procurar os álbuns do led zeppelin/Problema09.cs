@@ -13,14 +13,15 @@ namespace alura_linq.Problemas.Problema9
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 //Agora vamos fazer uma nova busca por texto,
                 //mas desta vez trazendo os álbuns de um artista:
 
                 var textoBusca = "Led Zeppelin";
                 var query = from alb in contexto.Albums
-                            where alb.Artista.Nome == textoBusca
+                            join art in contexto.Artistas on alb.ArtistaId equals art.ArtistaId
+                            where art.Nome == textoBusca
                             select alb;
 
                 foreach (var album in query)

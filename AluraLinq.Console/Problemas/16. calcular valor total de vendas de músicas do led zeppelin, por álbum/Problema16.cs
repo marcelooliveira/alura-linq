@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema16
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var query = 
                         from inf in contexto.ItemsNotaFiscal

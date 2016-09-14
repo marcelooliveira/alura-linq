@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema14
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var query = from f in contexto.Faixas
                             where f.Album.Artista.Nome == "Led Zeppelin"

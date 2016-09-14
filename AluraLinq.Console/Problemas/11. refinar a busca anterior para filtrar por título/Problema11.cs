@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema11
 {
+    /// <summary>
+    /// 11. refinar a busca anterior para filtrar por título
+    /// </summary>
     class Problema11 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 contexto.Database.Log = Console.WriteLine;
 

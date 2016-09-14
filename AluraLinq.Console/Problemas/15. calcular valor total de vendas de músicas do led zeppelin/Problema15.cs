@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema15
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var query = from f in contexto.Faixas
                             join inf in contexto.ItemsNotaFiscal on f.FaixaId equals inf.FaixaId //posso remover este join

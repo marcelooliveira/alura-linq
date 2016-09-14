@@ -99,42 +99,6 @@ namespace alura_linq.Problemas.Problema6
                         faixaGenero.Nome,
                         faixaGenero.Genero);
                 }
-
-                //Apenas para finalizar a introdução a Linq to Entities, vamos vazer uma crítica à cláusula JOIN.
-                //Apesar de atender às nossas necessidades, o uso do join pode dificultar a leitura, principalmente
-                //se houver muitas entidades envolvidas em joins.
-
-                //No nosso último exemplo, vimos como fazer o join entre Faixas e Generos. Isso não é necessário,
-                //porque o objeto Faixa do nosso modelo já possui a propriedade Genero. Aliás, quando o modelo
-                //Entity Framework é gerado, todos os relacionamentos "chave estrangeira" já são importados para
-                //nosso modelo como propriedades de navegação. Então podemos navegar por vários entidades e por vários 
-                //níveis através dessas propriedades, como se estivéssemos navegando pelas chaves estrangeiras do
-                //banco de dados relacional.
-
-                //O principal motivo para usarmos propriedades de navegação em vez de joins é a facilidade de leitura
-                //e entendimento. Resumindo:
-                //  - "Qualquer tolo pode escrever código que um computador possa entender.
-                //      Bons programadores escrevem código que humanos podem entender." (Martin Fowler)
-
-                //É claro, se não houver propriedades de navegação (como nos nossos exemplos de Linq to Objects e Linq to
-                //XML), o join deverá ser usado.
-
-                var querySemJoin = 
-                    from f in contexto.Faixas
-                    select new
-                    {
-                        FaixaId = f.FaixaId,
-                        Nome = f.Nome,
-                        Genero = f.Genero.Nome //f.Genero: Propriedade de Navegação
-                    };
-
-                foreach (var faixaGenero in querySemJoin.Take(10))
-                {
-                    Console.WriteLine("{0}\t{1}\t{2}",
-                        faixaGenero.FaixaId,
-                        faixaGenero.Nome,
-                        faixaGenero.Genero);
-                }
             }
         }
     }

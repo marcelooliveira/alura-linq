@@ -17,7 +17,7 @@ namespace alura_linq.Problemas.Problema26
 
             try
             {
-                using (var contexto = new AluraTunesEntities())
+                using (var contexto = GetContextoComLog())
                 {
                     var genero = contexto.Generos.Where(g => g.Nome == "Rock").Single();
                     var tipoMidia = contexto.TipoMidias.Where(tm => tm.Nome == "MPEG audio file").Single();

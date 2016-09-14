@@ -26,7 +26,7 @@ namespace alura_linq.Problemas.Problema27
                 {
                     Console.WriteLine("Iniciando a transação...");
 
-                    using (var contexto = new AluraTunesEntities())
+                    using (var contexto = GetContextoComLog())
                     {
                         var genero = contexto.Generos.Where(g => g.Nome == "Rock").Single();
                         var tipoMidia = contexto.TipoMidias.Where(tm => tm.Nome == "MPEG audio file").Single();
@@ -105,7 +105,7 @@ namespace alura_linq.Problemas.Problema27
                 }
 
 
-                using (var contexto = new AluraTunesEntities())
+                using (var contexto = GetContextoComLog())
                 {
                     var artistaFoiInseridoQuery = contexto.Artistas.Where(a => a.Nome == nomeArtista);
                     if (artistaFoiInseridoQuery.Any())

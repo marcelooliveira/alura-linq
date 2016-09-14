@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema18
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var vendaMediana = contexto.NotasFiscais.Select(nf => nf.Total).Mediana();
                 Console.WriteLine("Venda Mediana: R$ {0}", vendaMediana);

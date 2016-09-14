@@ -10,7 +10,7 @@ namespace alura_linq.Problemas.Problema17
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var vendas =
                     (from nf in contexto.NotasFiscais

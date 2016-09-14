@@ -18,9 +18,9 @@ namespace alura_linq.Problemas.Problema19
             }
         }
 
-        private static void MostraPagina(int TAMANHO_PAGINA, int pagina)
+        private void MostraPagina(int TAMANHO_PAGINA, int pagina)
         {
-            using (var contexto = new AluraTunesEntities())
+            using (var contexto = GetContextoComLog())
             {
                 var query = from nf in contexto.NotasFiscais
                             orderby nf.DataNotaFiscal
