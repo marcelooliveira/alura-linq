@@ -37,10 +37,10 @@ namespace alura_linq
             //new Problema3().Solve(args);
             //new Problema4().Solve(args);
             //new Problema5().Solve(args);
-            new Problema6().Solve(args);
+            //new Problema6().Solve(args);
             //new Problema7().Solve(args);
             //new Problema8().Solve(args);
-            //new Problema9().Solve(args);
+            new Problema9().Solve(args);
             //new Problema10().Solve(args);
             //new Problema11().Solve(args);
             //new Problema12().Solve(args);

@@ -19,7 +19,9 @@ namespace alura_linq.Problemas
 
         protected AluraTunesEntities GetContextoComLog()
         {
-            return new AluraTunesEntities();
+            var contexto = new AluraTunesEntities();
+            contexto.Database.Log = Console.WriteLine;
+            return contexto;
         }
 
         public virtual void Solve(string[] args)

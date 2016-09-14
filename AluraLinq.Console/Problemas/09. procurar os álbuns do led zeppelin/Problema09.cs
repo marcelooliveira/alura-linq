@@ -6,19 +6,21 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema9
 {
+    /// <summary>
+    /// 09. procurar os álbuns do led zeppelin
+    /// </summary>
     class Problema9 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
             using (var contexto = new AluraTunesEntities())
             {
-                //criar um método GetContextoComLog para automatizar esse log
-                contexto.Database.Log = Console.WriteLine;
+                //Agora vamos fazer uma nova busca por texto,
+                //mas desta vez trazendo os álbuns de um artista:
 
-                var query = from art in contexto.Artistas
-                            join alb in contexto.Albums
-                                on art.ArtistaId equals alb.ArtistaId
-                            where art.Nome == "Led Zeppelin"
+                var textoBusca = "Led Zeppelin";
+                var query = from alb in contexto.Albums
+                            where alb.Artista.Nome == textoBusca
                             select alb;
 
                 foreach (var album in query)
