@@ -190,16 +190,23 @@
     <Content Include="Data\AluraTunes.mdf">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Data\AluraTunes_log.ldf">
+      <DependentUpon>AluraTunes.mdf</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Data\Chinook.xml" />
     <Content Include="Data\AluraTunes.sql" />
-    <Content Include="Data\AluraTunes_log.ldf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <DependentUpon>AluraTunes.mdf</DependentUpon>
-    </Content>
     <Content Include="Data\AluraTunes.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Data\LICENSE.txt" />
+    <Content Include="Data\VideoAluraTunes.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\VideoAluraTunes_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>VideoAluraTunes.mdf</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
