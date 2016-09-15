@@ -37,21 +37,13 @@ namespace alura_linq.Problemas.Problema18
 
                 //Sem dúvida essa função resolveu o nosso problema, porém seria melhor se pudéssemos chamá-la
                 //numa consulta Linq.
-
-                //Mas isso cria um novo problema: cada método do Linq (Min, Max, Average) é traduzido pelo
-                //Linq to Entities para uma função nativa do Sql Server. Como não existe uma função Sql Server
-                //(e nem Entity Framework) para "Mediana", precisamos trazer todos os dados necessários do banco
-                //de dados e realizar o cálculo em memória.
-
+ 
                 //Dito isso, podemos adaptar um pouco a nossa função e implementar um novo
                 //método de extensão chamado "Mediana", como extensão da interface IEnumerable<decimal>. Dessa forma,
                 //poderemos utilizá-lo dentro da nossa sintaxe Linq:
 
                 vendaMediana = contexto.NotasFiscais.Mediana(ag => ag.Total);
                 Console.WriteLine("Venda Mediana: R$ {0}", vendaMediana);
-
-                //Note que, antes de usarmos o método Mediana, primeiro invocamos o método AsEnumerable(), que
-                //traz os totais de notas do banco de dados para a memória. E então a mediana é calculada em memória.
             }
         }
 
@@ -78,12 +70,13 @@ namespace alura_linq.Problemas.Problema18
             var ordenado = origem
                 .Select(selector)
                 .OrderBy(x => x);
-                
+
             decimal mediana =
                     ordenado.Skip(contagem / 2).First()
-                +   ordenado.Skip((contagem - 1) / 2).First();
+                + ordenado.Skip((contagem - 1) / 2).First();
 
             mediana /= 2;
+
             return mediana;
         }
     }
