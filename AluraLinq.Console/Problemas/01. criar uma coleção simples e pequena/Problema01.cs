@@ -13,8 +13,12 @@ namespace alura_linq.Problemas.Problema1
     {
         public override void Solve(string[] args)
         {
-            //Ainda vamos trabalhar com banco de dados nesse curso, mas por enquanto vamos
-            //começar trabalhando com dados em memória
+            //Antes de criarmos a lista, vamos criar uma classe Genero com informações 
+            //básicas sobre os gêneros das músicas digitais que vendemos em nossa loja.
+
+            //Agora implementamos uma pequena lista com apenas alguns dos gêneros que serão 
+            //disponibilizados, armazenando os valores na variável generos. 
+
             var generos = new List<Genero>
             {
                 new Genero { Id = 1, Nome = "Rock" },

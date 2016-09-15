@@ -60,7 +60,7 @@ namespace alura_linq.Problemas.Problema5
                             Genero = g.Element("Nome").Value
                         };
            
-            //Que fará o mesmo que já vimos anteiormente, quando aprendemos sobre Linq to Objects.
+            //Que fará o mesmo que já vimos anteriormente, quando aprendemos sobre Linq to Objects.
 
             foreach (var musicaXgenero in query)
             {

@@ -134,7 +134,7 @@
     <Compile Include="Problemas\27. o mesmo que o anterior, porém dentro de uma transação\Problema27.cs" />
     <Compile Include="Problemas\03. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
     <Compile Include="Problemas\04. fazer uma listagem mostrando a músicas e gêneros na mesma linha\Problema04.cs" />
-    <Compile Include="Problemas\05. consultar um arquivo XML para listar os nomes dos artistas que existem na nossa loja\Problema05.cs" />
+    <Compile Include="Problemas\05. consultar um arquivo XML para listar os gêneros e músicas que existem na nossa loja\Problema05.cs" />
     <Compile Include="Problemas\06. Acessar uma nova fonte de dados %28EF - sql server%29\Problema06.cs" />
     <Compile Include="Problemas\07. procurar o artista por nome\Problema07.cs" />
     <Compile Include="Problemas\08. Fazer a mesma busca acima, porém com sintaxe de métodos em vez de sintaxe de consulta\Problema08.cs" />

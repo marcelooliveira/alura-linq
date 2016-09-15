@@ -56,9 +56,9 @@ namespace alura_linq.Problemas.Problema2
             //Se você conseguiu entender facilmente essa query, é um bom sinal. O Linq surgiu para isso mesmo.
             //Em vez de consultarmos uma tabela, estamos consultando uma lista em memória.
             //Em vez de filtrarmos uma coluna de tabela, estamos filtrando uma propriedade do objeto
-            //Em vez de selecionarmos (select) colunas, estamos selecionando um objeto (mas poderia ser qualquer coisa) 
-            //Select pode ser colocado no começo da query? Não. Por quê? Por que não, é assim mesmo, se acostume com isso.
-            //Quantos elementos a consulta acima irá retornar? Nenhum. É só uma definição de consulta, e quando
+            //Em vez de selecionarmos (select)colunas, estamos selecionando um objeto(mas poderia ser qualquer coisa)
+            //Select pode ser colocado no começo da query ? Não.Por quê ? Por que não, é assim mesmo, se acostume com isso.
+            //Quantos elementos a consulta acima irá retornar ? Nenhum.É só uma definição de consulta, e quando
             //  o programa passa por essa linha, apenas armazena consulta na variável query sem trazer os dados.
 
             //Agora sim vamos fazer o loop sobre o resultado
@@ -66,7 +66,7 @@ namespace alura_linq.Problemas.Problema2
             //Veja que bonito:
             // - a consulta já está preparada, separada da exibição
             // - dentro do nosso loop não há nenhum filtro, apenas código para exibir dados.
-            
+
             foreach (var genero in query)
             {
                 Console.WriteLine("{0} - {1}", genero.Id, genero.Nome);
