@@ -6,10 +6,37 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema19
 {
+    /// <summary>
+    /// 19. buscar dados das vendas ordenado por data na nota fiscal, com paginação
+    /// </summary>
     class Problema19 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
+            using (var contexto = GetContextoComLog())
+            {
+                //Aplicando o que já aprendemos antes, vamos montar uma consulta ordenada,
+                //trazendo número da nota, data, cliente e valor da nota
+                var query = from nf in contexto.NotasFiscais
+                            orderby nf.DataNotaFiscal
+                            select new
+                            {
+                                Numero = nf.NotaFiscalId,
+                                Data = nf.DataNotaFiscal,
+                                Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+                                Valor = nf.Total
+                            };
+
+                //Obs.: Uma "página" é uma quantidade pequena de elementos que são obtidos a cada
+                //consulta do banco de dados. Uma consulta paginada é muito útil porque evita
+                //excesso de processamento no servidor, além de reduzir o tráfego de dados pela
+                //rede e melhorar o desempenho da aplicação.
+
+                //Agora usamos o método Skip(n) para pular o número de elementos necessários
+                //para alcançarmos a página desejada, e invocamos o método Take(n) para
+                //pegarmos a quantidade de elementos da página.
+            }
+
             const int TAMANHO_PAGINA = 5;
             
             for (var pagina = 0; pagina < 4; pagina++)
