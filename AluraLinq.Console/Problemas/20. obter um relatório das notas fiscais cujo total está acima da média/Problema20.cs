@@ -6,16 +6,18 @@ using System.Threading.Tasks;
 
 namespace alura_linq.Problemas.Problema20
 {
+    /// <summary>
+    /// 20. obter um relatório das notas fiscais cujo total está acima da média
+    /// </summary>
     class Problema20 : ProblemaBase
     {
         public override void Solve(string[] args)
         {
             using (var contexto = GetContextoComLog())
             {
-                var valorMedio = contexto.NotasFiscais.Average(nf => nf.Total);
-
+                
                 var query = from nf in contexto.NotasFiscais
-                            where nf.Total > valorMedio
+                            where nf.Total > (contexto.NotasFiscais.Average(nota => nota.Total))
                             select new
                             {
                                 Numero = nf.NotaFiscalId,
