@@ -38,7 +38,7 @@ namespace alura_linq.Problemas.Problema19
             }
 
             const int TAMANHO_PAGINA = 5;
-            
+
             for (var pagina = 0; pagina < 4; pagina++)
             {
                 MostraPagina(TAMANHO_PAGINA, pagina);
@@ -49,31 +49,49 @@ namespace alura_linq.Problemas.Problema19
         {
             using (var contexto = GetContextoComLog())
             {
-                var query = from nf in contexto.NotasFiscais
-                            orderby nf.DataNotaFiscal
-                            select new
-                            {
-                                Numero = nf.NotaFiscalId,
-                                Data = nf.DataNotaFiscal,
-                                Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
-                                Valor = nf.Total
-                            };
-
-                var notasPagina = query
-                    .Skip(TAMANHO_PAGINA * pagina)
-                    .Take(TAMANHO_PAGINA);
-
-                Console.WriteLine("\nPágina {0}", pagina);
-                foreach (var notaFiscal in notasPagina)
-                {
-                    Console.WriteLine("{0}\t{1}\t{2}\t{3}",
-                        notaFiscal.Numero,
-                        notaFiscal.Data,
-                        notaFiscal.Cliente.PadRight(30),
-                        notaFiscal.Valor
-                        );
-                }
+                var notasPagina = GetNotasDaPagina(TAMANHO_PAGINA, pagina, contexto);
+                ImprimeNotasDaPagina(pagina, notasPagina);
             }
         }
+
+        private IQueryable<DetalheNota> GetNotasDaPagina(int TAMANHO_PAGINA, int pagina, AluraTunesEntities contexto)
+        {
+            var query = from nf in contexto.NotasFiscais
+                        orderby nf.DataNotaFiscal
+                        select new DetalheNota
+                        {
+                            Numero = nf.NotaFiscalId,
+                            Data = nf.DataNotaFiscal,
+                            Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+                            Valor = nf.Total
+                        };
+
+            var notasPagina = query
+                .Skip(TAMANHO_PAGINA * pagina)
+                .Take(TAMANHO_PAGINA);
+            return notasPagina;
+        }
+
+        private void ImprimeNotasDaPagina(int pagina, IQueryable<DetalheNota> notasPagina)
+        {
+            Console.WriteLine("\nPágina {0}", pagina);
+            foreach (var notaFiscal in notasPagina)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}\t{3}",
+                    notaFiscal.Numero,
+                    notaFiscal.Data,
+                    notaFiscal.Cliente.PadRight(30),
+                    notaFiscal.Valor
+                    );
+            }
+        }
+    }
+
+    class DetalheNota
+    {
+        public int Numero { get; set; }
+        public DateTime Data { get; set; }
+        public string Cliente { get; set; }
+        public decimal Valor { get; set; }
     }
 }

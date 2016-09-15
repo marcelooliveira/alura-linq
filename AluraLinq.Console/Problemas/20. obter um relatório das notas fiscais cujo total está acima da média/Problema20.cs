@@ -33,6 +33,17 @@ namespace alura_linq.Problemas.Problema20
                     Console.WriteLine("{0}\t{1}\t{2}\t{3}",
                         notaFiscal.Numero,
                         notaFiscal.Data,
+                        notaFiscal.Cliente,
+                        notaFiscal.Valor
+                        );
+                }
+                 //+ padright
+
+                foreach (var notaFiscal in notasAcimaDaMedia)
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}\t{3}",
+                        notaFiscal.Numero,
+                        notaFiscal.Data,
                         notaFiscal.Cliente.PadRight(30),
                         notaFiscal.Valor
                         );

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,7 +47,7 @@ namespace alura_linq.Problemas.Problema18
                 //método de extensão chamado "Mediana", como extensão da interface IEnumerable<decimal>. Dessa forma,
                 //poderemos utilizá-lo dentro da nossa sintaxe Linq:
 
-                vendaMediana = contexto.NotasFiscais.AsEnumerable().Mediana(ag => ag.Total);
+                vendaMediana = contexto.NotasFiscais.Mediana(ag => ag.Total);
                 Console.WriteLine("Venda Mediana: R$ {0}", vendaMediana);
 
                 //Note que, antes de usarmos o método Mediana, primeiro invocamos o método AsEnumerable(), que
@@ -56,60 +57,34 @@ namespace alura_linq.Problemas.Problema18
 
         public static decimal Mediana(IQueryable<decimal> origem)
         {
-            // Cria uma cópia da origem, e ordena essa cópia
-            decimal[] temp = origem.ToArray();
-            Array.Sort(temp);
+            int contagem = origem.Count();
+            var ordenado = origem.OrderBy(p => p);
+            decimal mediana =
+                    ordenado.Skip(contagem / 2).First() 
+                +   ordenado.Skip((contagem - 1) / 2).First();
 
-            int count = temp.Length;
-            if (count == 0)
-            {
-                throw new InvalidOperationException("Coleção está vazia");
-            }
-            else if (count % 2 == 0)
-            {
-                // contagem é par, então pegamos a média dos 2 elementos do meio
-                decimal a = temp[count / 2 - 1];
-                decimal b = temp[count / 2];
-                return (a + b) / 2m;
-            }
-            else
-            {
-                // contagem é ímpar, retorna o elemento do meio
-                return temp[count / 2];
-            }
+            mediana /= 2;
+            return mediana;
         }
     }
 
     public static class Extensions
     {
-        public static decimal Mediana<TSource>(this IEnumerable<TSource> source, Expression<Func<TSource, decimal>> selector)
+        public static decimal Mediana<TSource>(this IQueryable<TSource> origem, Expression<Func<TSource, decimal>> selector)
         {
-            var func = selector.Compile();
-            //var func = selector.Reduce();
-            var origem = source.Select(s => func(s));
+            int contagem = origem.Count();
+            
+            var funcSeletor = selector.Compile();
+            var ordenado = origem
+                .Select(selector)
+                .OrderBy(x => x);
+                
+            decimal mediana =
+                    ordenado.Skip(contagem / 2).First()
+                +   ordenado.Skip((contagem - 1) / 2).First();
 
-            // Cria uma cópia da origem, e ordena essa cópia
-            decimal[] temp = origem.ToArray();
-            Array.Sort(temp);
-
-            int count = temp.Length;
-            if (count == 0)
-            {
-                throw new InvalidOperationException("Coleção está vazia");
-            }
-            else if (count % 2 == 0)
-            {
-                // contagem é par, então pegamos a média dos 2 elementos do meio
-                decimal a = temp[count / 2 - 1];
-                decimal b = temp[count / 2];
-                return (a + b) / 2m;
-            }
-            else
-            {
-                // contagem é ímpar, retorna o elemento do meio
-                return temp[count / 2];
-            }
+            mediana /= 2;
+            return mediana;
         }
-
     }
 }

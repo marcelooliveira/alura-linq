@@ -20,7 +20,7 @@ namespace alura_linq.Problemas
         protected AluraTunesEntities GetContextoComLog()
         {
             var contexto = new AluraTunesEntities();
-            //contexto.Database.Log = Console.WriteLine;
+            contexto.Database.Log = Console.WriteLine;
             return contexto;
         }
 

@@ -45,3 +45,5 @@ C:\Users\caelum\Documents\GitHub\alura-linq\AluraLinq.Console\bin\Debug\Data\Vid
 C:\Users\caelum\Documents\GitHub\alura-linq\AluraLinq.Console\bin\Debug\Data\VideoAluraTunes_log.ldf
 C:\Users\caelum\Documents\GitHub\alura-linq\AluraLinq.Console\bin\Debug\Data\AluraTunes.mdf
 C:\Users\caelum\Documents\GitHub\alura-linq\AluraLinq.Console\bin\Debug\Data\AluraTunes_log.ldf
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\Data\VideoAluraTunes.mdf
+C:\Users\caelum\Repos\alura-linq\AluraLinq.Console\bin\Debug\Data\VideoAluraTunes_log.ldf
