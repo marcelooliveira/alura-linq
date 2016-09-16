@@ -97,12 +97,12 @@ namespace alura_linq.Problemas.Problema4
 
             //Agora varremos a nossa query, tabulando os dados conforme desejamos.
 
-            foreach (var musicaXgenero in query)
+            foreach (var musicaEgenero in query)
             {
-                Console.WriteLine("{0}\t{1}\t{2}", 
-                    musicaXgenero.MusicaId, 
-                    musicaXgenero.Musica.PadRight(20), 
-                    musicaXgenero.Genero);
+                Console.WriteLine("{0}\t{1}\t{2}",
+                    musicaEgenero.MusicaId,
+                    musicaEgenero.Musica.PadRight(20),
+                    musicaEgenero.Genero);
             }
         }
     }
