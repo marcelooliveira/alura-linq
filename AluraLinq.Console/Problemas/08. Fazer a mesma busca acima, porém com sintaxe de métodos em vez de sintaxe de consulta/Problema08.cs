@@ -16,7 +16,7 @@ namespace alura_linq.Problemas.Problema8
             using (var contexto = new AluraTunesEntities())
             {
                 //A sintaxe de método para essa query é um pouco mais compacta que a versão anterior:
-                var query = contexto.Artistas.Where(a => a.Nome.StartsWith("Led"));
+                var query = contexto.Artistas.Where(a => a.Nome.Contains("Led"));
 
                 foreach (var artista in query)
                 {
