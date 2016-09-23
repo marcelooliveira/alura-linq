@@ -17,7 +17,8 @@ namespace alura_linq.Problemas.Problema20
             {
                 
                 var query = from nf in contexto.NotasFiscais
-                            where nf.Total > (contexto.NotasFiscais.Average(nota => nota.Total))
+                            where nf.Total > 
+                                (contexto.NotasFiscais.Average(nota => nota.Total))
                             select new
                             {
                                 Numero = nf.NotaFiscalId,
