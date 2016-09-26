@@ -15,16 +15,16 @@ namespace alura_linq.Problemas.Problema11
         {
             using (var contexto = GetContextoComLog())
             {
-                var query = from alb in contexto.Albums
-                            where alb.Artista.Nome == "Led Zeppelin"
-                            select alb;
+                var query = from f in contexto.Faixas
+                            where f.Album.Artista.Nome == "Led Zeppelin"
+                            select f;
 
                 //Agora queremos mudar a consulta para filtrar pelos álbuns que contenham "Graffiti"
-                query = query.Where(alb => alb.Titulo.Contains("Graffiti"));
+                query = query.Where(f => f.Album.Titulo.Contains("Graffiti"));
 
-                foreach (var album in query)
+                foreach (var f in query)
                 {
-                    Console.WriteLine(album.Titulo);
+                    Console.WriteLine(f.Nome);
                 }
             }
         }
