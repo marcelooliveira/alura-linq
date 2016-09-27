@@ -62,12 +62,12 @@ namespace alura_linq.Problemas.Problema5
            
             //Que fará o mesmo que já vimos anteriormente, quando aprendemos sobre Linq to Objects.
 
-            foreach (var musicaXgenero in query)
+            foreach (var musicaEgenero in query)
             {
                 Console.WriteLine("{0}\t{1}\t{2}",
-                    musicaXgenero.MusicaId,
-                    musicaXgenero.Musica.PadRight(20),
-                    musicaXgenero.Genero);
+                    musicaEgenero.MusicaId,
+                    musicaEgenero.Musica.PadRight(20),
+                    musicaEgenero.Genero);
             }
         }
     }

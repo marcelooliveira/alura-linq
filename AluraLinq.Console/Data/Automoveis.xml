@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Automoveis>
+  <Fabricantes>
+    <Fabricante>
+      <FabricanteId>1</FabricanteId>
+      <Nome>Volkswagen</Nome>
+    </Fabricante>
+    <Fabricante>
+      <FabricanteId>2</FabricanteId>
+      <Nome>Hyundai</Nome>
+    </Fabricante>
+    <Fabricante>
+      <FabricanteId>3</FabricanteId>
+      <Nome>Toyota</Nome>
+    </Fabricante>
+  </Fabricantes>
+  <Modelos>
+    <Modelo>
+      <ModeloId>1001</ModeloId>
+      <Nome>Passat</Nome>
+      <FabricanteId>1</FabricanteId>
+    </Modelo>
+    <Modelo>
+      <ModeloId>1002</ModeloId>
+      <Nome>Azera</Nome>
+      <FabricanteId>2</FabricanteId>
+    </Modelo>
+    <Modelo>
+      <ModeloId>1003</ModeloId>
+      <Nome>Corolla</Nome>
+      <FabricanteId>3</FabricanteId>
+    </Modelo>    
+  </Modelos>
+</Automoveis>

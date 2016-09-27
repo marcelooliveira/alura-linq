@@ -1,0 +1,1 @@
+﻿Quais as vantagens de fazer consultas com Linq to Objects? Explique.

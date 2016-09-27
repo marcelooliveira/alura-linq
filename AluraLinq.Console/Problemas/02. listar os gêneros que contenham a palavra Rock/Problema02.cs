@@ -119,4 +119,12 @@ namespace alura_linq.Problemas.Problema2
         public int Id { get; set; }
         public string Nome { get; set; }
     }
+
+    class Atleta
+    {
+        public int Posicao { get; set; }
+        public string Pais { get; set; }
+        public string Nome { get; set; }
+        public float Tempo { get; set; }
+    }
 }
