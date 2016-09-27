@@ -66,3 +66,4 @@ C:\Users\marcelo\Source\Repos\alura-linq\AluraLinq.Console\bin\Debug\EntityFrame
 C:\Users\marcelo\Source\Repos\alura-linq\AluraLinq.Console\obj\Debug\AluraLinq.Console.csprojResolveAssemblyReference.cache
 C:\Users\marcelo\Source\Repos\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.exe
 C:\Users\marcelo\Source\Repos\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.pdb
+C:\Users\marcelo\Source\Repos\alura-linq\AluraLinq.Console\bin\Debug\Data\Automoveis.xml

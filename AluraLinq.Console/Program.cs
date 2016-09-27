@@ -1,5 +1,6 @@
 ﻿using alura_linq.Exercicios.Problema02;
 using alura_linq.Exercicios.Problema04;
+using alura_linq.Exercicios.Problema05;
 using alura_linq.Problemas.Problema1;
 using alura_linq.Problemas.Problema10;
 using alura_linq.Problemas.Problema11;
@@ -64,6 +65,7 @@ namespace alura_linq
 
             new E02().Solve(args);
             new E04().Solve(args);
+            new E05().Solve(args);
 
             Console.ReadKey();
         }
