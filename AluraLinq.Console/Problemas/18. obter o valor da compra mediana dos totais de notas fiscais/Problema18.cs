@@ -51,11 +51,12 @@ namespace alura_linq.Problemas.Problema18
         {
             int contagem = origem.Count();
             var ordenado = origem.OrderBy(p => p);
-            decimal mediana =
-                    ordenado.Skip(contagem / 2).First() 
-                +   ordenado.Skip((contagem - 1) / 2).First();
 
-            mediana /= 2;
+            var elementoCentral_1 = ordenado.Skip((contagem - 1) / 2).First();
+            var elementoCentral_2 = ordenado.Skip(contagem / 2).First();
+
+            decimal mediana = (elementoCentral_1 + elementoCentral_2) / 2;
+
             return mediana;
         }
     }
@@ -71,12 +72,11 @@ namespace alura_linq.Problemas.Problema18
                 .Select(selector)
                 .OrderBy(x => x);
 
-            decimal mediana =
-                    ordenado.Skip(contagem / 2).First()
-                + ordenado.Skip((contagem - 1) / 2).First();
+            var elementoCentral_1 = ordenado.Skip((contagem - 1) / 2).First();
+            var elementoCentral_2 = ordenado.Skip(contagem / 2).First();
 
-            mediana /= 2;
-
+            decimal mediana = (elementoCentral_1 + elementoCentral_2) / 2;
+            
             return mediana;
         }
     }
