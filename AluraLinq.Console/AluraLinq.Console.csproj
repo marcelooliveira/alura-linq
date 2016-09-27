@@ -94,6 +94,9 @@
     <Compile Include="Cliente.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Exercicios\E04.cs" />
+    <Compile Include="Exercicios\E02.cs" />
+    <Compile Include="Exercicios\ExercicioBase.cs" />
     <Compile Include="Faixa.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
