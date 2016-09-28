@@ -45,8 +45,8 @@
     <div class="MultipleChoice">
         <h3>Sintaxe de Consulta Linq</h3>
         <p>
-            Você é chamado por um colega desenvolvedor para ajudar numa consulta Linq. O seu colega
-            acha que a consulta que ele criou está correta, mas que o programa não está compilando.
+            Você é chamado por um colega desenvolvedor para ajudá-lo com uma consulta Linq. O seu colega
+            acha que a consulta que ele criou está correta, mas que mesmo assim o programa não está compilando.
             Você pede para ver a consulta que ele criou, você encontra:
         </p>
         <p>
@@ -161,7 +161,7 @@
                         select a;<br />
                     </code>
                 </label>
-                <span>CORRETO</span>
+                <span>CORRETO. O operador de igualdade está certo, e a cláusula select está no final da consulta.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -180,7 +180,7 @@
     <hr />
 
     <div class="CallToAction">
-        <h3>Consulta Filtrando Uma Coleção Por Uma Propriedade</h3>
+        <h3>Consulta com Filtro</h3>
         <p>
             Observe a lista de gêneros musicais abaixo:
         </p>
@@ -216,7 +216,7 @@
     <hr />
 
     <div class="CallToAction">
-        <h3>Consulta com Filtro</h3>
+        <h3>Consulta com Filtro (negação)</h3>
         <p>
             Observe a lista de músicas abaixo:
         </p>
@@ -230,18 +230,18 @@
                 };<br />
             </code>
         </p>
-        <p>Elabore uma consulta Linq para trazer somente as músicas que comecem com a palavra "Sweet".</p>
+        <p>Elabore uma consulta Linq para trazer todas as músicas menos aquelas cujo GeneroId seja igual a 1.</p>
 
         <h4>Opinião do Alura</h4>
         <p>
             Você pode obter os objetos da coleção "musicas" com a cláusula "from", e em seguida filtrar
-            os nomes das músicas com a cláusula "where":
+            os nomes das músicas com id de gênero diferente de 1:
         </p>
         <p>
             <code>
                 var query = <br />
                 from m in musicas<br />
-                where m.Nome.StartsWith("Sweet")<br />
+                where m.GeneroId != 1<br />
                 select m;<br />
             </code>
         </p>
