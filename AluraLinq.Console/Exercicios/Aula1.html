@@ -151,41 +151,107 @@
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+        <h3>Consulta com Filtro</h3>
+        <p>Observe a lista de gêneros musicais abaixo: 
         </p>
+        <p>
+            <code>
+                List&lt;Genero&gt; generos = new List&lt;Genero&gt;<br />
+                    {<br />
+                    new Genero { Id = 1, Nome = "Rock" },<br />
+                    new Genero { Id = 2, Nome = "Reggae" },<br />
+                    new Genero { Id = 3, Nome = "Rock Progressivo" },<br />
+                    new Genero { Id = 4, Nome = "Jazz" },<br />
+                    new Genero { Id = 5, Nome = "Punk Rock" },<br />
+                    new Genero { Id = 6, Nome = "Classica" }<br />
+                    };<br />
+            </code>
+        </p>
+        <p>Elabore uma consulta Linq para trazer somente os gêneros que contenham a palavra "Rock".</p>
     </div>
 
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Consulta com Filtro</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Observe a lista de músicas abaixo:
         </p>
+        <p>
+            <code>
+                List&lt;Musica&gt; musicas = new List&lt;Musica&gt;<br />
+                    {<br />
+                    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },<br />
+                    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },<br />
+                    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }<br />
+                    };<br />
+            </code>
+        </p>
+        <p>Elabore uma consulta Linq para trazer somente as músicas que comecem com a palavra "Sweet".</p>
     </div>
 
     <hr />
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Consulta com Join</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Observe as listas abaixo, de gêneros musicais e de músicas:
         </p>
+        <p>
+            <code>
+                List&lt;Genero&gt; generos = new List&lt;Genero&gt;<br />
+                {<br />
+                new Genero { Id = 1, Nome = "Rock" },<br />
+                new Genero { Id = 2, Nome = "Reggae" },<br />
+                new Genero { Id = 3, Nome = "Rock Progressivo" },<br />
+                new Genero { Id = 4, Nome = "Jazz" },<br />
+                new Genero { Id = 5, Nome = "Punk Rock" },<br />
+                new Genero { Id = 6, Nome = "Classica" }<br />
+                };<br />
+            </code>
+        </p>
+        <p>
+            <code>
+                List&lt;Musica&gt; musicas = new List&lt;Musica&gt;<br />
+                {<br />
+                new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },<br />
+                new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },<br />
+                new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }<br />
+                };<br />
+            </code>
+        </p>
+        <p>Crie uma consulta para listar os nomes das músicas e seus respectivos gêneros musicais.</p>
     </div>
 
     <hr />
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Consulta com Join e Filtro</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Observe as listas abaixo, de gêneros musicais e de músicas:
         </p>
+        <p>
+            <code>
+                List&lt;Genero&gt; generos = new List&lt;Genero&gt;<br />
+                {<br />
+                new Genero { Id = 1, Nome = "Rock" },<br />
+                new Genero { Id = 2, Nome = "Reggae" },<br />
+                new Genero { Id = 3, Nome = "Rock Progressivo" },<br />
+                new Genero { Id = 4, Nome = "Jazz" },<br />
+                new Genero { Id = 5, Nome = "Punk Rock" },<br />
+                new Genero { Id = 6, Nome = "Classica" }<br />
+                };<br />
+            </code>
+        </p>
+        <p>
+            <code>
+                List&lt;Musica&gt; musicas = new List&lt;Musica&gt;<br />
+                {<br />
+                new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },<br />
+                new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },<br />
+                new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }<br />
+                };<br />
+            </code>
+        </p>
+        <p>Crie uma consulta para listar os nomes das músicas cujo gênero tenha o nome "Reggae".</p>
     </div>
-
-    <hr />
 </body>
 </html>
