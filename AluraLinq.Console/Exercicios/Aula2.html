@@ -158,11 +158,8 @@
 
     <hr />
     <div class="CallToAction">
-        <h3>Consulta com Join e Filtro com Linq To XML</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
-        </p>
+        <h3>Consulta com Join com Linq To XML</h3>
+        <p>Observe o XML abaixo, que está contido no arquivo <b>Data\AluraTunes.xml</b>:</p>
 
         <p>
             <pre>
@@ -215,18 +212,36 @@
             </pre>
         </p>
         
+        <p>Desenvolva uma consulta <b>Linq to XML</b> para trazer:
+            <ul>
+                <li>O id da música,</li>
+                <li>O nome da música,</li>
+                <li>O nome do gênero</li>
+            </ul>
+        </p>
+
+        <h4>Opinião do Alura</h4>
+
+        <p>Primeiro, é necessário obter o elemento raiz do XML (<code>XElement</code>). Depois,
+        os elementos <code>Generos</code> devem ser combinados com os elementos <code>Musicas</code>
+        através do elemento <code>GeneroId</code>. No final, deve-se usar a cláusula <i>select</i>
+        para se obter os elementos <code>MusicaId</code> e <code>Nome</code> da música e do gênero
+        retornados pela consulta.</p>
+
         <p>
-            <code>
-                var query = from g in root.Element("Generos").Elements("Genero")<br />
-                join m in root.Element("Musicas").Elements("Musica")<br />
-                &nbsp;&nbsp;&nbsp;on g.Element("GeneroId").Value equals m.Element("GeneroId").Value<br />
-                select new<br />
-                {<br />
-                &nbsp;&nbsp;&nbsp;MusicaId = m.Element("MusicaId").Value,<br />
-                &nbsp;&nbsp;&nbsp;Musica = m.Element("Nome").Value,<br />
-                &nbsp;&nbsp;&nbsp;Genero = g.Element("Nome").Value<br />
-                };<br />
-            </code>
+            <pre>
+                XElement root = XElement.Load(@"Data\AluraTunes.xml");
+
+                var query = from g in root.Element("Generos").Elements("Genero")
+                join m in root.Element("Musicas").Elements("Musica")
+                    on g.Element("GeneroId").Value equals m.Element("GeneroId").Value
+                select new
+                {
+                    MusicaId = m.Element("MusicaId").Value,
+                    Musica = m.Element("Nome").Value,
+                    Genero = g.Element("Nome").Value
+                };
+            </pre>
         </p>
     </div>
 </body>
