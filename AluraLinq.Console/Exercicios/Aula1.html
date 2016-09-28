@@ -67,10 +67,10 @@
         <p>Qual a causa provável para o problema?</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">A tabela "clientes" não está no banco de dados, e precisa ser criada antes da consulta.<span>A coleção "clientes" não é uma tabela, e sim uma coleção em memória.</span></label>
+                <label><input type="checkbox" value="">A tabela <code>clientes</code> não está no banco de dados, e precisa ser criada antes da consulta.<span>A coleção <code>clientes</code> não é uma tabela, e sim uma coleção em memória.</span></label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">O nome da variável "cli" é diferente do nome da coleção "clientes"<span>O nome da variável "cli" independe do nome da coleção.</span></label>
+                <label><input type="checkbox" value="">O nome da variável <code>cli</code> é diferente do nome da coleção <code>clientes</code><span>O nome da variável <code>cli</code> independe do nome da coleção.</span></label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value="">A consulta não está contida entre parênteses<span>Uma definição de consulta não precisa estar contida entre parênteses.</span></label>
@@ -89,7 +89,7 @@
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value="">A cláusula <i>select</i> não declara a lista de propriedades do cliente a serem trazidas pela consulta.</label>
-                <span>Uma consulta Linq não precisa descrever necessariamente as propriedades da coleção "clientes". A variável "cli" da cláusula <i>select</i> já permite
+                <span>Uma consulta Linq não precisa descrever necessariamente as propriedades da coleção <code>clientes</code>. A variável <code>cli</code> da cláusula <i>select</i> já permite
                 acessar essas propriedades.</span>
             </div>
         </form>
@@ -201,7 +201,7 @@
 
         <h4>Opinião do Alura</h4>
         <p>
-            Você pode obter os objetos da coleção "generos" com a cláusula <i>from</i>, e em seguida filtrar
+            Você pode obter os objetos da coleção <code>generos</code> com a cláusula <i>from</i>, e em seguida filtrar
             os nomes dos gêneros com a cláusula <i>where</i>, utilizando o método <i>Contains</i>:
         </p>
         <p>
@@ -234,7 +234,7 @@
 
         <h4>Opinião do Alura</h4>
         <p>
-            Você pode obter os objetos da coleção "musicas" com a cláusula <i>from</i>, e em seguida filtrar
+            Você pode obter os objetos da coleção <code>musicas</code> com a cláusula <i>from</i>, e em seguida filtrar
             os nomes das músicas com id de gênero igual a 1:
         </p>
         <p>
@@ -277,7 +277,7 @@
 
         <h4>Opinião do Alura</h4>
         <p>
-            Você pode "ligar" os objetos das coleções "musicas" e "generos" com a cláusula <i>join</i> a partir das propriedades
+            Você pode "ligar" os objetos das coleções <code>musicas</code> e <code>generos</code> com a cláusula <i>join</i> a partir das propriedades
             GeneroId e Id, respectivamente, e trazer um objeto anônimo na cláusula <i>select</i> com o nome da música e o nome
             do gênero:
         </p>
@@ -320,7 +320,7 @@
         <p>Crie uma consulta para listar os nomes das músicas cujo gênero tenha o nome "Reggae".</p>
 
         <h4>Opinião do Alura</h4>
-        <p>Você pode "ligar" os objetos das coleções "musicas" e "generos" a partir das propriedades
+        <p>Você pode "ligar" os objetos das coleções <code>musicas</code> e <code>generos</code> a partir das propriedades
         GeneroId e Id, respectivamente, e em seguida aplicar um filtro para o nome do gênero:</p>
         <p>
             <pre>
