@@ -29,6 +29,11 @@
             margin: 0 10px 0 10px;
             background-color: lightgreen;
         }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -41,11 +46,18 @@
         <h3>Sintaxe de Consulta Linq</h3>
         <p>
             Você é chamado por um colega desenvolvedor para ajudar numa consulta Linq. O seu colega
-            diz que a consulta que ele criou está correta, mas que o programa não está compilando.
+            acha que a consulta que ele criou está correta, mas que o programa não está compilando.
             Você pede para ver a consulta que ele criou, você encontra:
         </p>
         <p>
             <code>
+                List&lt;Cliente&gt; clientes = new List&lt;Cliente&gt;()<br />
+                {<br />
+                    new Cliente { Id = 1001, Nome = "José Raimundo Bernardino" },<br />
+                    new Cliente { Id = 1002, Nome = "Alexandre Marciano da Luz" },<br />
+                    new Cliente { Id = 1003, Nome = "Milton Guilherme da Silva" }<br />
+                };<br />
+                <br />
                 var queryClientes = <br />
                 select cli <br />
                 from cli in clientes;<br />
@@ -55,7 +67,7 @@
         <p>Qual a causa provável para o problema?</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">A tabela "clientes" não está no banco de dados, e precisa ser criada antes da consulta.<span>A consulta é Linq to Objects, portanto a coleção "clientes" não é uma tabela.</span></label>
+                <label><input type="checkbox" value="">A tabela "clientes" não está no banco de dados, e precisa ser criada antes da consulta.<span>A coleção "clientes" não é uma tabela, e sim uma coleção em memória.</span></label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value="">O nome da variável de intervalo "cli" é diferente do nome da coleção "clientes"<span>O nome da variável de intervalo "cli" independe do nome da coleção.</span></label>
@@ -65,13 +77,20 @@
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">A consulta Linq deve começar com um <b>from</b>, e não com <b>select</b>
-                    <span>CORRETO. Uma expressão Linq precisa começar pela cláusula from, e não pela select.</span>
+                    <input type="checkbox" value="" checked="checked">A consulta Linq implementada está começando pela cláusula <b>select</b>.
+                    <span>CORRETO. Uma expressão Linq precisa começar pela cláusula from, e não pela cláusula select:<br />
+                        <code>
+                            var queryClientes = <br />
+                            from cli in clientes<br />
+                            select cli;<br />
+                        </code>
+                    </span>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">A coleção "clientes" ainda não foi declarada na aplicação</label>
-                <span>É possível, porém não é a causa mais provável do erro.</span>
+                <label><input type="checkbox" value="">A cláusula SELECT não declara a lista de propriedades do cliente a serem trazidas pela consulta.</label>
+                <span>Uma consulta Linq não precisa descrever necessariamente as propriedades da coleção "clientes". A variável "cli" da cláusula select já permite
+                acessar essas propriedades.</span>
             </div>
         </form>
     </div>
@@ -115,12 +134,12 @@
                 <label>
                     <input type="checkbox" value="">
                     <code>
-                        var query = from a in atletas<br />
-                        select a<br />
+                        var query = select a<br />
+                        from a in atletas<br />
                         where a.CodigoPais == "JAM";<br />
                     </code>
                 </label>
-                <span>Uma consulta Linq não pode começar pela cláusula Select</span>
+                <span>A cláusula select de uma consulta Linq deve aparecer no final da consulta</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -131,7 +150,7 @@
                         where a.CodigoPais == "JAM";<br />
                     </code>
                 </label>
-                <span>A cláusula Where deve aparecer antes da cláusula Select</span>
+                <span>A cláusula select de uma consulta Linq deve aparecer no final da consulta</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -149,8 +168,8 @@
                     <input type="checkbox" value="">
                     <code>
                         var query = from a in atletas<br />
-                        select a<br />
-                        where a.CodigoPais == "Jamaica";<br />
+                        where a.CodigoPais == "Jamaica"<br />
+                        select a;<br />
                     </code>
                 </label>
                 <span>A listagem não tem um atleta com CodigoPais = "Jamaica". O correto seria where a.CodigoPais == "JAM"</span>
@@ -161,7 +180,7 @@
     <hr />
 
     <div class="CallToAction">
-        <h3>Consulta com Filtro</h3>
+        <h3>Consulta Filtrando Uma Coleção Por Uma Propriedade</h3>
         <p>
             Observe a lista de gêneros musicais abaixo:
         </p>
@@ -179,6 +198,19 @@
             </code>
         </p>
         <p>Elabore uma consulta Linq para trazer somente os gêneros que contenham a palavra "Rock".</p>
+
+        <h4>Opinião do Alura</h4>
+        <p>
+            Você pode obter os objetos da coleção "generos" com a cláusula "from", e em seguida filtrar
+            os nomes dos gêneros com a cláusula "where":
+        </p>
+        <p>
+            <code>
+                var query = from g in generos<br />
+                where g.Nome.Contains("Rock")<br />
+                select g;<br />
+            </code>
+        </p>
     </div>
 
     <hr />
@@ -199,6 +231,20 @@
             </code>
         </p>
         <p>Elabore uma consulta Linq para trazer somente as músicas que comecem com a palavra "Sweet".</p>
+
+        <h4>Opinião do Alura</h4>
+        <p>
+            Você pode obter os objetos da coleção "musicas" com a cláusula "from", e em seguida filtrar
+            os nomes das músicas com a cláusula "where":
+        </p>
+        <p>
+            <code>
+                var query = <br />
+                from m in musicas<br />
+                where m.Nome.StartsWith("Sweet")<br />
+                select m;<br />
+            </code>
+        </p>
     </div>
 
     <hr />
@@ -231,11 +277,26 @@
             </code>
         </p>
         <p>Crie uma consulta para listar os nomes das músicas e seus respectivos gêneros musicais.</p>
+
+        <h4>Opinião do Alura</h4>
+        <p>
+            Você pode "ligar" os objetos das coleções "musicas" e "generos" com a cláusula join a partir das propriedades
+            GeneroId e Id, respectivamente, e trazer um objeto anônimo na cláusula select com o nome da música e o nome
+            do gênero:
+        </p>
+        <p>
+            <code>
+                var query = <br />
+                from m in musicas<br />
+                join g in generos on m.GeneroId equals g.Id<br />
+                select new { NomeMusica = m.Nome, NomeGenero = g.Nome };<br />
+            </code>
+        </p>
     </div>
 
     <hr />
     <div class="CallToAction">
-        <h3>Consulta com Join e Filtro</h3>
+        <h3>Filtrando Consultas com Join</h3>
         <p>
             Observe as listas abaixo, de gêneros musicais e de músicas:
         </p>
@@ -263,6 +324,19 @@
             </code>
         </p>
         <p>Crie uma consulta para listar os nomes das músicas cujo gênero tenha o nome "Reggae".</p>
+
+        <h4>Opinião do Alura</h4>
+        <p>Você pode "ligar" os objetos das coleções "musicas" e "generos" a partir das propriedades
+        GeneroId e Id, respectivamente, e em seguida aplicar um filtro para o nome do gênero:</p>
+        <p>
+            <code>
+                var query = <br />
+                from m in musicas<br />
+                join g in generos on m.GeneroId equals g.Id<br />
+                where g.Nome == "Reggae"<br />
+                select m.Nome;<br />
+            </code>
+        </p>
     </div>
 </body>
 </html>
