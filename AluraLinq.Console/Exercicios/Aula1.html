@@ -70,7 +70,7 @@
                 <label><input type="checkbox" value="">A tabela "clientes" não está no banco de dados, e precisa ser criada antes da consulta.<span>A coleção "clientes" não é uma tabela, e sim uma coleção em memória.</span></label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">O nome da variável de intervalo "cli" é diferente do nome da coleção "clientes"<span>O nome da variável de intervalo "cli" independe do nome da coleção.</span></label>
+                <label><input type="checkbox" value="">O nome da variável "cli" é diferente do nome da coleção "clientes"<span>O nome da variável "cli" independe do nome da coleção.</span></label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value="">A consulta não está contida entre parênteses<span>Uma definição de consulta não precisa estar contida entre parênteses.</span></label>
@@ -202,7 +202,7 @@
         <h4>Opinião do Alura</h4>
         <p>
             Você pode obter os objetos da coleção "generos" com a cláusula <i>from</i>, e em seguida filtrar
-            os nomes dos gêneros com a cláusula <i>where</i>:
+            os nomes dos gêneros com a cláusula <i>where</i>, utilizando o método <i>Contains</i>:
         </p>
         <p>
             <code>
@@ -216,7 +216,7 @@
     <hr />
 
     <div class="CallToAction">
-        <h3>Consulta com Filtro (negação)</h3>
+        <h3>Consulta com Filtro</h3>
         <p>
             Observe a lista de músicas abaixo:
         </p>
@@ -230,18 +230,18 @@
                 };<br />
             </code>
         </p>
-        <p>Elabore uma consulta Linq para trazer todas as músicas menos aquelas cujo GeneroId seja igual a 1.</p>
+        <p>Elabore uma consulta Linq para trazer todas as músicas cujo GeneroId seja igual a 1.</p>
 
         <h4>Opinião do Alura</h4>
         <p>
             Você pode obter os objetos da coleção "musicas" com a cláusula <i>from</i>, e em seguida filtrar
-            os nomes das músicas com id de gênero diferente de 1:
+            os nomes das músicas com id de gênero igual a 1:
         </p>
         <p>
             <code>
                 var query = <br />
                 from m in musicas<br />
-                where m.GeneroId != 1<br />
+                where m.GeneroId == 1<br />
                 select m;<br />
             </code>
         </p>
