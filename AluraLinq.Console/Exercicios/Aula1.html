@@ -19,6 +19,16 @@
             color: #333; /* old IE */
             background-color: #333; /* Modern Browsers */
         }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
     </style>
 </head>
 <body>
@@ -31,42 +41,39 @@
         <h3>Sintaxe de Consulta Linq</h3>
         <p>
             Você é chamado por um colega desenvolvedor para ajudar numa consulta Linq. O seu colega
-            diz que a consulta que ele criou está correta, mas que o programa não está compilando. 
+            diz que a consulta que ele criou está correta, mas que o programa não está compilando.
             Você pede para ver a consulta que ele criou, você encontra:
         </p>
         <p>
             <code>
                 var queryClientes = <br />
-                    select cli <br />
-                    from cli in clientes;<br />
+                select cli <br />
+                from cli in clientes;<br />
             </code>
         </p>
 
         <p>Qual a causa provável para o problema?</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">A tabela "clientes" não está no banco de dados, e precisa ser criada antes da consulta.</label>
+                <label><input type="checkbox" value="">A tabela "clientes" não está no banco de dados, e precisa ser criada antes da consulta.<span>A consulta é Linq to Objects, portanto a coleção "clientes" não é uma tabela.</span></label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">O nome da variável de intervalo "cli" é diferente do nome da coleção "clientes"</label>
+                <label><input type="checkbox" value="">O nome da variável de intervalo "cli" é diferente do nome da coleção "clientes"<span>O nome da variável de intervalo "cli" independe do nome da coleção.</span></label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">A consulta não está contida entre parênteses</label>
+                <label><input type="checkbox" value="">A consulta não está contida entre parênteses<span>Uma definição de consulta não precisa estar contida entre parênteses.</span></label>
             </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="" checked="checked">A consulta Linq deve começar com um <b>from</b>, e não com <b>select</b>
+                    <span>CORRETO. Uma expressão Linq precisa começar pela cláusula from, e não pela select.</span>
                 </label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value="">A coleção "clientes" ainda não foi declarada na aplicação</label>
+                <span>É possível, porém não é a causa mais provável do erro.</span>
             </div>
         </form>
-
-        <div class="alert alert-success" role="alert">
-            <strong>Resposta correta</strong>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
-        </div>
     </div>
 
     <hr />
@@ -79,46 +86,52 @@
         <p>
             <code>
                 List&lt;Atleta&gt; atletas = new List&lt;Atleta&gt;()<br />
-                    {<br />
-                        new Atleta { Posicao = 1, CodigoPais = "JAM", Nome = "BOLT Usain", Tempo = 9.81f },<br />
-                        new Atleta { Posicao = 2, CodigoPais = "USA", Nome = "GATLIN Justin", Tempo = 9.89f },<br />
-                        new Atleta { Posicao = 3, CodigoPais = "CAN", Nome = "DE GRASSE Andre", Tempo = 9.91f },<br />
-                        new Atleta { Posicao = 4, CodigoPais = "JAM", Nome = "BLAKE Yohan", Tempo = 9.93f },<br />
-                        new Atleta { Posicao = 5, CodigoPais = "RSA", Nome = "SIMBINE Akani", Tempo = 9.94f },<br />
-                        new Atleta { Posicao = 6, CodigoPais = "CIV", Nome = "MEITE Ben Youssef", Tempo = 9.96f },<br />
-                        new Atleta { Posicao = 7, CodigoPais = "FRA", Nome = "VICAUT Jimmy", Tempo = 10.04f },<br />
-                        new Atleta { Posicao = 8, CodigoPais = "USA", Nome = "BROMELL Trayvon", Tempo = 10.06f }<br />
-                    };<br />
+                {<br />
+                new Atleta { Posicao = 1, CodigoPais = "JAM", Nome = "BOLT Usain", Tempo = 9.81f },<br />
+                new Atleta { Posicao = 2, CodigoPais = "USA", Nome = "GATLIN Justin", Tempo = 9.89f },<br />
+                new Atleta { Posicao = 3, CodigoPais = "CAN", Nome = "DE GRASSE Andre", Tempo = 9.91f },<br />
+                new Atleta { Posicao = 4, CodigoPais = "JAM", Nome = "BLAKE Yohan", Tempo = 9.93f },<br />
+                new Atleta { Posicao = 5, CodigoPais = "RSA", Nome = "SIMBINE Akani", Tempo = 9.94f },<br />
+                new Atleta { Posicao = 6, CodigoPais = "CIV", Nome = "MEITE Ben Youssef", Tempo = 9.96f },<br />
+                new Atleta { Posicao = 7, CodigoPais = "FRA", Nome = "VICAUT Jimmy", Tempo = 10.04f },<br />
+                new Atleta { Posicao = 8, CodigoPais = "USA", Nome = "BROMELL Trayvon", Tempo = 10.06f }<br />
+                };<br />
             </code>
         </p>
         <p>Como você faria a consulta para obter a lista dos finalistas jamaicanos (CodigoPais = JAM) ?</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">
-                <code>
-                    var query = from a in atletas<br />
-                    where a.CodigoPais = "JAM"<br />
-                    select a;<br />
-                </code>
+                <label>
+                    <input type="checkbox" value="">
+                    <code>
+                        var query = from a in atletas<br />
+                        where a.CodigoPais = "JAM"<br />
+                        select a;<br />
+                    </code>
                 </label>
+                <span>A cláusula where exige o operador de igualdade "==", e não o operador de atribuição "=".</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">
+                <label>
+                    <input type="checkbox" value="">
                     <code>
                         var query = from a in atletas<br />
                         select a<br />
-                        where a.CodigoPais = "JAM";<br />
+                        where a.CodigoPais == "JAM";<br />
                     </code>
                 </label>
+                <span>Uma consulta Linq não pode começar pela cláusula Select</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">
+                <label>
+                    <input type="checkbox" value="">
                     <code>
                         var query = from a in atletas<br />
                         select a<br />
-                        where a.CodigoPais = "JAM";<br />
+                        where a.CodigoPais == "JAM";<br />
                     </code>
                 </label>
+                <span>A cláusula Where deve aparecer antes da cláusula Select</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -129,6 +142,7 @@
                         select a;<br />
                     </code>
                 </label>
+                <span>CORRETO</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -136,9 +150,10 @@
                     <code>
                         var query = from a in atletas<br />
                         select a<br />
-                        where a.CodigoPais = "Jamaica";<br />
+                        where a.CodigoPais == "Jamaica";<br />
                     </code>
                 </label>
+                <span>A listagem não tem um atleta com CodigoPais = "Jamaica". O correto seria where a.CodigoPais == "JAM"</span>
             </div>
         </form>
 
@@ -152,19 +167,20 @@
 
     <div class="CallToAction">
         <h3>Consulta com Filtro</h3>
-        <p>Observe a lista de gêneros musicais abaixo: 
+        <p>
+            Observe a lista de gêneros musicais abaixo:
         </p>
         <p>
             <code>
                 List&lt;Genero&gt; generos = new List&lt;Genero&gt;<br />
-                    {<br />
-                    new Genero { Id = 1, Nome = "Rock" },<br />
-                    new Genero { Id = 2, Nome = "Reggae" },<br />
-                    new Genero { Id = 3, Nome = "Rock Progressivo" },<br />
-                    new Genero { Id = 4, Nome = "Jazz" },<br />
-                    new Genero { Id = 5, Nome = "Punk Rock" },<br />
-                    new Genero { Id = 6, Nome = "Classica" }<br />
-                    };<br />
+                {<br />
+                new Genero { Id = 1, Nome = "Rock" },<br />
+                new Genero { Id = 2, Nome = "Reggae" },<br />
+                new Genero { Id = 3, Nome = "Rock Progressivo" },<br />
+                new Genero { Id = 4, Nome = "Jazz" },<br />
+                new Genero { Id = 5, Nome = "Punk Rock" },<br />
+                new Genero { Id = 6, Nome = "Classica" }<br />
+                };<br />
             </code>
         </p>
         <p>Elabore uma consulta Linq para trazer somente os gêneros que contenham a palavra "Rock".</p>
@@ -180,11 +196,11 @@
         <p>
             <code>
                 List&lt;Musica&gt; musicas = new List&lt;Musica&gt;<br />
-                    {<br />
-                    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },<br />
-                    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },<br />
-                    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }<br />
-                    };<br />
+                {<br />
+                new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },<br />
+                new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },<br />
+                new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }<br />
+                };<br />
             </code>
         </p>
         <p>Elabore uma consulta Linq para trazer somente as músicas que comecem com a palavra "Sweet".</p>
