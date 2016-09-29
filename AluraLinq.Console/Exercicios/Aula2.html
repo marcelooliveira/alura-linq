@@ -47,7 +47,7 @@
         <p>
             Você foi encarregado de desenvolver uma consulta para listar nomes de modelos de automóveis
             e de seus fabricantes. Para isso, você recebe um arquivo de onde você obterá os dados
-            para sua consulta. O arquivo tem o seguinte conteúdo:
+            para sua consulta. O arquivo tem o seguinte conteúdo e está disponível no caminho Data\Automoveis.xml:
         </p>
 
         <p>
@@ -120,8 +120,47 @@
 
     <div class="MultipleChoice">
         <h3>Consulta Simples Com XML</h3>
+
+        <p>Considere o seguinte arquivo XML, existente no caminho Data\Automoveis.xml:
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
         <p>
-            Com base no arquivo XML listado no Exercício 1, qual alternativa representa
+            Com base nesse arquivo XML, qual alternativa representa
             a o código adequado para retornar uma lista contendo o Id e o Nome dos fabricantes?
         </p>
         <form>
@@ -234,7 +273,46 @@
     <div class="MultipleChoice">
         <h3>Debugando Uma Consulta Linq To XML - 1</h3>
         <p>
-            Com base no arquivo XML listado no Exercício 1, você desenvolve o seguinte código, para
+            Considere o seguinte arquivo XML, existente no caminho Data\Automoveis.xml:
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
+        <p>
+            Com base nesse arquivo XML, você desenvolve o seguinte código, para
             retornar uma consulta contendo o id do modelo, o nome do modelo e o nome do fabricante dos automóveis:
         </p>
 
@@ -321,7 +399,46 @@
     <div class="MultipleChoice">
         <h3>Debugando Uma Consulta Linq To XML - 2</h3>
         <p>
-            Com base no arquivo XML listado no Exercício 1, você desenvolve o seguinte código, para
+            Considere o seguinte arquivo XML, existente no caminho Data\Automoveis.xml:
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
+        <p>
+            Com base nesse arquivo XML, você desenvolve o seguinte código, para
             retornar uma consulta contendo o id do modelo, o nome do modelo e o nome do fabricante dos automóveis:
         </p>
 
