@@ -100,7 +100,7 @@ var query = from f in contexto.Faixas
             };
                     </pre></label>
                 <span>Essa consulta apresenta erro de sintaxe: está faltando declarar as propriedades de associação
-                entre Faixas e Generos na cláusular <code>join</code>.</span>
+                entre Faixas e Generos na cláusula <code>join</code>.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -228,6 +228,43 @@ query = query.Top(10);
         de uma forma mais legível e mais parecida com uma consulta SQL. Por outro lado, uma consulta equivalente
         feita com sintaxe de método seria mais difícil de ler, dificultando o entendimento, a depuração e a 
         manutenção do código.</p>
+
+        <p>
+            Por exemplo, note como no exemplo abaixo a segunda query (sintaxe de consulta) é mais legível que a primeira consulta (sintaxe de método):
+        </p>
+
+        <pre>
+        //SINTAXE DE MÉTODO
+        //=================
+
+        var query 
+            = context.Pacotes
+            .Join(context.Conteineres, p => p.conteinerID, c => c.ID, (p, c) => new { p, c })
+            .Join(context.pacoteUsuarios, pu => pu.p.ID, u => u.pacoteID, (pu, u) => new { pu.p, pu.c, u })
+            .Where(pcu => pcu.u.UsuarioID == "AlgumUsuarioID")
+            .Select(pcu => new
+            {
+                pcu.p.ID,
+                pcu.c.Nome,
+                pcu.p.Code,
+                pcu.p.Code2
+            });
+
+        //SINTAXE DE CONSULTA
+        //===================
+
+        var query = from pacote in context.Pacotes
+                    join conteiner in context.Conteineres on pacote.conteinerID equals conteiner.ID
+                    join pacoteUsuario in context.pacoteUsuarios on pacote.ID equals pacoteUsuario.pacoteID
+                    where pacoteUsuario.UsuarioID == "AlgumUsuarioID"
+                    select new
+                    {
+                        pacote.ID,
+                        conteiner.Nome,
+                        pacote.Code,
+                        pacote.Code2
+                    };
+        </pre>
     </div>
     <hr />
 
