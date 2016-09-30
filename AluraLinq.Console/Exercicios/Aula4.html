@@ -135,28 +135,43 @@ select alb;
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Entendendo Propriedades de Navegação</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Quais as vantagens de se usar propriedades de navegação no lugar de joins numa consulta Linq?
         </p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label><input type="checkbox" value="">Não existe vantagem nenhuma, apenas desvantagem, pois
+                o uso da propriedade de navegação deixa a consulta mais lenta.</label>
+                <span>
+                    Não há redução de desempenho, pois a consulta SQL gerada para o servidor de banco de dados
+                    é a mesma.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label><input type="checkbox" value="">Não existe vantagem nem desvantagem.</label>
+                <span>
+                    Existe a vantagem de que a consulta com propriedades de navegação fica mais limpa, 
+                    mais fácil de ler e de entender.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label><input type="checkbox" value="">A consulta coloca os resultados num cache que pode
+                ser reutilizado nas próximas execuções.</label>
+                <span>A propriedade de navegação não coloca o resultado no cache.</span>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked">
+                    A consulta fica mais legível e simples de entender.
                 </label>
+                <span>CORRETO: os dois tipos de abordagem geram a mesma consulta, porém a consulta com propriedades
+                de navegação fica mais limpa, mais fácil de ler e de entender.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label><input type="checkbox" value="">A consulta fica mais rápida.</label>
+                <span>Não há melhoria de desempenho, pois a consulta SQL gerada para o servidor de banco de dados
+                é a mesma.</span>
             </div>
         </form>
     </div>
