@@ -93,21 +93,43 @@
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Reescrevendo Queries Como Sintaxe de Método</h3>
+        <p>Considere a sequinte consulta Linq, que está definida na forma de "sintaxe de consulta":</p>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            <pre>
+var query = from a in contexto.Artistas
+where a.Nome.Contains("Led")
+select a;
+            </pre>
         </p>
+        <p>Reescreva a mesma consulta, porém na forma de "sintaxe de método".</p>
+        <h4>Opinião do Alura</h4>
+        <p>Na sintaxe de método removemos a cláusula <code>from</code>, e a cláusula <code>where</code>
+        é utilizada como um método que toma como parâmetro uma expressão lambda, que por sua vez 
+        descreve a função que filtra os dados da consulta:</p>
+        <pre>
+var query = contexto.Artistas.Where(a => a.Nome.Contains("Led"));
+        </pre>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
-        </p>
+        <h3>Reescrevendo Queries Como Sintaxe de Consulta</h3>
+        <p>Considere a sequinte consulta Linq, que está definida na forma de "sintaxe de método":</p>
+        <pre>
+var query = contexto.Generos.Where(g => g.Nome == "Rock");
+        </pre>
+        <p>Reescreva a mesma consulta, porém na forma de "sintaxe de consulta".</p>
+        <h4>Opinião do Alura</h4>
+        <p>Na sintaxe de consulta utilizamos uma forma parecida com uma consulta SQL. A cláusula <code>from</code>
+        precisa indicar de onde vem os dados (contexto.Generos) e a cláusula <code>where</code> faz o filtro
+        pelo nome do gênero. No final, a cláusula <code>select</code> indica que uma coleção de objetos do tipo
+        <code>Genero</code> será retornada.</p>
+        <pre>
+var query = from g in contexto.Generos
+where g.Nome == "Rock"
+select g;
+            </pre>
     </div>
-
 </body>
 </html>
