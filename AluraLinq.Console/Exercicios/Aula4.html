@@ -19,6 +19,21 @@
             color: #333; /* old IE */
             background-color: #333; /* Modern Browsers */
         }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -28,28 +43,92 @@
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Substituindo Joins Em Consultas Linq to Entities</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um 
+            banco de dados:
+        </p>
+        <pre>
+AluraTunesEntities.edmx
+
+Entidades        ║    Album                     Artista
+=================╬=========================================
+Propriedades     ║  AlbumId           ┌------ArtistaId (PK)
+                 ║  Nome              |      Nome
+                 ║  ArtistaId (FK)----┘
+=================╬=========================================
+Propriedades de  ║  Artista
+Navegação        ║
+        </pre>
+        <p>Uma consulta Linq to Entities é criada para trazer os álbuns a partir desse modelo, como segue:</p>
+        <pre>
+var query = from alb in contexto.Albums
+join art in contexto.Artistas 
+    on alb.ArtistaId equals art.ArtistaId
+where art.Nome == textoBusca
+select alb;
+        </pre>
+        <p>
+            De acordo com o modelo descrito no começo do exercício, como a consulta acima poderia ser reescrita
+            de forma alternativa porém gerando a mesma consulta Linq?
         </p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from art in contexto.Artistas
+where art.Album.Nome == "Led Zeppelin"
+select alb;
+                    </pre>                
+                </label>
+                <span>A consulta está tentando acessar uma propriedade de navegação inexistente (Artista.Album).</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from alb in Albums
+where alb.Artista.Nome == "Led Zeppelin"
+select alb;
+                    </pre>                
+                </label>
+                <span>
+                    A consulta está tentando acessar um objeto <code>Albums</code>, em vez de acessar a entidade
+                    <code>contexto.Albums</code> como na consulta original.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from alb in contexto.Albums
+select alb;
+                    </pre>    
+                </label>
+                <span>A sintaxe está correta, porém essa consulta não está filtrando os dados como a
+                consulta original.</span>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+var query = from alb in contexto.Albums
+where alb.Artista.Nome == "Led Zeppelin"
+select alb;
+                    </pre>
                 </label>
+                <span>CORRETO: a consulta está trazendo os dados da entidade <code>contexto.Albums</code>
+                e filtrando o resultado pela propriedade <code>Nome</code> da propriedade de navegação
+                <code>alb.Artista</code>.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from alb in contexto.Albums
+on alb.Artista.Nome == "Led Zeppelin"
+select alb;
+                    </pre>
+                </label>
+                <span>A sintaxe está incorreta, pois a palavra "on" só pode ser usada dentro de uma cláusula
+                <code>join</code>.</span>
             </div>
         </form>
     </div>
