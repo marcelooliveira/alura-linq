@@ -19,6 +19,21 @@
             color: #333; /* old IE */
             background-color: #333; /* Modern Browsers */
         }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -60,6 +75,8 @@ order art by Nome
 select art;
                     </pre>
                 </label>
+                <span>A consulta utiliza uma sintaxe inválida. A cláusula de ordenação deve utilizar
+                a palavra <code>orderby</code>, sem espaços.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -70,6 +87,10 @@ order by art.Nome
 select art;
         </pre>
                 </label>
+                <span>
+                    A consulta utiliza uma sintaxe inválida. A cláusula de ordenação deve utilizar
+                    a palavra <code>orderby</code>, sem espaços.
+                </span>
             </div>
             <div class="checkbox">
                 <label>
@@ -80,18 +101,20 @@ orderby art
 select art;
         </pre>
                 </label>
+                <span>A cláusula <code>orderby</code> deveria acessar a propriedade <code>Nome</code>
+                da entidade <code>Artista</code>.</span>
             </div>
             <div class="checkbox">
                 <label>
-                    <label>
-                        <input type="checkbox" value="" checked="checked">
-                        <pre>
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
 var query = from art in contexto.Artistas
 orderby art.Nome
 select art;
-        </pre>
-                    </label>
+    </pre>
                 </label>
+                <span>CORRETO: a consulta utiliza <code>orderby</code> e a propriedade <code>Nome</code>
+                da entidade <code>Artista</code>.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -102,6 +125,8 @@ orderby Nome
 select art;
         </pre>
                 </label>
+                <span>A consulta está tentando acessar a propriedade <code>Nome</code> diretamente,
+                sem antes referenciar a entidade artista. O correto seria:<br /> <code>orderby art.Nome</code>.</span>
             </div>
         </form>
     </div>
@@ -142,6 +167,11 @@ var query = from f in contexto.Faixas
     select f;
 </pre>
                 </label>
+                <span>
+                    A consulta tenta ordenar duas propriedades separando-as com a palavra "and", 
+                    porém o correto seria especificar uma lista das propriedades separadas por vírgula
+                    (<code>f.Nome, f.Album.Titulo</code>)
+                </span>
             </div>
             <div class="checkbox">
                 <label>
@@ -152,6 +182,11 @@ var query = from f in contexto.Faixas
     select f;
 </pre>
                 </label>
+                <span>
+                    A consulta tenta ordenar uma consulta por um objeto anônimo, porém o correto seria 
+                    especificar uma lista das propriedades a serem ordenadas 
+                    (<code>f.Nome, f.Album.Titulo</code>)
+                </span>            
             </div>
             <div class="checkbox">
                 <label>
@@ -162,6 +197,11 @@ var query = from f in contexto.Faixas
     select f;
 </pre>
                 </label>
+                <span>
+                    A consulta contém uma palavra que não faz parte da sintaxe de consulta do Linq:
+                    ("thenby"). O correto seria especificar uma lista das propriedades a serem
+                    ordenadas (<code>f.Nome, f.Album.Titulo</code>)
+                </span>
             </div>
             <div class="checkbox">
                 <label>
@@ -174,6 +214,8 @@ var query = from f in contexto.Faixas
 </pre>
                     </label>
                 </label>
+                <span>CORRETO. a consulta utiliza orderby e especifica uma lista das propriedades a serem
+                ordenadas (<code>f.Nome, f.Album.Titulo</code>).</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -184,6 +226,9 @@ var query = from f in contexto.Faixas
     select f;
 </pre>
                 </label>
+                <span>A consulta contém palavras que não fazem parte da sintaxe de consulta do Linq:
+                ("then by"). O correto seria especificar uma lista das propriedades a serem
+                ordenadas (<code>f.Nome, f.Album.Titulo</code>)</span>
             </div>
         </form>
     </div>
@@ -731,7 +776,7 @@ select art;
     <hr />
 
     <div class="CallToAction">
-        <h3>Ordenando Decrescente - Sintaxe de Método</h3>
+        <h3>Ordenação Decrescente - Sintaxe de Método</h3>
         <p>
             O seguinte trecho de código é usado para consultar as notas fiscais, ordenando
             o resultado pelo total da nota fiscal por ordem decrescente, e em seguida pelo nome

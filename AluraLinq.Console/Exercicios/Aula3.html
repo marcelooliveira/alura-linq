@@ -223,7 +223,7 @@ query = query.Top(10);
             de diversas entidades do modelo do Entity Framework. Você escreveria essa consulta Linq na forma
             de sintaxe de método ou na forma de sintaxe de consulta? Justifique.
         </p>
-        <h4>Opinião do Alura</h4>
+        <h4>Opinião da Alura</h4>
         <p>Para consultas complexas, a forma de sintaxe de consulta possui a vantagem de declarar a consulta
         de uma forma mais legível e mais parecida com uma consulta SQL. Por outro lado, uma consulta equivalente
         feita com sintaxe de método seria mais difícil de ler, dificultando o entendimento, a depuração e a 
@@ -279,7 +279,7 @@ select a;
             </pre>
         </p>
         <p>Reescreva a mesma consulta, porém na forma de "sintaxe de método".</p>
-        <h4>Opinião do Alura</h4>
+        <h4>Opinião da Alura</h4>
         <p>Na sintaxe de método removemos a cláusula <code>from</code>, e a cláusula <code>where</code>
         é utilizada como um método que toma como parâmetro uma expressão lambda, que por sua vez 
         descreve a função que filtra os dados da consulta:</p>
@@ -296,7 +296,7 @@ var query = contexto.Artistas.Where(a => a.Nome.Contains("Led"));
 var query = contexto.Generos.Where(g => g.Nome == "Rock");
         </pre>
         <p>Reescreva a mesma consulta, porém na forma de "sintaxe de consulta".</p>
-        <h4>Opinião do Alura</h4>
+        <h4>Opinião da Alura</h4>
         <p>Na sintaxe de consulta utilizamos uma forma parecida com uma consulta SQL. A cláusula <code>from</code>
         precisa indicar de onde vem os dados (contexto.Generos) e a cláusula <code>where</code> faz o filtro
         pelo nome do gênero. No final, a cláusula <code>select</code> indica que uma coleção de objetos do tipo
