@@ -27,56 +27,161 @@
 
     <hr />
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Ordenando Consultas Linq - Sintaxe</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
         </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Album                     Artista
+=================╬=========================================
+Propriedades     ║  AlbumId           ┌------ArtistaId (PK)
+                 ║  Titulo            |      Nome
+                 ║  ArtistaId (FK)----┘
+=================╬=========================================
+Propriedades de  ║  Artista
+Navegação        ║
+        </pre>
+        <p>Agora considere a seguinte consulta Linq:</p>
+        <pre>
+var query = from art in contexto.Artistas
+select art;
+        </pre>
+        <p>como a consulta deve ser modificada de forma a garantir que os resultados trazidos sejam 
+        ordenados por nome de artista?</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from art in contexto.Artistas
+order art by Nome
+select art;
+                    </pre>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var query = from art in contexto.Artistas
+order by art.Nome
+select art;
+        </pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var query = from art in contexto.Artistas
+orderby art
+select art;
+        </pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <label>
+                        <input type="checkbox" value="" checked="checked">
+                        <pre>
+var query = from art in contexto.Artistas
+orderby art.Nome
+select art;
+        </pre>
+                    </label>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var query = from art in contexto.Artistas
+orderby Nome
+select art;
+        </pre>
+                </label>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Consulta Ordenada por Múltiplos Campos</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere uma aplicação que possui o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
         </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Faixa                    Album
+=================╬=========================================
+Propriedades     ║  FaixaId           ┌------AlbumId (PK)
+                 ║  Nome              |      Titulo
+                 ║  AlbumId (FK)------┘      ArtistaId
+=================╬=========================================
+Propriedades de  ║  Album
+Navegação        ║
+        </pre>
+        <p>Marque a alternativa que descreve uma consulta que traz uma coleção de faixas de música
+        ordenada pelo nome da faixa e o título do álbum, usando o seguinte contexto:</p>
+        <pre>
+using (var contexto = new AluraTunesEntities())
+{
+    //Sua consulta vai aqui...
+}
+        </pre>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                <label><input type="checkbox" value="">
+<pre>
+var query = from f in contexto.Faixas
+    orderby f.Nome and f.Album.Titulo
+    select f;
+</pre>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var query = from f in contexto.Faixas
+    orderby new { f.Nome, f.Album.Titulo }
+    select f;
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var query = from f in contexto.Faixas
+    orderby f.Nome thenby f.Album.Titulo
+    select f;
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <label>
+                        <input type="checkbox" value="" checked="checked">
+<pre>
+var query = from f in contexto.Faixas
+    orderby f.Nome, f.Album.Titulo
+    select f;
+</pre>
+                    </label>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var query = from f in contexto.Faixas
+    orderby f.Nome then by f.Album.Titulo
+    select f;
+</pre>
+                </label>
             </div>
         </form>
     </div>
