@@ -215,7 +215,8 @@ List&lt;Musica&gt; musicas = new List&lt;Musica&gt;
         </pre>
 
         <p>
-            Suponha que agora você precise criar uma consulta que traga o id da música, o nome da música e o nome do gênero musical.
+            Suponha que agora você precise criar uma consulta que combine essas duas listas e que
+            traga o id da música, o nome da música e o nome do gênero musical.
             Então você implementa a consulta conforme abaixo:
         </p>
         <pre>
@@ -230,24 +231,239 @@ select new
         </pre>
         <p>Uma colega vê o seu código e pergunta se você não poderia reescrever sua consulta, substituindo
         o join por uma propriedade de navegação. O que você responderia? Justifique sua resposta.</p>
+
+        <h4>Opinião do Alura</h4>
+        <p>A consulta apresentada utiliza <b>Linq to Objects</b>, e as classes de objetos descritos não
+        dão suporte a propriedades de navegação. Portanto, para combinar os dados de ambas as classes é
+        necessário utilizar a cláusula <code>join</code> para definir através de quais propriedades os
+        objetos da consulta serão associados.</p>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Refinando uma Consulta Linq</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Considere uma aplicação que possui o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
         </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Faixa                    Album
+=================╬=========================================
+Propriedades     ║  FaixaId           ┌------AlbumId (PK)
+                 ║  Nome              |      Titulo
+                 ║  AlbumId (FK)------┘      ArtistaId
+=================╬=========================================
+Propriedades de  ║  Album
+Navegação        ║
+        </pre>
+        <p>Baseado nesse modelo, a seguinte consulta é criada para buscar somente as faixas cujo 
+        artista é "Led Zeppelin":</p>
+        <pre>
+var query1 = from f in contexto.Faixas
+where f.Album.Artista.Nome == "Led Zeppelin"
+select f;
+        </pre>
+        <p>A partir da consulta "query1" acima, crie uma segunda consulta chamada "query2", que utiliza
+        "query1" como fonte de dados para filtrar também os álbuns cujo título contenham a palavra "Graffiti".</p>
+
+        <pre>var query2 = ...</pre>
+
+        <h4>Opinião do Alura</h4>
+        <p>A consulta query2 poderia utilizar a sintaxe de método, chamando o método <code>Where</code>
+        e passando na expressão lambda o filtro para buscar através da propriedade de navegação os títulos
+        de álbum que contêm "Graffiti":</p>
+        <pre>var query2 = query1.Where(f => f.Album.Titulo.Contains("Graffiti"));</pre>
+        <p>Ou a mesma consulta poderia ser feita através de sintaxe de consulta:</p>
+        <pre>
+var query2 = from f in query1
+             where f.Album.Titulo.Contains("Graffiti")
+             select f;
+        </pre>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Refinando uma Consulta Linq</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Considere uma aplicação que possui o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
         </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Faixa                    Album
+=================╬=========================================
+Propriedades     ║  FaixaId           ┌------AlbumId (PK)
+                 ║  Nome              |      Titulo
+                 ║  AlbumId (FK)------┘      ArtistaId
+=================╬=========================================
+Propriedades de  ║  Album
+Navegação        ║
+        </pre>
+        <p>
+            Baseado nesse modelo, o seguinte código é criado para para buscar somente as faixas cujo
+            artista é "Metallica" e imprimi-las no console:
+        </p>
+        <pre>
+var query = from f in contexto.Faixas
+where f.Album.Artista.Nome == "Metallica"
+select f;
+
+foreach (var f in query)
+{
+    Console.WriteLine("{0}\t{1}", f.Album.Titulo, f.Nome);
+}
+        </pre>
+
+        <p>Ao rodar o programa, você observa o seguinte resultado no console:</p>
+
+    <pre>
+Garage Inc. (Disc 1)    Free Speech For The Dumb
+Garage Inc. (Disc 1)    It's Electric
+Garage Inc. (Disc 1)    Sabbra Cadabra
+Garage Inc. (Disc 1)    Turn The Page
+Garage Inc. (Disc 1)    Die Die My Darling
+Garage Inc. (Disc 1)    Loverman
+Garage Inc. (Disc 1)    Mercyful Fate
+Garage Inc. (Disc 1)    Astronomy
+Garage Inc. (Disc 1)    Whiskey In The Jar
+Garage Inc. (Disc 1)    Tuesday's Gone
+Garage Inc. (Disc 1)    The More I See
+Black Album     Enter Sandman
+Black Album     Sad But True
+Black Album     Holier Than Thou
+Black Album     The Unforgiven
+Black Album     Wherever I May Roam
+Black Album     Don't Tread On Me
+Black Album     Through The Never
+Black Album     Nothing Else Matters
+Black Album     Of Wolf And Man
+Black Album     The God That Failed
+Black Album     My Friend Of Misery
+Black Album     The Struggle Within
+Garage Inc. (Disc 2)    Helpless
+Garage Inc. (Disc 2)    The Small Hours
+Garage Inc. (Disc 2)    The Wait
+Garage Inc. (Disc 2)    Crash Course In Brain Surgery
+Garage Inc. (Disc 2)    Last Caress/Green Hell
+Garage Inc. (Disc 2)    Am I Evil?
+Garage Inc. (Disc 2)    Blitzkrieg
+Garage Inc. (Disc 2)    Breadfan
+Garage Inc. (Disc 2)    The Prince
+Garage Inc. (Disc 2)    Stone Cold Crazy
+Garage Inc. (Disc 2)    So What
+Garage Inc. (Disc 2)    Killing Time
+Garage Inc. (Disc 2)    Overkill
+Garage Inc. (Disc 2)    Damage Case
+Garage Inc. (Disc 2)    Stone Dead Forever
+Garage Inc. (Disc 2)    Too Late Too Late
+Kill 'Em All    Hit The Lights
+Kill 'Em All    The Four Horsemen
+Kill 'Em All    Motorbreath
+Kill 'Em All    Jump In The Fire
+Kill 'Em All    (Anesthesia) Pulling Teeth
+Kill 'Em All    Whiplash
+Kill 'Em All    Phantom Lord
+Kill 'Em All    No Remorse
+Kill 'Em All    Seek & Destroy
+Kill 'Em All    Metal Militia
+Load    Ain't My Bitch
+Load    2 X 4
+Load    The House Jack Built
+Load    Until It Sleeps
+Load    King Nothing
+Load    Hero Of The Day
+Load    Bleeding Me
+Load    Cure
+Load    Poor Twisted Me
+Load    Wasted My Hate
+Load    Mama Said
+Load    Thorn Within
+Load    Ronnie
+Load    The Outlaw Torn
+Master Of Puppets       Battery
+Master Of Puppets       Master Of Puppets
+Master Of Puppets       The Thing That Should Not Be
+Master Of Puppets       Welcome Home (Sanitarium)
+Master Of Puppets       Disposable Heroes
+Master Of Puppets       Leper Messiah
+Master Of Puppets       Orion
+Master Of Puppets       Damage Inc.
+ReLoad  Fuel
+ReLoad  The Memory Remains
+ReLoad  Devil's Dance
+ReLoad  The Unforgiven II
+ReLoad  Better Than You
+ReLoad  Slither
+ReLoad  Carpe Diem Baby
+ReLoad  Bad Seed
+ReLoad  Where The Wild Things Are
+ReLoad  Prince Charming
+ReLoad  Low Man's Lyric
+ReLoad  Attitude
+ReLoad  Fixxxer
+Ride The Lightning      Fight Fire With Fire
+Ride The Lightning      Ride The Lightning
+Ride The Lightning      For Whom The Bell Tolls
+Ride The Lightning      Fade To Black
+Ride The Lightning      Trapped Under Ice
+Ride The Lightning      Escape
+Ride The Lightning      Creeping Death
+Ride The Lightning      The Call Of Ktulu
+St. Anger       Frantic
+St. Anger       St. Anger
+St. Anger       Some Kind Of Monster
+St. Anger       Dirty Window
+St. Anger       Invisible Kid
+St. Anger       My World
+St. Anger       Shoot Me Again
+St. Anger       Sweet Amber
+St. Anger       The Unnamed Feeling
+St. Anger       Purify
+St. Anger       All Within My Hands
+...And Justice For All  Blackened
+...And Justice For All  ...And Justice For All
+...And Justice For All  Eye Of The Beholder
+...And Justice For All  One
+...And Justice For All  The Shortest Straw
+...And Justice For All  Harvester Of Sorrow
+...And Justice For All  The Frayed Ends Of Sanity
+...And Justice For All  To Live Is To Die
+...And Justice For All  Dyers Eve
+        </pre>
+
+        <p>A partir do resultado, você resolve refinar a consulta para trazer somente as faixas do
+        álbum "Black Album". Então você acrescenta a linha após a declaração da consulta <code>query</code>:</p>
+
+        <pre>query.Where(f => f.Album.Titulo.Contains("Black Album"));</pre>
+
+        <p>Porém, ao rodar novamente o programa, você percebe que o resultado no console continua
+        sendo exatamente o mesmo, ou seja, a consulta continua trazendo as faixas de todos os álbuns.
+        Explique o que aconteceu, e como resolver este problema.</p>
+
+        <h4>Opinião do Alura</h4>
+        <p>O método <code>Where</code> utilizado na linha de código acrescentada retorna uma nova
+        definição de consulta, mas não modifica o objeto de definição de consulta <code>query</code>.
+        Para modificar o objeto <code>query</code> e resolver o problema, é necessário escrever a
+        linha de código como uma atribuição à própria variável <code>query</code>:</p>
+        
+        <pre>query = query.Where(f => f.Album.Titulo.Contains("Black Album"));</pre>
+
+        <p>Rodando novamente a consulta, desta vez você terá o resultado esperado:</p>
+        <pre>
+Black Album     Enter Sandman
+Black Album     Sad But True
+Black Album     Holier Than Thou
+Black Album     The Unforgiven
+Black Album     Wherever I May Roam
+Black Album     Don't Tread On Me
+Black Album     Through The Never
+Black Album     Nothing Else Matters
+Black Album     Of Wolf And Man
+Black Album     The God That Failed
+Black Album     My Friend Of Misery
+Black Album     The Struggle Within
+        </pre>
     </div>
 
 </body>

@@ -13,18 +13,20 @@ namespace alura_linq.Problemas.Problema11
     {
         public override void Solve(string[] args)
         {
-            using (var contexto = GetContextoComLog())
+            using (var contexto = new AluraTunesEntities())// GetContextoComLog())
             {
+                Console.BufferHeight = 1000;
+
                 var query = from f in contexto.Faixas
-                            where f.Album.Artista.Nome == "Led Zeppelin"
+                            where f.Album.Artista.Nome == "Metallica"
                             select f;
 
                 //Agora queremos mudar a consulta para filtrar pelos álbuns que contenham "Graffiti"
-                query = query.Where(f => f.Album.Titulo.Contains("Graffiti"));
+                query = query.Where(f => f.Album.Titulo.Contains("Black Album"));
 
                 foreach (var f in query)
                 {
-                    Console.WriteLine(f.Nome);
+                    Console.WriteLine("{0}\t{1}", f.Album.Titulo, f.Nome);
                 }
             }
         }
