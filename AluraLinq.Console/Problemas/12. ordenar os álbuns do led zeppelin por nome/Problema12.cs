@@ -57,15 +57,17 @@ namespace alura_linq.Problemas.Problema12
                 //},
 
                 var query = from nf in contexto.NotasFiscais
+                            orderby nf.Total descending, nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome
                             select new
                             {
+                                nf.DataNotaFiscal,
                                 Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
                                 Total = nf.Total
                             };
 
                 foreach (var nf in query)
                 {
-                    Console.WriteLine("{0}\t{1}", nf.Cliente, nf.Total);
+                    Console.WriteLine("{0:dd/MM/yyyy}\t{1}\t{2}", nf.DataNotaFiscal, nf.Cliente, nf.Total);
                 }
             }
         }

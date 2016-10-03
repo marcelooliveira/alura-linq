@@ -27,13 +27,14 @@
 
     <hr />
     <div class="MultipleChoice">
-        <h3>Ordenando Consultas Linq - Sintaxe</h3>
+        <h3>Ordenando Consultas Linq - Sintaxe de Consulta</h3>
         <p>
             Considere o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
             banco de dados:
         </p>
         <pre>
 AluraTunesEntities.edmx
+
 Entidades        ║    Album                     Artista
 =================╬=========================================
 Propriedades     ║  AlbumId           ┌------ArtistaId (PK)
@@ -114,6 +115,7 @@ select art;
         </p>
         <pre>
 AluraTunesEntities.edmx
+
 Entidades        ║    Faixa                    Album
 =================╬=========================================
 Propriedades     ║  FaixaId           ┌------AlbumId (PK)
@@ -188,47 +190,560 @@ var query = from f in contexto.Faixas
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
-        </p>
+        <h3>Ordenação Decrescente</h3>
+        <p>O seguinte trecho de código é usado para consultar as notas fiscais, imprimindo
+        o nome do cliente e o total da nota fiscal:</p>
+<pre>
+var query = from nf in contexto.NotasFiscais
+            select new
+            {
+                Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+                Total = nf.Total
+            };
+foreach (var nf in query)
+{
+    Console.WriteLine("{0}\t{1}", nf.Cliente, nf.Total);
+}
+</pre>
+        <p>Ao rodar a consulta, o seguinte relatório é impresso no console:</p>
+<pre>
+01/01/2009      Leonie Köhler   1,98
+02/01/2009      Bjørn Hansen    3,96
+03/01/2009      Daan Peeters    5,94
+06/01/2009      Mark Philips    8,91
+11/01/2009      John Gordon     13,86
+19/01/2009      Fynn Zimmermann 0,99
+01/02/2009      Niklas Schröder 1,98
+01/02/2009      Dominique Lefebvre      1,98
+02/02/2009      Wyatt Girard    3,96
+03/02/2009      Hugh O'Reilly   5,94
+06/02/2009      Emma Jones      8,91
+11/02/2009      Leonie Köhler   13,86
+19/02/2009      Frank Harris    0,99
+04/03/2009      Jack Smith      1,98
+04/03/2009      Tim Goyer       1,98
+05/03/2009      Kathy Chase     3,96
+06/03/2009      Victor Stevens  5,94
+09/03/2009      Martha Silk     8,91
+14/03/2009      Dominique Lefebvre      13,86
+22/03/2009      Steve Murray    0,99
+04/04/2009      Mark Taylor     1,98
+04/04/2009      Luis Rojas      1,98
+05/04/2009      Puja Srivastava 3,96
+06/04/2009      Bjørn Hansen    5,94
+09/04/2009      Eduardo Martins 8,91
+14/04/2009      Tim Goyer       13,86
+22/04/2009      Ellie Sullivan  0,99
+05/05/2009      João Fernandes  1,98
+05/05/2009      Hannah Schneider        1,98
+06/05/2009      Niklas Schröder 3,96
+07/05/2009      Wyatt Girard    5,94
+10/05/2009      Johannes Van der Berg   8,91
+15/05/2009      Luis Rojas      13,86
+23/05/2009      Roberto Almeida 0,99
+05/06/2009      Fernanda Ramos  1,98
+05/06/2009      Jennifer Peterson       1,98
+06/06/2009      Jack Smith      3,96
+07/06/2009      Kathy Chase     5,94
+10/06/2009      Patrick Gray    8,91
+15/06/2009      Hannah Schneider        13,86
+23/06/2009      Enrique Muñoz   0,99
+06/07/2009      Joakim Johansson        1,98
+06/07/2009      Phil Hughes     1,98
+07/07/2009      Mark Taylor     3,96
+08/07/2009      Puja Srivastava 5,94
+11/07/2009      Helena Holý     8,91
+16/07/2009      Jennifer Peterson       13,86
+24/07/2009      Robert Brown    0,99
+06/08/2009      Edward Francis  1,98
+06/08/2009      Aaron Mitchell  1,98
+07/08/2009      João Fernandes  3,96
+08/08/2009      Niklas Schröder 5,94
+11/08/2009      Terhi Hämäläinen        8,91
+16/08/2009      Phil Hughes     13,86
+24/08/2009      Daan Peeters    0,99
+06/09/2009      Kara Nielsen    1,98
+06/09/2009      Alexandre Rocha 1,98
+07/09/2009      Fernanda Ramos  3,96
+08/09/2009      Jack Smith      5,94
+11/09/2009      John Gordon     8,91
+16/09/2009      Aaron Mitchell  13,86
+24/09/2009      Hugh O'Reilly   0,99
+07/10/2009      Lucas Mancini   1,98
+07/10/2009      Stanislaw Wójcik        1,98
+08/10/2009      Joakim Johansson        3,96
+09/10/2009      Mark Taylor     5,94
+12/10/2009      Leonie Köhler   8,91
+17/10/2009      Alexandre Rocha 13,86
+25/10/2009      Victor Stevens  0,99
+07/11/2009      Richard Cunningham      1,98
+07/11/2009      Julia Barnett   1,98
+08/11/2009      Edward Francis  3,96
+09/11/2009      João Fernandes  5,94
+12/11/2009      Dominique Lefebvre      8,91
+17/11/2009      Stanislaw Wójcik        13,86
+25/11/2009      Bjørn Hansen    0,99
+08/12/2009      Frantisek Wichterlová   1,98
+08/12/2009      Astrid Gruber   1,98
+09/12/2009      Kara Nielsen    3,96
+10/12/2009      Fernanda Ramos  5,94
+13/12/2009      Tim Goyer       8,91
+18/12/2009      Julia Barnett   13,86
+26/12/2009      Wyatt Girard    0,99
+08/01/2010      Isabelle Mercier        1,98
+08/01/2010      Ladislav Kovács 1,98
+09/01/2010      Lucas Mancini   3,96
+10/01/2010      Joakim Johansson        6,94
+13/01/2010      Luis Rojas      17,91
+18/01/2010      Astrid Gruber   18,86
+26/01/2010      Kathy Chase     0,99
+08/02/2010      Heather Leacock 1,98
+08/02/2010      Frank Ralston   1,98
+09/02/2010      Richard Cunningham      3,96
+10/02/2010      Edward Francis  5,94
+13/02/2010      Hannah Schneider        8,91
+18/02/2010      Ladislav Kovács 21,86
+26/02/2010      Puja Srivastava 1,99
+11/03/2010      Luís Gonçalves  3,98
+11/03/2010      François Tremblay       3,98
+12/03/2010      Frantisek Wichterlová   3,96
+13/03/2010      Kara Nielsen    5,94
+16/03/2010      Jennifer Peterson       9,91
+21/03/2010      Frank Ralston   15,86
+29/03/2010      Niklas Schröder 0,99
+11/04/2010      Camille Bernard 1,98
+11/04/2010      Marc Dubois     1,98
+12/04/2010      Isabelle Mercier        3,96
+13/04/2010      Lucas Mancini   5,94
+16/04/2010      Phil Hughes     8,91
+21/04/2010      François Tremblay       13,86
+29/04/2010      Jack Smith      0,99
+12/05/2010      Michelle Brooks 1,98
+12/05/2010      Dan Miller      1,98
+13/05/2010      Heather Leacock 3,96
+14/05/2010      Richard Cunningham      5,94
+17/05/2010      Aaron Mitchell  8,91
+22/05/2010      Marc Dubois     13,86
+30/05/2010      Mark Taylor     0,99
+12/06/2010      Diego Gutiérrez 1,98
+12/06/2010      Manoj Pareek    1,98
+13/06/2010      Luís Gonçalves  3,96
+14/06/2010      Frantisek Wichterlová   5,94
+17/06/2010      Alexandre Rocha 8,91
+22/06/2010      Dan Miller      13,86
+30/06/2010      João Fernandes  0,99
+13/07/2010      Madalena Sampaio        1,98
+13/07/2010      Fynn Zimmermann 1,98
+14/07/2010      Camille Bernard 3,96
+15/07/2010      Isabelle Mercier        5,94
+18/07/2010      Stanislaw Wójcik        8,91
+23/07/2010      Manoj Pareek    13,86
+31/07/2010      Fernanda Ramos  0,99
+13/08/2010      Mark Philips    1,98
+13/08/2010      Frank Harris    1,98
+14/08/2010      Michelle Brooks 3,96
+15/08/2010      Heather Leacock 5,94
+18/08/2010      Julia Barnett   8,91
+23/08/2010      Fynn Zimmermann 13,86
+31/08/2010      Joakim Johansson        0,99
+13/09/2010      Emma Jones      1,98
+13/09/2010      Steve Murray    1,98
+14/09/2010      Diego Gutiérrez 3,96
+15/09/2010      Luís Gonçalves  5,94
+18/09/2010      Astrid Gruber   8,91
+23/09/2010      Frank Harris    13,86
+01/10/2010      Edward Francis  0,99
+14/10/2010      Martha Silk     1,98
+14/10/2010      Ellie Sullivan  1,98
+15/10/2010      Madalena Sampaio        3,96
+16/10/2010      Camille Bernard 5,94
+19/10/2010      Ladislav Kovács 8,91
+24/10/2010      Steve Murray    13,86
+01/11/2010      Kara Nielsen    0,99
+14/11/2010      Eduardo Martins 1,98
+14/11/2010      Roberto Almeida 1,98
+15/11/2010      Mark Philips    3,96
+16/11/2010      Michelle Brooks 5,94
+19/11/2010      Frank Ralston   8,91
+24/11/2010      Ellie Sullivan  13,86
+02/12/2010      Lucas Mancini   0,99
+15/12/2010      Johannes Van der Berg   1,98
+15/12/2010      Enrique Muñoz   1,98
+16/12/2010      Emma Jones      3,96
+17/12/2010      Diego Gutiérrez 5,94
+20/12/2010      François Tremblay       8,91
+25/12/2010      Roberto Almeida 13,86
+02/01/2011      Richard Cunningham      0,99
+15/01/2011      Patrick Gray    1,98
+15/01/2011      Robert Brown    1,98
+16/01/2011      Martha Silk     3,96
+17/01/2011      Madalena Sampaio        5,94
+20/01/2011      Marc Dubois     8,91
+25/01/2011      Enrique Muñoz   13,86
+02/02/2011      Frantisek Wichterlová   0,99
+15/02/2011      Helena Holý     1,98
+15/02/2011      Daan Peeters    1,98
+16/02/2011      Eduardo Martins 3,96
+17/02/2011      Mark Philips    5,94
+20/02/2011      Dan Miller      8,91
+25/02/2011      Robert Brown    13,86
+05/03/2011      Isabelle Mercier        0,99
+18/03/2011      Terhi Hämäläinen        1,98
+18/03/2011      Hugh O'Reilly   1,98
+19/03/2011      Johannes Van der Berg   3,96
+20/03/2011      Emma Jones      5,94
+23/03/2011      Manoj Pareek    8,91
+28/03/2011      Daan Peeters    13,86
+05/04/2011      Heather Leacock 0,99
+18/04/2011      John Gordon     1,98
+18/04/2011      Victor Stevens  1,98
+19/04/2011      Patrick Gray    3,96
+20/04/2011      Martha Silk     5,94
+23/04/2011      Fynn Zimmermann 14,91
+28/04/2011      Hugh O'Reilly   21,86
+06/05/2011      Luís Gonçalves  0,99
+19/05/2011      Leonie Köhler   1,98
+19/05/2011      Bjørn Hansen    1,98
+20/05/2011      Helena Holý     3,96
+21/05/2011      Eduardo Martins 5,94
+24/05/2011      Frank Harris    8,91
+29/05/2011      Victor Stevens  18,86
+06/06/2011      Camille Bernard 1,99
+19/06/2011      Dominique Lefebvre      2,98
+19/06/2011      Wyatt Girard    3,98
+20/06/2011      Terhi Hämäläinen        7,96
+21/06/2011      Johannes Van der Berg   8,94
+24/06/2011      Steve Murray    8,91
+29/06/2011      Bjørn Hansen    15,86
+07/07/2011      Michelle Brooks 0,99
+20/07/2011      Tim Goyer       1,98
+20/07/2011      Kathy Chase     1,98
+21/07/2011      John Gordon     3,96
+22/07/2011      Patrick Gray    5,94
+25/07/2011      Ellie Sullivan  8,91
+30/07/2011      Wyatt Girard    13,86
+07/08/2011      Diego Gutiérrez 0,99
+20/08/2011      Luis Rojas      1,98
+20/08/2011      Puja Srivastava 1,98
+21/08/2011      Leonie Köhler   3,96
+22/08/2011      Helena Holý     5,94
+25/08/2011      Roberto Almeida 8,91
+30/08/2011      Kathy Chase     13,86
+07/09/2011      Madalena Sampaio        0,99
+20/09/2011      Hannah Schneider        1,98
+20/09/2011      Niklas Schröder 1,98
+21/09/2011      Dominique Lefebvre      3,96
+22/09/2011      Terhi Hämäläinen        5,94
+25/09/2011      Enrique Muñoz   8,91
+30/09/2011      Puja Srivastava 13,86
+08/10/2011      Mark Philips    0,99
+21/10/2011      Jennifer Peterson       1,98
+21/10/2011      Jack Smith      1,98
+22/10/2011      Tim Goyer       3,96
+23/10/2011      John Gordon     5,94
+26/10/2011      Robert Brown    8,91
+31/10/2011      Niklas Schröder 13,86
+08/11/2011      Emma Jones      0,99
+21/11/2011      Phil Hughes     1,98
+21/11/2011      Mark Taylor     1,98
+22/11/2011      Luis Rojas      3,96
+23/11/2011      Leonie Köhler   5,94
+26/11/2011      Daan Peeters    8,91
+01/12/2011      Jack Smith      13,86
+09/12/2011      Martha Silk     0,99
+22/12/2011      Aaron Mitchell  1,98
+22/12/2011      João Fernandes  1,98
+23/12/2011      Hannah Schneider        3,96
+24/12/2011      Dominique Lefebvre      5,94
+27/12/2011      Hugh O'Reilly   8,91
+01/01/2012      Mark Taylor     13,86
+09/01/2012      Eduardo Martins 0,99
+22/01/2012      Alexandre Rocha 1,98
+22/01/2012      Fernanda Ramos  1,98
+23/01/2012      Jennifer Peterson       3,96
+24/01/2012      Tim Goyer       5,94
+27/01/2012      Victor Stevens  8,91
+01/02/2012      João Fernandes  13,86
+09/02/2012      Johannes Van der Berg   0,99
+22/02/2012      Stanislaw Wójcik        1,98
+22/02/2012      Joakim Johansson        1,98
+23/02/2012      Phil Hughes     3,96
+24/02/2012      Luis Rojas      5,94
+27/02/2012      Bjørn Hansen    8,91
+03/03/2012      Fernanda Ramos  13,86
+11/03/2012      Patrick Gray    0,99
+24/03/2012      Julia Barnett   1,98
+24/03/2012      Edward Francis  1,98
+25/03/2012      Aaron Mitchell  3,96
+26/03/2012      Hannah Schneider        5,94
+29/03/2012      Wyatt Girard    8,91
+03/04/2012      Joakim Johansson        13,86
+11/04/2012      Helena Holý     0,99
+24/04/2012      Astrid Gruber   1,98
+24/04/2012      Kara Nielsen    1,98
+25/04/2012      Alexandre Rocha 3,96
+26/04/2012      Jennifer Peterson       5,94
+29/04/2012      Kathy Chase     8,91
+04/05/2012      Edward Francis  13,86
+12/05/2012      Terhi Hämäläinen        0,99
+25/05/2012      Ladislav Kovács 1,98
+25/05/2012      Lucas Mancini   1,98
+26/05/2012      Stanislaw Wójcik        3,96
+27/05/2012      Phil Hughes     5,94
+30/05/2012      Puja Srivastava 8,91
+04/06/2012      Kara Nielsen    13,86
+12/06/2012      John Gordon     0,99
+25/06/2012      Frank Ralston   1,98
+25/06/2012      Richard Cunningham      1,98
+26/06/2012      Julia Barnett   3,96
+27/06/2012      Aaron Mitchell  5,94
+30/06/2012      Niklas Schröder 8,91
+05/07/2012      Lucas Mancini   13,86
+13/07/2012      Leonie Köhler   0,99
+26/07/2012      François Tremblay       1,98
+26/07/2012      Frantisek Wichterlová   1,98
+27/07/2012      Astrid Gruber   3,96
+28/07/2012      Alexandre Rocha 5,94
+31/07/2012      Jack Smith      10,91
+05/08/2012      Richard Cunningham      23,86
+13/08/2012      Dominique Lefebvre      0,99
+26/08/2012      Marc Dubois     1,98
+26/08/2012      Isabelle Mercier        1,98
+27/08/2012      Ladislav Kovács 3,96
+28/08/2012      Stanislaw Wójcik        5,94
+31/08/2012      Mark Taylor     8,91
+05/09/2012      Frantisek Wichterlová   16,86
+13/09/2012      Tim Goyer       1,99
+26/09/2012      Dan Miller      3,98
+26/09/2012      Heather Leacock 3,98
+27/09/2012      Frank Ralston   7,96
+28/09/2012      Julia Barnett   11,94
+01/10/2012      João Fernandes  10,91
+06/10/2012      Isabelle Mercier        16,86
+14/10/2012      Luis Rojas      0,99
+27/10/2012      Manoj Pareek    1,98
+27/10/2012      Luís Gonçalves  1,98
+28/10/2012      François Tremblay       3,96
+29/10/2012      Astrid Gruber   5,94
+01/11/2012      Fernanda Ramos  8,91
+06/11/2012      Heather Leacock 13,86
+14/11/2012      Hannah Schneider        0,99
+27/11/2012      Fynn Zimmermann 1,98
+27/11/2012      Camille Bernard 1,98
+28/11/2012      Marc Dubois     3,96
+29/11/2012      Ladislav Kovács 5,94
+02/12/2012      Joakim Johansson        8,91
+07/12/2012      Luís Gonçalves  13,86
+15/12/2012      Jennifer Peterson       0,99
+28/12/2012      Frank Harris    1,98
+28/12/2012      Michelle Brooks 1,98
+29/12/2012      Dan Miller      3,96
+30/12/2012      Frank Ralston   5,94
+02/01/2013      Edward Francis  8,91
+07/01/2013      Camille Bernard 13,86
+15/01/2013      Phil Hughes     0,99
+28/01/2013      Steve Murray    1,98
+28/01/2013      Diego Gutiérrez 1,98
+29/01/2013      Manoj Pareek    3,96
+30/01/2013      François Tremblay       5,94
+02/02/2013      Kara Nielsen    8,91
+07/02/2013      Michelle Brooks 13,86
+15/02/2013      Aaron Mitchell  0,99
+28/02/2013      Ellie Sullivan  1,98
+28/02/2013      Madalena Sampaio        1,98
+01/03/2013      Fynn Zimmermann 3,96
+02/03/2013      Marc Dubois     5,94
+05/03/2013      Lucas Mancini   8,91
+10/03/2013      Diego Gutiérrez 13,86
+18/03/2013      Alexandre Rocha 0,99
+31/03/2013      Roberto Almeida 1,98
+31/03/2013      Mark Philips    1,98
+01/04/2013      Frank Harris    3,96
+02/04/2013      Dan Miller      5,94
+05/04/2013      Richard Cunningham      8,91
+10/04/2013      Madalena Sampaio        13,86
+18/04/2013      Stanislaw Wójcik        0,99
+01/05/2013      Enrique Muñoz   1,98
+01/05/2013      Emma Jones      1,98
+02/05/2013      Steve Murray    3,96
+03/05/2013      Manoj Pareek    5,94
+06/05/2013      Frantisek Wichterlová   8,91
+11/05/2013      Mark Philips    13,86
+19/05/2013      Julia Barnett   0,99
+01/06/2013      Robert Brown    1,98
+01/06/2013      Martha Silk     1,98
+02/06/2013      Ellie Sullivan  3,96
+03/06/2013      Fynn Zimmermann 5,94
+06/06/2013      Isabelle Mercier        8,91
+11/06/2013      Emma Jones      13,86
+19/06/2013      Astrid Gruber   0,99
+02/07/2013      Daan Peeters    1,98
+02/07/2013      Eduardo Martins 1,98
+03/07/2013      Roberto Almeida 3,96
+04/07/2013      Frank Harris    5,94
+07/07/2013      Heather Leacock 8,91
+12/07/2013      Martha Silk     13,86
+20/07/2013      Ladislav Kovács 0,99
+02/08/2013      Hugh O'Reilly   1,98
+02/08/2013      Johannes Van der Berg   1,98
+03/08/2013      Enrique Muñoz   3,96
+04/08/2013      Steve Murray    5,94
+07/08/2013      Luís Gonçalves  8,91
+12/08/2013      Eduardo Martins 13,86
+20/08/2013      Frank Ralston   0,99
+02/09/2013      Victor Stevens  1,98
+02/09/2013      Patrick Gray    1,98
+03/09/2013      Robert Brown    3,96
+04/09/2013      Ellie Sullivan  5,94
+07/09/2013      Camille Bernard 8,91
+12/09/2013      Johannes Van der Berg   13,86
+20/09/2013      François Tremblay       0,99
+03/10/2013      Bjørn Hansen    1,98
+03/10/2013      Helena Holý     1,98
+04/10/2013      Daan Peeters    3,96
+05/10/2013      Roberto Almeida 5,94
+08/10/2013      Michelle Brooks 8,91
+13/10/2013      Patrick Gray    13,86
+21/10/2013      Marc Dubois     0,99
+03/11/2013      Wyatt Girard    1,98
+03/11/2013      Terhi Hämäläinen        1,98
+04/11/2013      Hugh O'Reilly   3,96
+05/11/2013      Enrique Muñoz   5,94
+08/11/2013      Diego Gutiérrez 8,91
+13/11/2013      Helena Holý     25,86
+21/11/2013      Dan Miller      0,99
+04/12/2013      Kathy Chase     1,98
+04/12/2013      John Gordon     1,98
+05/12/2013      Victor Stevens  3,96
+06/12/2013      Robert Brown    5,94
+09/12/2013      Madalena Sampaio        8,91
+14/12/2013      Terhi Hämäläinen        13,86
+22/12/2013      Manoj Pareek    1,99
+</pre>
+        <p>Em seguida, você decide modificar a consulta para gerar o relatório, começando pelo maior valor 
+        de nota fiscal para o menor valor de nota fiscal, e ordenando também pelo nome do cliente. 
+        Marque a alternativa que representa a consulta adequada para realizar essa tarefa:</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
-            </div>
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                <label><input type="checkbox" value="">
+<pre>
+var query = from nf in contexto.NotasFiscais
+    orderby nf.Total, nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome descending
+    select new
+    {
+        nf.DataNotaFiscal,
+        Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+        Total = nf.Total
+    };
+</pre>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var query = from nf in contexto.NotasFiscais
+    orderby nf descending, nf.Cliente
+    select new
+    {
+        nf.DataNotaFiscal,
+        Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+        Total = nf.Total
+    };
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var query = from nf in contexto.NotasFiscais
+    orderby nf.Total descending
+    select new
+    {
+        nf.DataNotaFiscal,
+        Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+        Total = nf.Total
+    };
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+<pre>
+var query = from nf in contexto.NotasFiscais
+    orderby nf.Total descending, nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome
+    select new
+    {
+        nf.DataNotaFiscal,
+        Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+        Total = nf.Total
+    };
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var query = from nf in contexto.NotasFiscais
+    orderby nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome, nf.Total descending
+    select new
+    {
+        nf.DataNotaFiscal,
+        Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+        Total = nf.Total
+    };
+</pre>
+                </label>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Ordenando Consultas Linq - Sintaxe de Método</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Considere o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
+        </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Album                     Artista
+=================╬=========================================
+Propriedades     ║  AlbumId           ┌------ArtistaId (PK)
+                 ║  Titulo            |      Nome
+                 ║  ArtistaId (FK)----┘
+=================╬=========================================
+Propriedades de  ║  Artista
+Navegação        ║
+        </pre>
+        <p>Agora considere a seguinte consulta Linq:</p>
+        <pre>
+var query1 = from art in contexto.Artistas
+select art;
+        </pre>
+        <p>Declare uma consulta "query2" que utilize a consulta "query1" e retorne uma consulta
+        ordenada pelo nome de artista e em seguida pelo título do álbum.
         </p>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Ordenando Decrescente - Sintaxe de Método</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            O seguinte trecho de código é usado para consultar as notas fiscais, ordenando
+            o resultado pelo total da nota fiscal por ordem decrescente, e em seguida pelo nome
+            do cliente:
+        </p>
+<pre>
+var query = from nf in contexto.NotasFiscais
+            orderby nf.Total descending, nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome
+            select nf;
+</pre>
+        <p>
+            Reescreva a consulta acima, em forma de sintaxe de método (com expressões lambda).
         </p>
     </div>
 
