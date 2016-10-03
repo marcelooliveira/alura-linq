@@ -178,11 +178,58 @@ select alb;
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Propriedades de Navegação em Linq to Objects?</h3>
+        <p>Considere uma aplicação que possui as seguintes classes:</p>
+        <pre>
+class Genero
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+}
+
+class Musica
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public int GeneroId { get; set; }
+}            
+        </pre>
+        <p>Essa aplicação declara e preenche duas listas dos tipos de classe acima, da seguinte maneira:</p>
+        <pre>
+List&lt;Genero&gt; generos = new List&lt;Genero&gt;
+{
+    new Genero { Id = 1, Nome = "Rock" },
+    new Genero { Id = 2, Nome = "Reggae" },
+    new Genero { Id = 3, Nome = "Rock Progressivo" },
+    new Genero { Id = 4, Nome = "Jazz" },
+    new Genero { Id = 5, Nome = "Punk Rock" },
+    new Genero { Id = 6, Nome = "Classica" }
+};
+
+List&lt;Musica&gt; musicas = new List&lt;Musica&gt;
+{
+    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
+    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
+    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
+};
+        </pre>
+
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Suponha que agora você precise criar uma consulta que traga o id da música, o nome da música e o nome do gênero musical.
+            Então você implementa a consulta conforme abaixo:
         </p>
+        <pre>
+var query = from m in musicas
+join g in generos on m.GeneroId equals g.Id
+select new
+{
+    MusicaId = m.Id,
+    Musica = m.Nome,
+    Genero = g.Nome
+};
+        </pre>
+        <p>Uma colega vê o seu código e pergunta se você não poderia reescrever sua consulta, substituindo
+        o join por uma propriedade de navegação. O que você responderia? Justifique sua resposta.</p>
     </div>
     <hr />
 
