@@ -682,6 +682,8 @@ var query = from nf in contexto.NotasFiscais
     };
 </pre>
                 </label>
+                <span>A consulta está ordenando notas fiscais pelo total de forma crescente (errado)
+                e pelo nome do cliente de forma decrescente (errado)</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -697,6 +699,10 @@ var query = from nf in contexto.NotasFiscais
     };
 </pre>
                 </label>
+                <span>
+                    A consulta está ordenando notas fiscais pelo total de forma crescente, quando
+                    o enunciado exige de forma decrescente.
+                </span>
             </div>
             <div class="checkbox">
                 <label>
@@ -712,6 +718,8 @@ var query = from nf in contexto.NotasFiscais
     };
 </pre>
                 </label>
+                <span>A consulta não está definindo o segundo critério de ordenação, que é o propriedade
+                do cliente.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -727,6 +735,8 @@ var query = from nf in contexto.NotasFiscais
     };
 </pre>
                 </label>
+                <span>CORRETO: a consulta ordena primeiro pelo total da nota fiscal, e em seguida pelo
+                nome do cliente</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -742,6 +752,9 @@ var query = from nf in contexto.NotasFiscais
     };
 </pre>
                 </label>
+                <span>A consulta inverteu a sequência dos critérios de ordenação: o correto seria
+                primeiro pelo total da nota fiscal em ordem decresente, e em seguida o nome do cliente
+                em ordem crescente.</span>
             </div>
         </form>
     </div>
@@ -766,12 +779,20 @@ Navegação        ║
         </pre>
         <p>Agora considere a seguinte consulta Linq:</p>
         <pre>
-var query1 = from art in contexto.Artistas
-select art;
+var query1 = from alb in contexto.Albums
+select alb;
         </pre>
         <p>Declare uma consulta "query2" que utilize a consulta "query1" e retorne uma consulta
-        ordenada pelo nome de artista e em seguida pelo título do álbum.
+        ordenada pelo nome de artista e em seguida pelo título do álbum, utilizando a sintaxe de
+        método (expressões Lambda).
         </p>
+        <h3>Opinião da Alura</h3>
+        <p>Para declar uma segunda consulta que ordena a consulta query1, o enunciado pede que
+        seja criada uma instrução de atribuição, usando os métodos <code>OrderBy</code>
+        e <code>ThenBy</code>:</p>
+        <pre>
+var query2 = query1.OrderBy(q => q.Artista.Nome).ThenBy(q => q.Titulo);
+        </pre>
     </div>
     <hr />
 
@@ -790,6 +811,14 @@ var query = from nf in contexto.NotasFiscais
         <p>
             Reescreva a consulta acima, em forma de sintaxe de método (com expressões lambda).
         </p>
+        <h3>Opinião da Alura</h3>
+        <p>A consulta solicitada deveria conter os métodos <code>OrderByDescending</code>
+        e <code>ThenBy</code>:</p>
+        <pre>
+var query = contexto.NotasFiscais
+    .OrderByDescending(nf => nf.Total)
+    .ThenBy(nf => nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome);
+        </pre>
     </div>
 
 </body>
