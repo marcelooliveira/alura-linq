@@ -19,6 +19,21 @@
             color: #333; /* old IE */
             background-color: #333; /* Modern Browsers */
         }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -28,85 +43,216 @@
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
-        </p>
+        <h3>Calculando Quantidades - Simples</h3>
+        <p>Suponha que você queira calcular o número de elementos da seguinte consulta:</p>
+        <pre>
+            var query = from f in contexto.Faixas
+            where f.Album.Artista.Nome == "Led Zeppelin"
+            select f;
+        </pre>
+        <p>Marque a alternativa que representa o código adequado para efetuar o cálculo desejado:</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label><input type="checkbox" value=""><pre>var quantidade = query.Total();</pre></label>
+                <span>O objeto <code>contexto.Faixas</code> é do tipo <code>DBSset</code>, que não possui um método
+                chamado <code>Total</code>.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label><input type="checkbox" value=""><pre>var quantidade = query.Length();</pre></label>
+                <span>
+                    O objeto <code>contexto.Faixas</code> é do tipo <code>DBSset</code>, que não possui um método
+                    chamado <code>Length</code>.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label><input type="checkbox" value=""><pre>var quantidade = query.Quantity();</pre></label>
+                <span>
+                    O objeto <code>contexto.Faixas</code> é do tipo <code>DBSset</code>, que não possui um método
+                    chamado <code>Quantity</code>.
+                </span>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked"><pre>var quantidade = query.Count();</pre>
                 </label>
+                <span>
+                    CORRETO: para se obter o número de elementos de uma consulta Linq deve-se utilizar o método
+                    <code>Count</code>.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label><input type="checkbox" value=""><pre>var quantidade = query.Qty();</pre></label>
+                <span>
+                    O objeto <code>contexto.Faixas</code> é do tipo <code>DBSset</code>, que não possui um método
+                    chamado <code>Qty</code>.
+                </span>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
-        </p>
+        <h3>Totalizando Valores - Simples</h3>
+        <p>Considere a seguinte consulta Linq, que é usada para trazer o valor total dos ítens de notas
+        fiscais:</p>
+        <pre>
+var query = from inf in contexto.ItemsNotaFiscal
+where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
+select inf.PrecoUnitario * inf.Quantidade;
+        </pre>
+        <p>Assinale a alternativa que contém o código necessário para se obter o total
+        geral dos ítens de notas fiscais da consulta acima:</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label><input type="checkbox" value=""><pre>var total = query.Total();</pre></label>
+                <span>
+                    O objeto <code>contexto.ItemsNotaFiscal</code> é do tipo <code>DBSset</code>, que não possui 
+                    um método chamado <code>Total</code>.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label><input type="checkbox" value=""><pre>var total = query.Summarize();</pre></label>
+                <span>
+                    O objeto <code>contexto.ItemsNotaFiscal</code> é do tipo <code>DBSset</code>, que não possui
+                    um método chamado <code>Summarize</code>.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label><input type="checkbox" value=""><pre>var total = query.Calculate();</pre></label>
+                <span>
+                    O objeto <code>contexto.ItemsNotaFiscal</code> é do tipo <code>DBSset</code>, que não possui
+                    um método chamado <code>Calculate</code>.
+                </span>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked"><pre>var total = query.Sum();</pre>
                 </label>
+                <span>
+                    CORRETO: para se obter o somatório de elementos de uma consulta Linq deve-se utilizar o método
+                    <code>Sum</code>.
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label><input type="checkbox" value=""><pre>var total = query.Calc();</pre></label>
+                <span>
+                    O objeto <code>contexto.ItemsNotaFiscal</code> é do tipo <code>DBSset</code>, que não possui
+                    um método chamado <code>Calc</code>.
+                </span>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Calculando Quantidades Com Projeção de Dados</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Considere o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
         </p>
+        <pre>
+AluraTunesEntities.edmx
+
+Entidades        ║    Album                     Artista
+=================╬=========================================
+Propriedades     ║  AlbumId           ┌------ArtistaId (PK)
+                 ║  Titulo            |      Nome
+                 ║  ArtistaId (FK)----┘
+=================╬=========================================
+Propriedades de  ║  Artista
+Navegação        ║
+        </pre>
+    </div>
+    <p>Agora observe a consulta criada para calcular o número de faixas do artista "Led Zeppelin":</p>
+    <pre>
+quantidade = contexto.Faixas.Where(f => f.Album.Artista.Nome == "Led Zeppelin").Count();
+    </pre>
+    <p>Reescreva a consulta acima, de forma a obter o mesmo resultado, porém sem utilizar o método <code>Where</code>.</p>
+    <h3>Opinião da Alura</h3>
+    <p>Para se reescrever a consulta removendo o método <code>Where</code> e obtendo o mesmo resultado, 
+    basta mover a expressão lambda do método <code>Where()</code> para o método <code>Count()</code>. Dessa
+    forma, o método <code>Count()</code> fará a contagem apenas dos elementos que satisfazem a nova condição:</p>
+    <pre>
+quantidade = contexto.Faixas.Count(f => f.Album.Artista.Nome == "Led Zeppelin");
+    </pre>
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Agrupando Valores de Consultas Linq</h3>
+        <p>Considere a consulta abaixo, para trazer uma lista de artistas e respectivos álbuns:</p>
+        <pre>
+var artistaEalbumQuery =
+from alb in contexto.Albums
+select new
+{
+    Artista = alb.Artista.Nome,
+    Titulo = alb.Titulo
+};
+foreach (var item in artistaEalbumQuery)
+{
+    Console.WriteLine("{0}\t{1}", item.Artista, item.Titulo);
+}
+        </pre>
+        <p>Desenvolva uma nova consulta com base nessa, para trazer desta vez o nome do artista e 
+        a quantidade de álbuns dele.</p>
+        <h3>Opinião da Alura</h3>
+        <p>Para implementar essa nova consulta, é necessário utilizar a cláusula <code>group ... by ... into</code>, para
+        agrupar os álbuns por artista, e em seguida utilizar a variável de agrupamento (aqui chamada de <code>agrupado</code>)
+        para extrair tanto o nome do artista quanto a contagem de álbuns por artista:</p>
+        <pre>
+var artistaEqtdeAlbuns =
+from alb in contexto.Albums
+group alb by alb.Artista into agrupado
+select new
+{
+    Artista = agrupado.Key.Nome,
+    QuantidadeAlbuns = agrupado.Count()
+};
+foreach (var item in artistaEqtdeAlbuns)
+{
+    Console.WriteLine("{0}\t{1}", item.Artista, item.QuantidadeAlbuns);
+}
+        </pre>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
-        </p>
-    </div>
-    <hr />
-
-    <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
-        </p>
+        <h3>Evitando Repetição de Expressões</h3>
+        <p>Suponha que você tenha desenvolvido a seguinte consulta Linq:</p>
+        <pre>
+var query =
+    from inf in contexto.ItemsNotaFiscal
+    where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
+    group inf by inf.Faixa.Album into agrupado
+    orderby agrupado.Sum(a => a.PrecoUnitario * a.Quantidade) descending
+    select new
+    {
+        Album = agrupado.Key.Titulo,
+        Valor = agrupado.Sum(a => a.PrecoUnitario * a.Quantidade),
+        NumeroVendas = agrupado.Count()
+    };
+        </pre>
+        <p>Essa consulta funciona perfeitamente, porém uma programadora da sua equipe notou que a expressão
+        <code>agrupado.Sum(a => a.PrecoUnitario * a.Quantidade)</code> está repetida em dois lugares da sua 
+        consulta. O que você faria para eliminar essa repetião?</p>
+        <h3>Opinião da Alura</h3>
+        <p>Para refatorar a consulta acima, basta usar a cláusula <code>let</code> para armazenar a 
+        expressão <code>agrupado.Sum(a => a.PrecoUnitario * a.Quantidade)</code> numa variável de alcance 
+        <code>valorTotal</code>, e substituir a expressão repetida por essa variável:</p>
+        <pre>
+var query =
+    from inf in contexto.ItemsNotaFiscal
+    where inf.Faixa.Album.Artista.Nome == "Led Zeppelin"
+    group inf by inf.Faixa.Album into agrupado
+    let valorTotal = agrupado.Sum(a => a.PrecoUnitario * a.Quantidade)
+    orderby valorTotal descending
+    select new
+    {
+        Album = agrupado.Key.Titulo,
+        Valor = valorTotal,
+        NumeroVendas = agrupado.Count()
+    };
+        </pre>
     </div>
 
 </body>
