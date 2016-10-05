@@ -19,6 +19,21 @@
             color: #333; /* old IE */
             background-color: #333; /* Modern Browsers */
         }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -28,86 +43,269 @@
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+        <h3>Escrevendo Uma Consulta Linq to Entities</h3>
+        <p>Considere o seguinte trecho de código, que inicializa um contexto do Entity Framework chamado
+<code>AluraTunesEntities</code>:
         </p>
+        <pre>
+using (var contexto = new AluraTunesEntities())
+{
+    //sua consulta vai aqui...
+}
+        </pre>
+        <p>Como você escreveria uma consulta Linq to Entities para obter uma listagem de faixas de músicas e nomes dos
+respectivos gêneros?</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label><input type="checkbox" value="">
+                <pre>
+var query = from f in contexto.Faixas
+            select new
+            {
+                FaixaId = f.FaixaId,
+                Nome = f.Nome,
+                Genero = g.Nome
+            };
+                    </pre>
+                </label>
+                <span>Essa consulta apresenta erro de compilação: está faltando fazer o <code>join</code> com a
+                entidade <code>contexto.Generos</code></span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label><input type="checkbox" value=""><pre>
+var query = from f in Faixas
+            join g in Generos
+                on f.GeneroId equals g.GeneroId
+            select new
+            {
+                FaixaId = f.FaixaId,
+                Nome = f.Nome,
+                Genero = g.Nome
+            };
+                    </pre></label>
+                <span>
+                    Essa consulta está tentando acessar dois objetos inexistentes (<code>Faixas</code> e <code>Generos</code>).
+                    O correto seria acessar as entidades através do <code>contexto</code> (<code>contexto.Faixas</code> <code>contexto.Generos</code>).
+                </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label><input type="checkbox" value=""><pre>
+var query = from f in contexto.Faixas
+            join g in contexto.Generos
+            select new
+            {
+                FaixaId = f.FaixaId,
+                Nome = f.Nome,
+                Genero = g.Nome
+            };
+                    </pre></label>
+                <span>Essa consulta apresenta erro de sintaxe: está faltando declarar as propriedades de associação
+                entre Faixas e Generos na cláusula <code>join</code>.</span>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+var query = from f in contexto.Faixas
+            join g in contexto.Generos
+                on f.GeneroId equals g.GeneroId
+            select new
+            {
+                FaixaId = f.FaixaId,
+                Nome = f.Nome,
+                Genero = g.Nome
+            };
+                    </pre>
                 </label>
+                <span>CORRETO: a consulta acessa as entidade através do <code>contexto</code>. Além disso, a cláusula 
+                <code>join</code> está correta e a cláusula <code>select</code> está trazendo as propriedades
+                necessárias para atender o requisito.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label><input type="checkbox" value=""><pre>
+var query = from f in contexto.Faixas
+            join g in contexto.Generos
+                on f.GeneroId equals g.GeneroId
+            select f;
+                    </pre></label>
+                <span>A cláusula <code>select</code> está selecionando somente o objeto <code>Faixa</code>, porém
+                é necessário selecionar também o objeto <code>Genero</code> para trazer o nome do gênero musical,
+                conforme descrito no enunciado do exercício.</span>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Limitando o número de resultados numa consulta</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere o seguinte código C#:
+        </p>
+        <pre>
+var query = from f in contexto.Faixas
+join g in contexto.Generos
+    on f.GeneroId equals g.GeneroId
+select new
+{
+    FaixaId = f.FaixaId,
+    Nome = f.Nome,
+    Genero = g.Nome
+};
+
+foreach (var faixaEgenero in query)
+{
+    Console.WriteLine("{0}\t{1}\t{2}",
+        faixaEgenero.FaixaId,
+        faixaEgenero.Nome,
+        faixaEgenero.Genero);
+}
+        </pre>
+        <p>
+            Ao rodar esse código, você percebe a consulta retorna mais de 100 mil linhas. Você deve modificar essa consulta para trazer uma lista com apenas os 10 primeiros elementos da consulta. Qual código você acrescentaria após a definição da
+            query?
         </p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label><input type="checkbox" value="">
+                <pre>
+query = from q in query
+        select q
+        limit 10;
+                </pre>
+            </label>
+                <span>A palavra "limit" não faz parte da sintaxe do Linq.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+query = query.Limit(10);
+                  </pre>
+            </label>
+                <span>O método "Limit" não faz parte da biblioteca do Linq.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+query = query.Where(r => r.RowIndex < 10);
+                    </pre>
+            </label>
+                <span>O objeto que é passado para a expressão lambda do método <code>Where</code> 
+                contém as propriedades <code>FaixaId</code>, <code>Nome</code> e <code>Genero</code>, 
+                mas não possui uma propriedade <code>RowIndex</code> que possa ser usada para
+                limitar o tamanho do resultado da consulta.</span>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+query = query.Take(10);
+                    </pre>
                 </label>
+                <span>CORRETO: o método <code>Take</code> limita a quantidade de elementos contíguos (vizinhos)
+                a serem retornados pela consulta.</span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label><input type="checkbox" value="">
+                    <pre>
+query = query.Top(10);
+                    </pre>
+                </label>
+                <span>O método "Top" não faz parte da biblioteca do Linq.</span>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Escolhendo entre Sintaxe de Método e Sintaxe de Consulta</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Você foi encarregado de criar uma consulta Linq to Entities bastante complexa, associando dados
+            de diversas entidades do modelo do Entity Framework. Você escreveria essa consulta Linq na forma
+            de sintaxe de método ou na forma de sintaxe de consulta? Justifique.
         </p>
+        <h4>Opinião da Alura</h4>
+        <p>Para consultas complexas, a forma de sintaxe de consulta possui a vantagem de declarar a consulta
+        de uma forma mais legível e mais parecida com uma consulta SQL. Por outro lado, uma consulta equivalente
+        feita com sintaxe de método seria mais difícil de ler, dificultando o entendimento, a depuração e a 
+        manutenção do código.</p>
+
+        <p>
+            Por exemplo, note como no exemplo abaixo a segunda query (sintaxe de consulta) é mais legível que a primeira consulta (sintaxe de método):
+        </p>
+
+        <pre>
+        //SINTAXE DE MÉTODO
+        //=================
+
+        var query 
+            = context.Pacotes
+            .Join(context.Conteineres, p => p.conteinerID, c => c.ID, (p, c) => new { p, c })
+            .Join(context.pacoteUsuarios, pu => pu.p.ID, u => u.pacoteID, (pu, u) => new { pu.p, pu.c, u })
+            .Where(pcu => pcu.u.UsuarioID == "AlgumUsuarioID")
+            .Select(pcu => new
+            {
+                pcu.p.ID,
+                pcu.c.Nome,
+                pcu.p.Code,
+                pcu.p.Code2
+            });
+
+        //SINTAXE DE CONSULTA
+        //===================
+
+        var query = from pacote in context.Pacotes
+                    join conteiner in context.Conteineres on pacote.conteinerID equals conteiner.ID
+                    join pacoteUsuario in context.pacoteUsuarios on pacote.ID equals pacoteUsuario.pacoteID
+                    where pacoteUsuario.UsuarioID == "AlgumUsuarioID"
+                    select new
+                    {
+                        pacote.ID,
+                        conteiner.Nome,
+                        pacote.Code,
+                        pacote.Code2
+                    };
+        </pre>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Reescrevendo Queries Como Sintaxe de Método</h3>
+        <p>Considere a sequinte consulta Linq, que está definida na forma de "sintaxe de consulta":</p>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            <pre>
+var query = from a in contexto.Artistas
+where a.Nome.Contains("Led")
+select a;
+            </pre>
         </p>
+        <p>Reescreva a mesma consulta, porém na forma de "sintaxe de método".</p>
+        <h4>Opinião da Alura</h4>
+        <p>Na sintaxe de método removemos a cláusula <code>from</code>, e a cláusula <code>where</code>
+        é utilizada como um método que toma como parâmetro uma expressão lambda, que por sua vez 
+        descreve a função que filtra os dados da consulta:</p>
+        <pre>
+var query = contexto.Artistas.Where(a => a.Nome.Contains("Led"));
+        </pre>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
-        <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
-        </p>
+        <h3>Reescrevendo Queries Como Sintaxe de Consulta</h3>
+        <p>Considere a sequinte consulta Linq, que está definida na forma de "sintaxe de método":</p>
+        <pre>
+var query = contexto.Generos.Where(g => g.Nome == "Rock");
+        </pre>
+        <p>Reescreva a mesma consulta, porém na forma de "sintaxe de consulta".</p>
+        <h4>Opinião da Alura</h4>
+        <p>Na sintaxe de consulta utilizamos uma forma parecida com uma consulta SQL. A cláusula <code>from</code>
+        precisa indicar de onde vem os dados (contexto.Generos) e a cláusula <code>where</code> faz o filtro
+        pelo nome do gênero. No final, a cláusula <code>select</code> indica que uma coleção de objetos do tipo
+        <code>Genero</code> será retornada.</p>
+        <pre>
+var query = from g in contexto.Generos
+where g.Nome == "Rock"
+select g;
+            </pre>
     </div>
-
 </body>
 </html>
