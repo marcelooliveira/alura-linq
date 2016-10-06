@@ -185,7 +185,7 @@ var pokemons = new[]
         </pre>
         <p>
             Qual alternativa calcula a maior resistência entre os pokemons
-            cujo nome não começa com a letra "P"?
+            cujo nome NÃO começa com a letra "P"?
         </p>
         <form>
             <div class="checkbox">
@@ -195,6 +195,7 @@ var pokemons = new[]
     var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Maximum(p => p.HP);
 </pre>
                 </label>
+                <span>Não existe um método chamado <code>Maximum</code> na biblioteca Linq.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -203,6 +204,7 @@ var pokemons = new[]
     var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Greater(p => p.HP);
 </pre>
                 </label>
+                <span>Não existe um método chamado <code>Greater</code> na biblioteca Linq.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -211,6 +213,7 @@ var pokemons = new[]
     var maiorResistencia = pokemons.Max(p => p.HP).Where(p => !p.Nome.StartsWith("P"));
 </pre>
                 </label>
+                <span>A cláusula <code>Where</code> deveria ser utilizada antes do método <code>Max</code>.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -219,6 +222,9 @@ var pokemons = new[]
     var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Max(p => p.HP);
 </pre>
                 </label>
+<span>CORRETO: a cláusula <code>Where</code> está filtrando a consulta para trazer somente os pokemons cujo
+nome não comece com a letra "P", e o método <code>Max</code> especifica a propriedade cujo valor máximo
+                deve ser encontrado.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -227,6 +233,8 @@ var pokemons = new[]
     var maiorResistencia = pokemons.Max(p => !p.Nome.StartsWith("P"));
 </pre>
                 </label>
+                <span>O método <code>Max</code> deve receber uma expressão lambda com o valor do HP, e não
+                um filtro de dados.</span>
             </div>
         </form>
     </div>
@@ -257,7 +265,9 @@ var pokemons = new[]
             a consulta de modo a retornar somente as notas fiscais da terceira página.
         </p>
         <h3>Opinião da Alura</h3>
-        <p>...</p>
+        <p>O relatório tem que ser modificado com o método <code>Skip(n)</code>, para "pular"
+        as duas primeiras páginas (20 linhas) e em seguida usar o método <code>Take(n)</code>, para 
+        "pegar" uma quantidade de elementos igual ao tamanho da página (10 elementos).</p>
         <pre>
             .
             .
@@ -279,16 +289,16 @@ var pokemons = new[]
         <h3>Métodos de Extensão</h3>
         <p>Considere o seguinte trecho de código:</p>
         <pre>            
-            var tiposSanguineos = new List<TipoSanguineo> 
-            {
-                new TipoSanguineo { Codigo = "A" },
-                new TipoSanguineo { Codigo = "B" },
-                new TipoSanguineo { Codigo = "AB" },
-                new TipoSanguineo { Codigo = "O" },
-            };
+var tiposSanguineos = new List<TipoSanguineo> 
+{
+    new TipoSanguineo { Codigo = "A" },
+    new TipoSanguineo { Codigo = "B" },
+    new TipoSanguineo { Codigo = "AB" },
+    new TipoSanguineo { Codigo = "O" },
+};
 
-            var primeiroTipoSanguineo = tiposSanguineos.First();
-            Console.WriteLine(primeiroTipoSanguineo.Codigo);
+var primeiroTipoSanguineo = tiposSanguineos.First();
+Console.WriteLine(primeiroTipoSanguineo.Codigo);
         </pre>
         <p>Acima, criamos uma lista de tipos sanguineos e em seguida pegamos o primeiro elemento
         da lista e o imprimimos no console.</p>
@@ -296,19 +306,21 @@ var pokemons = new[]
         acrescentasse um novo segmento de código, utilizando um novo método chamado <code>Second</code>, 
         da seguinte forma:</p>
         <pre>
-            var segundoTipoSanguineo = tiposSanguineos.Second();
-            Console.WriteLine(segundoTipoSanguineo.Codigo);
+var segundoTipoSanguineo = tiposSanguineos.Second();
+Console.WriteLine(segundoTipoSanguineo.Codigo);
         </pre>
         <p>Implemente um método de extensão chamado <code>Second</code>, que permita trazer o segundo
         elemento de uma sequencia. Utilize como exemplo a assinatura do método <code>First</code>:</p>
         <pre>
-            public static TSource First<TSource>(this IEnumerable<TSource> source)
+public static TSource First<TSource>(this IEnumerable<TSource> source)
         </pre>
         <h3>Opinião da Alura</h3>
-        <p>Basta criar um novo método de extensão <code>Second</code>, usando a mesma assinatura do método <code>First</code>.
-        No corpo do método, pode-se utilizar a sequência <code>source</code> para pular o primeiro elemento
-        (com <code>.Skip(1)</code>) e </p> obter o primeiro elemento do resto da sequência, ou seja, o segundo
-        elemento:
+        <p>
+            Basta criar um novo método de extensão <code>Second</code>, usando a mesma assinatura do método <code>First</code>.
+            No corpo do método, pode-se utilizar a sequência <code>source</code> para pular o primeiro elemento
+            (com <code>.Skip(1)</code>) e obter o primeiro elemento do resto da sequência, ou seja, o segundo
+            elemento:
+        </p>
         <pre>
 public static TSource Second<TSource>(this IEnumerable<TSource> source)
 {
