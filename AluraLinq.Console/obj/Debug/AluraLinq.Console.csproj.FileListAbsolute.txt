@@ -71,3 +71,4 @@ C:\Users\marce\Documents\GitHub\alura-linq\AluraLinq.Console\obj\Debug\alura-lin
 C:\Users\marcelo\Documents\GitHub\alura-linq\AluraLinq.Console\bin\Debug\alura-linq.exe.config
 C:\Users\marcelo\Documents\GitHub\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.exe
 C:\Users\marcelo\Documents\GitHub\alura-linq\AluraLinq.Console\obj\Debug\alura-linq.pdb
+C:\Users\marcelo\Documents\GitHub\alura-linq\AluraLinq.Console\obj\Debug\AluraLinq.Console.csprojResolveAssemblyReference.cache

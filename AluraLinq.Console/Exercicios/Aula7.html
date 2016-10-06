@@ -140,7 +140,12 @@ var resistenciaMedia = pokemons.Med(p => p.HP);
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Avg(p => p.HP);
+</pre>
+                </label>
             </div>
             <div class="checkbox">
                 <label>
@@ -178,43 +183,102 @@ var pokemons = new[]
     new { Nome = "Pikachu", HP = 33 }
 };
         </pre>
-        <p>Marque o trecho de código que seleciona a resistência média dos pokemons:</p>
+        <p>
+            Qual alternativa calcula a maior resistência entre os pokemons
+            cujo nome não começa com a letra "P"?
+        </p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
-            </div>
-            <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Maximum(p => p.HP);
+</pre>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Greater(p => p.HP);
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Max(p => p.HP).Where(p => !p.Nome.StartsWith("P"));
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+<pre>
+    var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Max(p => p.HP);
+</pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Max(p => !p.Nome.StartsWith("P"));
+</pre>
+                </label>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Consulta Com Paginação</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+            Suponha que você tenha a seguinte consulta "Linq to Entities", para trazer um relatório
+            de notas fiscais:
         </p>
+        <pre>
+            using (var contexto = new AluraTunesEntities())
+            {
+                var query =
+                from nf in contexto.NotasFiscais
+                orderby nf.NotaFiscalId
+                select nf;
+                foreach (var nf in query)
+                {
+                    Console.WriteLine("{0}\t{1}\t{2}\t{3}", 
+                    nf.Numero, nf.Data, nf.Cliente, nf.Total);
+                }
+            }
+        </pre>
+        <p>
+            Agora considere que esse relatório seja dividido em páginas de 10 notas fiscais. Modifique
+            a consulta de modo a retornar somente as notas fiscais da terceira página.
+        </p>
+        <h3>Opinião da Alura</h3>
+        <p>...</p>
+        <pre>
+            .
+            .
+            .
+            var pagina = 3;
+            var TAMANHO_PAGINA = 10
+            query = query.Skip((pagina - 1) * TAMANHO_PAGINA);
+            query = query.Take(TAMANHO_PAGINA);
+            
+            foreach (var nf in query)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}\t{3}", nf.Numero, nf.Data, nf.Cliente, nf.Total);
+            }
+        </pre>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio SEM RESPOSTA</h3>
+        <h3>Métodos de Extensão</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, faça isso e depois aquilo, utilizando como base o o cenário que vimos.
+
         </p>
     </div>
 

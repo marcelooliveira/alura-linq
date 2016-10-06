@@ -23,6 +23,17 @@ namespace alura_linq.Problemas.Problema18
                 vendaMediana = contexto.NotasFiscais.Mediana(ag => ag.Total);
                 Console.WriteLine("Venda Mediana: R$ {0}", vendaMediana);
             }
+
+            var tiposSanguineos = new List<TipoSanguineo> 
+            {
+                new TipoSanguineo { Codigo = "A" },
+                new TipoSanguineo { Codigo = "B" },
+                new TipoSanguineo { Codigo = "AB" },
+                new TipoSanguineo { Codigo = "O" },
+            };
+
+            var segundo = tiposSanguineos.Segundo(s => s.Codigo.Contains("B"));
+            Console.WriteLine(segundo.Codigo);
         }
 
         public static decimal Mediana(IQueryable<decimal> origem)
@@ -37,6 +48,11 @@ namespace alura_linq.Problemas.Problema18
 
             return mediana;
         }
+    }
+
+    class TipoSanguineo
+    {
+        public string Codigo { get; set; }
     }
 
     public static class Extensions
@@ -56,6 +72,21 @@ namespace alura_linq.Problemas.Problema18
             decimal mediana = (elementoCentral_1 + elementoCentral_2) / 2;
             
             return mediana;
+        }
+
+        public static TSource Segundo<TSource>(this IEnumerable<TSource> origem, Expression<Func<TSource, decimal>> selector)
+        {
+            var q = origem as IQueryable<TSource>;
+
+            int contagem = origem.Count();
+
+            var funcSeletor = selector.Compile();
+
+            var ordenado = q
+                .Select(selector)
+                .OrderBy(x => x);
+
+            return ordenado.Skip(1).Take(1);
         }
     }
 }
