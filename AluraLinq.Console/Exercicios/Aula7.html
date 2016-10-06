@@ -66,6 +66,7 @@ var pokemons = new[]
 var pokemon = pokemons.Select(p => p.HP).Min();
                     </pre>
                 </label>
+                <span>Esse código traz o valor da menor resistência, e não o pokemon menos resistente.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -75,6 +76,7 @@ var menorHP = pokemons.Select(p => p.HP).Minimum();
 var pokemon = pokemons.Where(p => p.HP == menorHP);
                     </pre>
                 </label>
+                <span>Não existe um método chamado <code>Minimum</code> na biblioteca Linq.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -82,6 +84,7 @@ var pokemon = pokemons.Where(p => p.HP == menorHP);
                     <pre>
 var pokemon = pokemons.Min(p => p.HP);
                     </pre>
+                    <span>Esse código traz o valor da menor resistência, e não o pokemon menos resistente.</span>
                 </label>
             </div>
             <div class="checkbox">
@@ -92,6 +95,8 @@ var menorHP = pokemons.Select(p => p.HP).Min();
 var pokemon = pokemons.Where(p => p.HP == menorHP);
                     </pre>
                 </label>
+                <span>CORRETO: primeiro o valor do menor HP (menor resistência) é calculado, e em seguida
+                obtem-se o(s) pokemon(s) que possuem o menor HP.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -100,6 +105,7 @@ var pokemon = pokemons.Where(p => p.HP == menorHP);
 var pokemon = pokemons.Min();
                     </pre>
                 </label>
+                <span>Esse código não especifica para qual propriedade o valor mínimo deve ser calculado.</span>
             </div>
         </form>
     </div>
