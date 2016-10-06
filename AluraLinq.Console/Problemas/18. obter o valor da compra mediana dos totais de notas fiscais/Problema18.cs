@@ -23,20 +23,6 @@ namespace alura_linq.Problemas.Problema18
                 vendaMediana = contexto.NotasFiscais.Mediana(ag => ag.Total);
                 Console.WriteLine("Venda Mediana: R$ {0}", vendaMediana);
             }
-
-            var tiposSanguineos = new List<TipoSanguineo> 
-            {
-                new TipoSanguineo { Codigo = "A" },
-                new TipoSanguineo { Codigo = "B" },
-                new TipoSanguineo { Codigo = "AB" },
-                new TipoSanguineo { Codigo = "O" },
-            };
-
-            var primeiroTipoSanguineo = tiposSanguineos.First();
-            Console.WriteLine(primeiroTipoSanguineo.Codigo);
-
-            var segundoTipoSanguineo = tiposSanguineos.Second();
-            Console.WriteLine(segundoTipoSanguineo.Codigo);
         }
 
         public static decimal Mediana(IQueryable<decimal> origem)
@@ -75,11 +61,6 @@ namespace alura_linq.Problemas.Problema18
             decimal mediana = (elementoCentral_1 + elementoCentral_2) / 2;
             
             return mediana;
-        }
-
-        public static TSource Second<TSource>(this IEnumerable<TSource> source)
-        {
-            return source.ElementAt(1);
         }
     }
 }

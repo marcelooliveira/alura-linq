@@ -312,6 +312,13 @@ var tiposSanguineos = new List<TipoSanguineo>
 var primeiroTipoSanguineo = tiposSanguineos.First();
 Console.WriteLine(primeiroTipoSanguineo.Codigo);
         </pre>
+        <p>Onde <code>TipoSanguineo</code> é definido na classe:</p>
+        <pre>
+class TipoSanguineo
+{
+    public string Codigo { get; set; }
+}
+        </pre>
         <p>Acima, criamos uma lista de tipos sanguineos e em seguida pegamos o primeiro elemento
         da lista e o imprimimos no console.</p>
         <p>Agora, digamos que você quisesse imprimir o segundo elemento da lista, e que para isso

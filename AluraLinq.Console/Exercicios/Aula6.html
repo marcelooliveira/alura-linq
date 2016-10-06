@@ -53,9 +53,8 @@
         <p>Marque a alternativa que representa o código adequado para efetuar o cálculo desejado:</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value=""><pre>var quantidade = query.Total();</pre></label>
-                <span>O objeto <code>contexto.Faixas</code> é do tipo <code>DBSset</code>, que não possui um método
-                chamado <code>Total</code>.</span>
+                <label><input type="checkbox" value=""><pre>var quantidade = query.Sum();</pre></label>
+                <span>O método <code>Sum()</code> é usado para calcular somas e não calcular quantidades.</span>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value=""><pre>var quantidade = query.Length();</pre></label>
@@ -81,11 +80,8 @@
                 </span>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value=""><pre>var quantidade = query.Qty();</pre></label>
-                <span>
-                    O objeto <code>contexto.Faixas</code> é do tipo <code>DBSset</code>, que não possui um método
-                    chamado <code>Qty</code>.
-                </span>
+                <label><input type="checkbox" value=""><pre>var quantidade = query.Average();</pre></label>
+                <span>O método <code>Average()</code> é usado para calcular médias aritméticas e não calcular quantidades.</span>
             </div>
         </form>
     </div>
@@ -174,6 +170,19 @@ quantidade = contexto.Faixas.Where(f => f.Album.Artista.Nome == "Led Zeppelin").
     forma, o método <code>Count()</code> fará a contagem apenas dos elementos que satisfazem a nova condição:</p>
     <pre>
 quantidade = contexto.Faixas.Count(f => f.Album.Artista.Nome == "Led Zeppelin");
+    </pre>
+    <p>É importante saber que nesse novo código o método <code>Where</code> é removido somente da consulta Linq.
+    Na consulta SQL Server gerada a partir dela, a cláusula WHERE é gerada da mesma forma:</p>
+    <pre>
+    SELECT
+    [GroupBy1].[A1] AS [C1]
+    FROM ( SELECT
+        COUNT(1) AS [A1]
+        FROM   [dbo].[Faixa] AS [Extent1]
+        LEFT OUTER JOIN [dbo].[Album] AS [Extent2] ON [Extent1].[AlbumId] = [Extent2].[AlbumId]
+        INNER JOIN [dbo].[Artista] AS [Extent3] ON [Extent2].[ArtistaId] = [Extent3].[ArtistaId]
+        WHERE N'Led Zeppelin' = [Extent3].[Nome]
+    )  AS [GroupBy1]
     </pre>
     <hr />
 
