@@ -50,9 +50,9 @@ namespace alura_linq
             //new Problema13().Solve(args);
             //new Problema14().Solve(args);
             //new Problema15().Solve(args);
-            new Problema16().Solve(args);
+            //new Problema16().Solve(args);
             //new Problema17().Solve(args);
-            //new Problema18().Solve(args);
+            new Problema18().Solve(args);
             //new Problema19().Solve(args);
             //new Problema20().Solve(args);
             //new Problema21().Solve(args);

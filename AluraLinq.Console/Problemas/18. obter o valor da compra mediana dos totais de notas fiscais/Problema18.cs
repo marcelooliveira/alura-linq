@@ -32,8 +32,11 @@ namespace alura_linq.Problemas.Problema18
                 new TipoSanguineo { Codigo = "O" },
             };
 
-            var segundo = tiposSanguineos.Segundo(s => s.Codigo.Contains("B"));
-            Console.WriteLine(segundo.Codigo);
+            var primeiroTipoSanguineo = tiposSanguineos.First();
+            Console.WriteLine(primeiroTipoSanguineo.Codigo);
+
+            var segundoTipoSanguineo = tiposSanguineos.Second();
+            Console.WriteLine(segundoTipoSanguineo.Codigo);
         }
 
         public static decimal Mediana(IQueryable<decimal> origem)
@@ -74,19 +77,9 @@ namespace alura_linq.Problemas.Problema18
             return mediana;
         }
 
-        public static TSource Segundo<TSource>(this IEnumerable<TSource> origem, Expression<Func<TSource, decimal>> selector)
+        public static TSource Second<TSource>(this IEnumerable<TSource> source)
         {
-            var q = origem as IQueryable<TSource>;
-
-            int contagem = origem.Count();
-
-            var funcSeletor = selector.Compile();
-
-            var ordenado = q
-                .Select(selector)
-                .OrderBy(x => x);
-
-            return ordenado.Skip(1).Take(1);
+            return source.ElementAt(1);
         }
     }
 }

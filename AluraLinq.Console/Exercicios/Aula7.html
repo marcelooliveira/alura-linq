@@ -277,9 +277,51 @@ var pokemons = new[]
 
     <div class="CallToAction">
         <h3>Métodos de Extensão</h3>
-        <p>
+        <p>Considere o seguinte trecho de código:</p>
+        <pre>            
+            var tiposSanguineos = new List<TipoSanguineo> 
+            {
+                new TipoSanguineo { Codigo = "A" },
+                new TipoSanguineo { Codigo = "B" },
+                new TipoSanguineo { Codigo = "AB" },
+                new TipoSanguineo { Codigo = "O" },
+            };
 
-        </p>
+            var primeiroTipoSanguineo = tiposSanguineos.First();
+            Console.WriteLine(primeiroTipoSanguineo.Codigo);
+        </pre>
+        <p>Acima, criamos uma lista de tipos sanguineos e em seguida pegamos o primeiro elemento
+        da lista e o imprimimos no console.</p>
+        <p>Agora, digamos que você quisesse imprimir o segundo elemento da lista, e que para isso
+        acrescentasse um novo segmento de código, utilizando um novo método chamado <code>Second</code>, 
+        da seguinte forma:</p>
+        <pre>
+            var segundoTipoSanguineo = tiposSanguineos.Second();
+            Console.WriteLine(segundoTipoSanguineo.Codigo);
+        </pre>
+        <p>Implemente um método de extensão chamado <code>Second</code>, que permita trazer o segundo
+        elemento de uma sequencia. Utilize como exemplo a assinatura do método <code>First</code>:</p>
+        <pre>
+            public static TSource First<TSource>(this IEnumerable<TSource> source)
+        </pre>
+        <h3>Opinião da Alura</h3>
+        <p>Basta criar um novo método de extensão <code>Second</code>, usando a mesma assinatura do método <code>First</code>.
+        No corpo do método, pode-se utilizar a sequência <code>source</code> para pular o primeiro elemento
+        (com <code>.Skip(1)</code>) e </p> obter o primeiro elemento do resto da sequência, ou seja, o segundo
+        elemento:
+        <pre>
+public static TSource Second<TSource>(this IEnumerable<TSource> source)
+{
+    return source.Skip(1).First();
+}
+        </pre>
+        <p>Também é possível obter o mesmo resultado com a função <code>ElementAt</code>:</p>
+        <pre>
+public static TSource Second<TSource>(this IEnumerable<TSource> source)
+{
+    return source.ElementAt(1);
+}
+        </pre>
     </div>
 
 </body>
