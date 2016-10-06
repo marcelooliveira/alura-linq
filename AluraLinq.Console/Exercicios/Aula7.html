@@ -19,6 +19,21 @@
             color: #333; /* old IE */
             background-color: #333; /* Modern Browsers */
         }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -27,67 +42,143 @@
 
     <hr />
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Calculando Menor Valor</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere a seguinte lista de pokemons. Nessa lista, a propriedade <code>HP</code>
+            representa os <b>Hit Points</b>, que medem a "resistência" de cada pokemon:
         </p>
+        <pre>
+var pokemons = new[]
+{
+    new { Nome = "Pidgey", HP = 14 },
+    new { Nome = "Ratata", HP = 21 },
+    new { Nome = "Pidgeotto", HP = 52 },
+    new { Nome = "Zubat", HP = 25 },
+    new { Nome = "Pikachu", HP = 33 }
+};
+        </pre>
+        <p>Marque o trecho de código que seleciona o(s) pokemon(s) menos resistente(s):</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
-            </div>
-            <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 3</label>
-            </div>
-            <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="">
+                    <pre>
+var pokemon = pokemons.Select(p => p.HP).Min();
+                    </pre>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var menorHP = pokemons.Select(p => p.HP).Minimum();
+var pokemon = pokemons.Where(p => p.HP == menorHP);
+                    </pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var pokemon = pokemons.Min(p => p.HP);
+                    </pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+var menorHP = pokemons.Select(p => p.HP).Min();
+var pokemon = pokemons.Where(p => p.HP == menorHP);
+                    </pre>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var pokemon = pokemons.Min();
+                    </pre>
+                </label>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Calculando a Média</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere a seguinte lista de pokemons. Nessa lista, a propriedade <code>HP</code>
+            representa os <b>Hit Points</b>, que medem a "resistência" de cada pokemon:
         </p>
+        <pre>
+var pokemons = new[]
+{
+    new { Nome = "Pidgey", HP = 14 },
+    new { Nome = "Ratata", HP = 21 },
+    new { Nome = "Pidgeotto", HP = 52 },
+    new { Nome = "Zubat", HP = 25 },
+    new { Nome = "Pikachu", HP = 33 }
+};
+        </pre>
+        <p>Marque o trecho de código que seleciona a resistência média dos pokemons:</p>
         <form>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 1</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Medium(p => p.HP);
+</pre>
+                </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 2</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Med(p => p.HP);
+</pre>
+                </label>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" value="">Alternativa 3</label>
             </div>
             <div class="checkbox">
                 <label>
-                    <input type="checkbox" value="" checked="checked">Alternativa 4
+                    <input type="checkbox" value="" checked="checked">
+<pre>
+var resistenciaMedia = pokemons.Average(p => p.HP);
+</pre>
                 </label>
             </div>
             <div class="checkbox">
-                <label><input type="checkbox" value="">Alternativa 5</label>
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Middle(p => p.HP);
+</pre>
+                </label>
             </div>
         </form>
     </div>
     <hr />
 
     <div class="MultipleChoice">
-        <h3>[MODELO] Dê um nome expressivo ao seu exercicio MÚLTIPLA ESCOLHA</h3>
+        <h3>Calculando Maior Valor</h3>
         <p>
-            [MODELO] Considerando que essa é uma pergunta pertinente à aula, e considerando que
-            o cenário que descrevemos, assinale a alternativa correta:
+            Considere a seguinte lista de pokemons. Nessa lista, a propriedade <code>HP</code>
+            representa os <b>Hit Points</b>, que medem a "resistência" de cada pokemon:
         </p>
+        <pre>
+var pokemons = new[]
+{
+    new { Nome = "Pidgey", HP = 14 },
+    new { Nome = "Ratata", HP = 21 },
+    new { Nome = "Pidgeotto", HP = 52 },
+    new { Nome = "Zubat", HP = 25 },
+    new { Nome = "Pikachu", HP = 33 }
+};
+        </pre>
+        <p>Marque o trecho de código que seleciona a resistência média dos pokemons:</p>
         <form>
             <div class="checkbox">
                 <label><input type="checkbox" value="">Alternativa 1</label>
