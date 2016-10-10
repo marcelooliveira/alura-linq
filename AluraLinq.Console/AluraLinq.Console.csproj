@@ -129,7 +129,7 @@
     <Compile Include="Problemas\22. produtos comprados por quem comprou o produto X, ordenado por count desses produtos\Problema22.cs" />
     <Compile Include="Problemas\23. idem a de cima, mas que seja do mesmo genero\Problema23.cs" />
     <Compile Include="Problemas\25. Nossa consulta com o novo cálculo está demorando muito para processar\Problema25.cs" />
-    <Compile Include="Problemas\24. modificar a consulta para que o resultado dependa de uma nova função de cálculo pesado\Problema24.cs" />
+    <Compile Include="Problemas\24. execucao-adiada-execucao-imediata\Problema24.cs" />
     <Compile Include="Problemas\26. inserir um novo artista, inserir um álbum dele e uma faixa de música\Problema26.cs" />
     <Compile Include="Problemas\27. o mesmo que o anterior, porém dentro de uma transação\Problema27.cs" />
     <Compile Include="Problemas\03. criar uma nova coleção simples e pequena %28músicas%29\Problema03.cs" />
