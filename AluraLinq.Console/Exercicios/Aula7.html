@@ -133,19 +133,19 @@ var pokemons = new[]
                 <label>
                     <input type="checkbox" value="">
 <pre>
-var resistenciaMedia = pokemons.Medium(p => p.HP);
+var resistenciaMedia = pokemons.Max(p => p.HP);
 </pre>
                 </label>
-                <span>Não existe um método chamado <code>Medium</code> na biblioteca Linq.</span>
+                <span>O método <code>Max</code> retorna o máximo, e não o valor médio.</span>
             </div>
             <div class="checkbox">
                 <label>
                     <input type="checkbox" value="">
 <pre>
-var resistenciaMedia = pokemons.Med(p => p.HP);
+var resistenciaMedia = pokemons.First(p => p.HP);
 </pre>
                 </label>
-                <span>Não existe um método chamado <code>Med</code> na biblioteca Linq.</span>
+                <span>O método <code>First</code> retorna o primeiro elemento de uma sequência, e não o valor médio.</span>
             </div>
             <div class="checkbox">
                 <label>
@@ -170,10 +170,10 @@ var resistenciaMedia = pokemons.Average(p => p.HP);
                 <label>
                     <input type="checkbox" value="">
 <pre>
-var resistenciaMedia = pokemons.Middle(p => p.HP);
+var resistenciaMedia = pokemons.Min(p => p.HP);
 </pre>
                 </label>
-                <span>Não existe um método chamado <code>Middle</code> na biblioteca Linq.</span>
+                <span>O método <code>Min</code> retorna o menor valor de uma sequência, e não o valor médio.</span>
             </div>
         </form>
     </div>
@@ -253,52 +253,48 @@ nome não comece com a letra "P", e o método <code>Max</code> especifica a prop
     <hr />
 
     <div class="CallToAction">
-        <h3>Consulta Com Paginação</h3>
+        <h3>Métodos de Extensão - Teoria</h3>
         <p>
-            Suponha que você tenha a seguinte consulta "Linq to Entities", para trazer um relatório
-            de notas fiscais:
+            Suponha que você tenha uma função denominada <code>Mediana</code>
+            em seu código: 
         </p>
         <pre>
-            using (var contexto = new AluraTunesEntities())
-            {
-                var query =
-                from nf in contexto.NotasFiscais
-                orderby nf.NotaFiscalId
-                select nf;
-                foreach (var nf in query)
-                {
-                    Console.WriteLine("{0}\t{1}\t{2}\t{3}", 
-                    nf.Numero, nf.Data, nf.Cliente, nf.Total);
-                }
-            }
+public static decimal Mediana(IQueryable<decimal> origem)
+{
+    int contagem = origem.Count();
+    var ordenado = origem.OrderBy(p => p);
+    var elementoCentral_1 = ordenado.Skip((contagem - 1) / 2).First();
+    var elementoCentral_2 = ordenado.Skip(contagem / 2).First();
+    decimal mediana = (elementoCentral_1 + elementoCentral_2) / 2;
+    return mediana;
+}
+        </pre>
+        <p>Agora suponha que essa função <code>Mediana</code> esteja sendo usada
+        em diversas consultas Linq, como no seguinte exemplo:</p>
+        <pre>
+var vendaMediana = Mediana(contexto.NotasFiscais.Select(ag => ag.Total));
         </pre>
         <p>
-            Agora considere que esse relatório seja dividido em páginas de 10 notas fiscais. Modifique
-            a consulta de modo a retornar somente as notas fiscais da terceira página.
+            Agora suponha que você queira mudar a forma como a função <code>Mediana</code>
+            é acessada no seu código, para que ela seja chamada como um método da entidade
+            <code>NotasFiscais</code> ou de outra entidade qualquer do seu modelo Entity
+            Framework:
         </p>
+        <pre>
+vendaMediana = contexto.NotasFiscais.Mediana(ag => ag.Total);
+        </pre>
+        <p>O que seria necessário criar para que essa nova sintaxe fosse possível? 
+        Descreva de forma simples.</p>
         <h3>Opinião da Alura</h3>
-        <p>O relatório tem que ser modificado com o método <code>Skip(n)</code>, para "pular"
-        as duas primeiras páginas (20 linhas) e em seguida usar o método <code>Take(n)</code>, para 
-        "pegar" uma quantidade de elementos igual ao tamanho da página (10 elementos).</p>
-        <pre>
-            .
-            .
-            .
-            var pagina = 3;
-            var TAMANHO_PAGINA = 10
-            query = query.Skip((pagina - 1) * TAMANHO_PAGINA);
-            query = query.Take(TAMANHO_PAGINA);
-            
-            foreach (var nf in query)
-            {
-                Console.WriteLine("{0}\t{1}\t{2}\t{3}", nf.Numero, nf.Data, nf.Cliente, nf.Total);
-            }
-        </pre>
+        <p>Seria necessário reaproveitar a função já existente e criar um método de 
+        extensão chamado <code>Mediana</code>, para extender as funcionalidades da 
+        fonte de dados e adicionar essa função na lista de funções disponíveis, e 
+        assim permitir a nova sintaxe de chamada.</p>
     </div>
     <hr />
 
     <div class="CallToAction">
-        <h3>Métodos de Extensão</h3>
+        <h3>Métodos de Extensão - Prática</h3>
         <p>Considere o seguinte trecho de código:</p>
         <pre>            
 var tiposSanguineos = new List<TipoSanguineo> 
@@ -329,7 +325,7 @@ var segundoTipoSanguineo = tiposSanguineos.Second();
 Console.WriteLine(segundoTipoSanguineo.Codigo);
         </pre>
         <p>Implemente um método de extensão chamado <code>Second</code>, que permita trazer o segundo
-        elemento de uma sequencia. Utilize como exemplo a assinatura do método <code>First</code>:</p>
+        elemento de uma sequência. Utilize como exemplo a assinatura do método <code>First</code>:</p>
         <pre>
 public static TSource First<TSource>(this IEnumerable<TSource> source)
         </pre>
@@ -346,7 +342,8 @@ public static TSource Second<TSource>(this IEnumerable<TSource> source)
     return source.Skip(1).First();
 }
         </pre>
-        <p>Também é possível obter o mesmo resultado com a função <code>ElementAt</code>:</p>
+        <p>Também é possível obter o mesmo resultado com a função <code>ElementAt</code>, passando o valor 1, que
+        representa a segunda posição (lembrando que o índice 0 representa a primeira posição):</p>
         <pre>
 public static TSource Second<TSource>(this IEnumerable<TSource> source)
 {
