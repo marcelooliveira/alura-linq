@@ -146,6 +146,20 @@
     <Compile Include="Problemas\ProblemaBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Stage\Aula3-3.cs" />
+    <None Include="Stage\Aula3-1.cs" />
+    <None Include="Stage\Aula3-2.cs" />
+    <None Include="Stage\Aula1.cs" />
+    <None Include="Stage\Aula2.cs" />
+    <None Include="Stage\Aula4-1.cs" />
+    <None Include="Stage\Aula4-2.cs" />
+    <None Include="Stage\Aula4-3.cs" />
+    <None Include="Stage\Aula5.cs" />
+    <None Include="Stage\Aula6-1.cs" />
+    <None Include="Stage\Aula6-2.cs" />
+    <None Include="Stage\Aula6-3.cs" />
+    <None Include="Stage\Aula7-1.cs" />
+    <None Include="Stage\Aula7-2.cs" />
     <Compile Include="TipoMidia.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
