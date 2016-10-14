@@ -47,7 +47,7 @@ namespace alura_linq.Problemas.Problema5
             Console.WriteLine();
 
             //Essa consulta parece bem simples. Como podemos alterá-la para combinar gêneros e músicas?
-            //Agora que conhecemos um pouco de Lint to XML, faremos exatamente como se estivéssemos acessando 
+            //Agora que conhecemos um pouco de Linq to XML, faremos exatamente como se estivéssemos acessando 
             //coleções em memória
             
             var query = from g in root.Element("Generos").Elements("Genero")
@@ -62,12 +62,32 @@ namespace alura_linq.Problemas.Problema5
            
             //Que fará o mesmo que já vimos anteriormente, quando aprendemos sobre Linq to Objects.
 
-            foreach (var musicaXgenero in query)
+            foreach (var musicaEgenero in query)
             {
                 Console.WriteLine("{0}\t{1}\t{2}",
-                    musicaXgenero.MusicaId,
-                    musicaXgenero.Musica.PadRight(20),
-                    musicaXgenero.Genero);
+                    musicaEgenero.MusicaId,
+                    musicaEgenero.Musica.PadRight(20),
+                    musicaEgenero.Genero);
+            }
+
+            XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+            var queryAutomoveis = 
+                        from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                        join m in automoveis.Element("Modelos").Elements("Modelo")
+                            on f.Element("FabricanteId").Value equals m.Element("FabricanteId").Value
+                        select new
+                        {
+                            ModeloId = m.Element("ModeloId").Value,
+                            Modelo = m.Element("Nome").Value,
+                            Fabricante = f.Element("Nome").Value
+                        };
+
+            foreach (var modeloEFabricante in queryAutomoveis)
+            {
+                Console.WriteLine("{0}\t{1}\t{2}",
+                    modeloEFabricante.ModeloId,
+                    modeloEFabricante.Modelo.PadRight(20),
+                    modeloEFabricante.Fabricante);
             }
         }
     }

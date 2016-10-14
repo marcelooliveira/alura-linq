@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20px 80px 20px 80px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #333; /* Modern Browsers */
+        }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><strong>Aula 4</strong></h1>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Substituindo Joins Em Consultas Linq to Entities</h3>
+        <p>
+            Considere o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um 
+            banco de dados:
+        </p>
+        <pre>
+AluraTunesEntities.edmx
+
+Entidades        ║    Album                     Artista
+=================╬=========================================
+Propriedades     ║  AlbumId           ┌------ArtistaId (PK)
+                 ║  Nome              |      Nome
+                 ║  ArtistaId (FK)----┘
+=================╬=========================================
+Propriedades de  ║  Artista
+Navegação        ║
+        </pre>
+        <p>Uma consulta Linq to Entities é criada para trazer os álbuns a partir desse modelo, como segue:</p>
+        <pre>
+var query = from alb in contexto.Albums
+join art in contexto.Artistas 
+    on alb.ArtistaId equals art.ArtistaId
+where art.Nome == textoBusca
+select alb;
+        </pre>
+        <p>
+            De acordo com o modelo descrito no começo do exercício, como a consulta acima poderia ser reescrita
+            de forma alternativa porém gerando o mesmo resultado?
+        </p>
+        <form>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from art in contexto.Artistas
+where art.Album.Nome == "Led Zeppelin"
+select alb;
+                    </pre>                
+                </label>
+                <span>A consulta está tentando acessar uma propriedade de navegação inexistente (Artista.Album).</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from alb in Albums
+where alb.Artista.Nome == "Led Zeppelin"
+select alb;
+                    </pre>                
+                </label>
+                <span>
+                    A consulta está tentando acessar um objeto <code>Albums</code>, em vez de acessar a entidade
+                    <code>contexto.Albums</code> como na consulta original.
+                </span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from alb in contexto.Albums
+select alb;
+                    </pre>    
+                </label>
+                <span>A sintaxe está correta, porém essa consulta não está filtrando os dados como a
+                consulta original.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+var query = from alb in contexto.Albums
+where alb.Artista.Nome == "Led Zeppelin"
+select alb;
+                    </pre>
+                </label>
+                <span>CORRETO: a consulta está trazendo os dados da entidade <code>contexto.Albums</code>
+                e filtrando o resultado pela propriedade <code>Nome</code> da propriedade de navegação
+                <code>alb.Artista</code>.</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">
+                    <pre>
+var query = from alb in contexto.Albums
+on alb.Artista.Nome == "Led Zeppelin"
+select alb;
+                    </pre>
+                </label>
+                <span>A sintaxe está incorreta, pois a palavra "on" só pode ser usada dentro de uma cláusula
+                <code>join</code>.</span>
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Entendendo Propriedades de Navegação</h3>
+        <p>
+            Quais as vantagens de se usar propriedades de navegação no lugar de joins numa consulta Linq?
+        </p>
+        <form>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Não existe vantagem nenhuma, apenas desvantagem, pois
+                o uso da propriedade de navegação deixa a consulta mais lenta.</label>
+                <span>
+                    Não há redução de desempenho, pois a consulta SQL gerada para o servidor de banco de dados
+                    é a mesma.
+                </span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Não existe vantagem nem desvantagem.</label>
+                <span>
+                    Existe a vantagem de que a consulta com propriedades de navegação fica mais limpa, 
+                    mais fácil de ler e de entender.
+                </span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">A consulta coloca os resultados num cache que pode
+                ser reutilizado nas próximas execuções.</label>
+                <span>A propriedade de navegação não coloca o resultado no cache.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+                    A consulta fica mais legível e simples de entender.
+                </label>
+                <span>CORRETO: os dois tipos de abordagem geram a mesma consulta, porém a consulta com propriedades
+                de navegação fica mais limpa, mais fácil de ler e de entender.</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">A consulta fica mais rápida.</label>
+                <span>Não há melhoria de desempenho, pois a consulta SQL gerada para o servidor de banco de dados
+                é a mesma.</span>
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Propriedades de Navegação em Linq to Objects?</h3>
+        <p>Considere uma aplicação que possui as seguintes classes:</p>
+        <pre>
+class Genero
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+}
+
+class Musica
+{
+    public int Id { get; set; }
+    public string Nome { get; set; }
+    public int GeneroId { get; set; }
+}            
+        </pre>
+        <p>Essa aplicação declara e preenche duas listas dos tipos de classe acima, da seguinte maneira:</p>
+        <pre>
+List&lt;Genero&gt; generos = new List&lt;Genero&gt;
+{
+    new Genero { Id = 1, Nome = "Rock" },
+    new Genero { Id = 2, Nome = "Reggae" },
+    new Genero { Id = 3, Nome = "Rock Progressivo" },
+    new Genero { Id = 4, Nome = "Jazz" },
+    new Genero { Id = 5, Nome = "Punk Rock" },
+    new Genero { Id = 6, Nome = "Classica" }
+};
+
+List&lt;Musica&gt; musicas = new List&lt;Musica&gt;
+{
+    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
+    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
+    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
+};
+        </pre>
+
+        <p>
+            Suponha que agora você precise criar uma consulta que combine essas duas listas e que
+            traga o id da música, o nome da música e o nome do gênero musical.
+            Então você implementa a consulta conforme abaixo:
+        </p>
+        <pre>
+var query = from m in musicas
+join g in generos on m.GeneroId equals g.Id
+select new
+{
+    MusicaId = m.Id,
+    Musica = m.Nome,
+    Genero = g.Nome
+};
+        </pre>
+        <p>Uma colega vê o seu código e pergunta se você não poderia reescrever sua consulta, substituindo
+        o join por uma propriedade de navegação. O que você responderia? Justifique sua resposta.</p>
+
+        <h4>Opinião da Alura</h4>
+        <p>A consulta apresentada utiliza <b>Linq to Objects</b>, e as classes de objetos descritos não
+        dão suporte a propriedades de navegação. Portanto, para combinar os dados de ambas as classes é
+        necessário utilizar a cláusula <code>join</code> para definir através de quais propriedades os
+        objetos da consulta serão associados.</p>
+    </div>
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Refinando uma Consulta Linq</h3>
+        <p>
+            Considere uma aplicação que possui o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
+        </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Faixa                    Album
+=================╬=========================================
+Propriedades     ║  FaixaId           ┌------AlbumId (PK)
+                 ║  Nome              |      Titulo
+                 ║  AlbumId (FK)------┘      ArtistaId
+=================╬=========================================
+Propriedades de  ║  Album
+Navegação        ║
+        </pre>
+        <p>Baseado nesse modelo, a seguinte consulta é criada para buscar somente as faixas cujo 
+        artista é "Led Zeppelin":</p>
+        <pre>
+var query1 = from f in contexto.Faixas
+where f.Album.Artista.Nome == "Led Zeppelin"
+select f;
+        </pre>
+        <p>A partir da consulta "query1" acima, crie uma segunda consulta chamada "query2", que utiliza
+        "query1" como fonte de dados para filtrar também os álbuns cujo título contenham a palavra "Graffiti".</p>
+
+        <pre>var query2 = ...</pre>
+
+        <h4>Opinião da Alura</h4>
+        <p>A consulta query2 poderia utilizar a sintaxe de método, chamando o método <code>Where</code>
+        e passando na expressão lambda o filtro para buscar através da propriedade de navegação os títulos
+        de álbum que contêm "Graffiti":</p>
+        <pre>var query2 = query1.Where(f => f.Album.Titulo.Contains("Graffiti"));</pre>
+        <p>Ou a mesma consulta poderia ser feita através de sintaxe de consulta:</p>
+        <pre>
+var query2 = from f in query1
+             where f.Album.Titulo.Contains("Graffiti")
+             select f;
+        </pre>
+    </div>
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Refinando uma Consulta Linq</h3>
+        <p>
+            Considere uma aplicação que possui o seguinte diagrama do modelo Entity Framework (AluraTunesEntities.edmx) gerado a partir de um
+            banco de dados:
+        </p>
+        <pre>
+AluraTunesEntities.edmx
+Entidades        ║    Faixa                    Album
+=================╬=========================================
+Propriedades     ║  FaixaId           ┌------AlbumId (PK)
+                 ║  Nome              |      Titulo
+                 ║  AlbumId (FK)------┘      ArtistaId
+=================╬=========================================
+Propriedades de  ║  Album
+Navegação        ║
+        </pre>
+        <p>
+            Baseado nesse modelo, o seguinte código é criado para buscar somente as faixas cujo
+            artista é "Metallica" e imprimi-las no console:
+        </p>
+        <pre>
+var query = from f in contexto.Faixas
+where f.Album.Artista.Nome == "Metallica"
+select f;
+
+foreach (var f in query)
+{
+    Console.WriteLine("{0}\t{1}", f.Album.Titulo, f.Nome);
+}
+        </pre>
+
+        <p>Ao rodar o programa, você observa o seguinte resultado no console:</p>
+
+    <pre>
+Garage Inc. (Disc 1)    Free Speech For The Dumb
+Garage Inc. (Disc 1)    It's Electric
+Garage Inc. (Disc 1)    Sabbra Cadabra
+Garage Inc. (Disc 1)    Turn The Page
+Garage Inc. (Disc 1)    Die Die My Darling
+Garage Inc. (Disc 1)    Loverman
+Garage Inc. (Disc 1)    Mercyful Fate
+Garage Inc. (Disc 1)    Astronomy
+Garage Inc. (Disc 1)    Whiskey In The Jar
+Garage Inc. (Disc 1)    Tuesday's Gone
+Garage Inc. (Disc 1)    The More I See
+Black Album     Enter Sandman
+Black Album     Sad But True
+Black Album     Holier Than Thou
+Black Album     The Unforgiven
+Black Album     Wherever I May Roam
+Black Album     Don't Tread On Me
+Black Album     Through The Never
+Black Album     Nothing Else Matters
+Black Album     Of Wolf And Man
+Black Album     The God That Failed
+Black Album     My Friend Of Misery
+Black Album     The Struggle Within
+Garage Inc. (Disc 2)    Helpless
+Garage Inc. (Disc 2)    The Small Hours
+Garage Inc. (Disc 2)    The Wait
+Garage Inc. (Disc 2)    Crash Course In Brain Surgery
+Garage Inc. (Disc 2)    Last Caress/Green Hell
+Garage Inc. (Disc 2)    Am I Evil?
+Garage Inc. (Disc 2)    Blitzkrieg
+Garage Inc. (Disc 2)    Breadfan
+Garage Inc. (Disc 2)    The Prince
+Garage Inc. (Disc 2)    Stone Cold Crazy
+Garage Inc. (Disc 2)    So What
+Garage Inc. (Disc 2)    Killing Time
+Garage Inc. (Disc 2)    Overkill
+Garage Inc. (Disc 2)    Damage Case
+Garage Inc. (Disc 2)    Stone Dead Forever
+Garage Inc. (Disc 2)    Too Late Too Late
+Kill 'Em All    Hit The Lights
+Kill 'Em All    The Four Horsemen
+Kill 'Em All    Motorbreath
+Kill 'Em All    Jump In The Fire
+Kill 'Em All    (Anesthesia) Pulling Teeth
+Kill 'Em All    Whiplash
+Kill 'Em All    Phantom Lord
+Kill 'Em All    No Remorse
+Kill 'Em All    Seek & Destroy
+Kill 'Em All    Metal Militia
+Load    Ain't My Bitch
+Load    2 X 4
+Load    The House Jack Built
+Load    Until It Sleeps
+Load    King Nothing
+Load    Hero Of The Day
+Load    Bleeding Me
+Load    Cure
+Load    Poor Twisted Me
+Load    Wasted My Hate
+Load    Mama Said
+Load    Thorn Within
+Load    Ronnie
+Load    The Outlaw Torn
+Master Of Puppets       Battery
+Master Of Puppets       Master Of Puppets
+Master Of Puppets       The Thing That Should Not Be
+Master Of Puppets       Welcome Home (Sanitarium)
+Master Of Puppets       Disposable Heroes
+Master Of Puppets       Leper Messiah
+Master Of Puppets       Orion
+Master Of Puppets       Damage Inc.
+ReLoad  Fuel
+ReLoad  The Memory Remains
+ReLoad  Devil's Dance
+ReLoad  The Unforgiven II
+ReLoad  Better Than You
+ReLoad  Slither
+ReLoad  Carpe Diem Baby
+ReLoad  Bad Seed
+ReLoad  Where The Wild Things Are
+ReLoad  Prince Charming
+ReLoad  Low Man's Lyric
+ReLoad  Attitude
+ReLoad  Fixxxer
+Ride The Lightning      Fight Fire With Fire
+Ride The Lightning      Ride The Lightning
+Ride The Lightning      For Whom The Bell Tolls
+Ride The Lightning      Fade To Black
+Ride The Lightning      Trapped Under Ice
+Ride The Lightning      Escape
+Ride The Lightning      Creeping Death
+Ride The Lightning      The Call Of Ktulu
+St. Anger       Frantic
+St. Anger       St. Anger
+St. Anger       Some Kind Of Monster
+St. Anger       Dirty Window
+St. Anger       Invisible Kid
+St. Anger       My World
+St. Anger       Shoot Me Again
+St. Anger       Sweet Amber
+St. Anger       The Unnamed Feeling
+St. Anger       Purify
+St. Anger       All Within My Hands
+...And Justice For All  Blackened
+...And Justice For All  ...And Justice For All
+...And Justice For All  Eye Of The Beholder
+...And Justice For All  One
+...And Justice For All  The Shortest Straw
+...And Justice For All  Harvester Of Sorrow
+...And Justice For All  The Frayed Ends Of Sanity
+...And Justice For All  To Live Is To Die
+...And Justice For All  Dyers Eve
+        </pre>
+
+        <p>A partir do resultado, você resolve refinar a consulta para trazer somente as faixas do
+        álbum "Black Album". Então você acrescenta a linha após a declaração da consulta <code>query</code>:</p>
+
+        <pre>query.Where(f => f.Album.Titulo.Contains("Black Album"));</pre>
+
+        <p>Porém, ao rodar novamente o programa, você percebe que o resultado no console continua
+        sendo exatamente o mesmo, ou seja, a consulta continua trazendo as faixas de todos os álbuns.
+        Explique o que aconteceu, e como resolver este problema.</p>
+
+        <h4>Opinião da Alura</h4>
+        <p>O método <code>Where</code> utilizado na linha de código acrescentada retorna uma nova
+        definição de consulta, mas não modifica o objeto de definição de consulta <code>query</code>.
+        Para modificar o objeto <code>query</code> e resolver o problema, é necessário escrever a
+        linha de código como uma atribuição à própria variável <code>query</code>:</p>
+        
+        <pre>query = query.Where(f => f.Album.Titulo.Contains("Black Album"));</pre>
+
+        <p>Rodando novamente a consulta, desta vez você terá o resultado esperado:</p>
+        <pre>
+Black Album     Enter Sandman
+Black Album     Sad But True
+Black Album     Holier Than Thou
+Black Album     The Unforgiven
+Black Album     Wherever I May Roam
+Black Album     Don't Tread On Me
+Black Album     Through The Never
+Black Album     Nothing Else Matters
+Black Album     Of Wolf And Man
+Black Album     The God That Failed
+Black Album     My Friend Of Misery
+Black Album     The Struggle Within
+        </pre>
+    </div>
+
+</body>
+</html>

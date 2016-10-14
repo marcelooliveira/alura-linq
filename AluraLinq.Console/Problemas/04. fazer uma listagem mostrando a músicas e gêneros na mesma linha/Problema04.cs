@@ -14,7 +14,7 @@ namespace alura_linq.Problemas.Problema4
         public override void Solve(string[] args)
         {
             //Estamos colocando as 2 listas no mesmo código agora
-            var generos = new List<Genero>
+            List<Genero> generos = new List<Genero>
             {
                 new Genero { Id = 1, Nome = "Rock" },
                 new Genero { Id = 2, Nome = "Reggae" },
@@ -24,7 +24,7 @@ namespace alura_linq.Problemas.Problema4
                 new Genero { Id = 6, Nome = "Classica" }
             };
 
-            var musicas = new List<Musica>
+            List<Musica> musicas = new List<Musica>
             {
                 new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
                 new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
@@ -97,12 +97,12 @@ namespace alura_linq.Problemas.Problema4
 
             //Agora varremos a nossa query, tabulando os dados conforme desejamos.
 
-            foreach (var musicaXgenero in query)
+            foreach (var musicaEgenero in query)
             {
-                Console.WriteLine("{0}\t{1}\t{2}", 
-                    musicaXgenero.MusicaId, 
-                    musicaXgenero.Musica.PadRight(20), 
-                    musicaXgenero.Genero);
+                Console.WriteLine("{0}\t{1}\t{2}",
+                    musicaEgenero.MusicaId,
+                    musicaEgenero.Musica.PadRight(20),
+                    musicaEgenero.Genero);
             }
         }
     }

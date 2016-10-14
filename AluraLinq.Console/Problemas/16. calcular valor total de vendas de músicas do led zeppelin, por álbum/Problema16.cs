@@ -135,6 +135,34 @@ namespace alura_linq.Problemas.Problema16
                     Console.WriteLine("{0}: R$ {1} ({2})", grupo.Album.PadRight(35), grupo.Valor, grupo.NumeroVendas);
                 }
                 Console.WriteLine();
+
+                var query2 =
+                from alb in contexto.Albums
+                select new
+                {
+                    Artista = alb.Artista.Nome,
+                    Titulo = alb.Titulo
+                };
+
+                foreach (var alb in query2)
+                {
+                    Console.WriteLine("{0}\t{1}", alb.Artista, alb.Titulo);
+                }
+
+
+                var query3 =
+                from alb in contexto.Albums
+                group alb by alb.Artista into agrupado
+                select new
+                {
+                    Artista = agrupado.Key.Nome,
+                    QuantidadeAlbuns = agrupado.Count()
+                };
+
+                foreach (var alb in query3)
+                {
+                    Console.WriteLine("{0}\t{1}", alb.Artista, alb.QuantidadeAlbuns);
+                }
             }
         }
     }

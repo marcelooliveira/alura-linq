@@ -1,0 +1,356 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20px 80px 20px 80px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #333; /* Modern Browsers */
+        }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><strong>Aula 7</strong></h1>
+
+    <hr />
+    <div class="MultipleChoice">
+        <h3>Calculando Menor Valor</h3>
+        <p>
+            Considere a seguinte lista de pokemons. Nessa lista, a propriedade <code>HP</code>
+            representa os <b>Hit Points</b>, que medem a "resistência" de cada pokemon:
+        </p>
+        <pre>
+var pokemons = new[]
+{
+    new { Nome = "Pidgey", HP = 14 },
+    new { Nome = "Ratata", HP = 21 },
+    new { Nome = "Pidgeotto", HP = 52 },
+    new { Nome = "Zubat", HP = 25 },
+    new { Nome = "Pikachu", HP = 33 }
+};
+        </pre>
+        <p>Marque o trecho de código que seleciona o(s) pokemon(s) menos resistente(s):</p>
+        <form>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var pokemon = pokemons.Select(p => p.HP).Min();
+                    </pre>
+                </label>
+                <span>Esse código traz o valor da menor resistência, e não o pokemon menos resistente.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var menorHP = pokemons.Select(p => p.HP).Minimum();
+var pokemon = pokemons.Where(p => p.HP == menorHP);
+                    </pre>
+                </label>
+                <span>Não existe um método chamado <code>Minimum</code> na biblioteca Linq.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var pokemon = pokemons.Min(p => p.HP);
+                    </pre>
+                    <span>Esse código traz o valor da menor resistência, e não o pokemon menos resistente.</span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+var menorHP = pokemons.Select(p => p.HP).Min();
+var pokemon = pokemons.Where(p => p.HP == menorHP);
+                    </pre>
+                </label>
+                <span>CORRETO: primeiro o valor do menor HP (menor resistência) é calculado, e em seguida
+                obtem-se o(s) pokemon(s) que possuem o menor HP.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+var pokemon = pokemons.Min();
+                    </pre>
+                </label>
+                <span>Esse código não especifica para qual propriedade o valor mínimo deve ser calculado.</span>
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Calculando a Média</h3>
+        <p>
+            Considere a seguinte lista de pokemons. Nessa lista, a propriedade <code>HP</code>
+            representa os <b>Hit Points</b>, que medem a "resistência" de cada pokemon:
+        </p>
+        <pre>
+var pokemons = new[]
+{
+    new { Nome = "Pidgey", HP = 14 },
+    new { Nome = "Ratata", HP = 21 },
+    new { Nome = "Pidgeotto", HP = 52 },
+    new { Nome = "Zubat", HP = 25 },
+    new { Nome = "Pikachu", HP = 33 }
+};
+        </pre>
+        <p>Marque o trecho de código que seleciona a resistência média dos pokemons:</p>
+        <form>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Max(p => p.HP);
+</pre>
+                </label>
+                <span>O método <code>Max</code> retorna o máximo, e não o valor médio.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.First(p => p.HP);
+</pre>
+                </label>
+                <span>O método <code>First</code> retorna o primeiro elemento de uma sequência, e não o valor médio.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Avg(p => p.HP);
+</pre>
+                </label>
+                <span>Não existe um método chamado <code>Avg</code> na biblioteca Linq.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+<pre>
+var resistenciaMedia = pokemons.Average(p => p.HP);
+</pre>
+                </label>
+                <span>CORRETO: o método <code>Average</code> está sendo usado para obter a média da propriedade
+                HP da lista de pokemons.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+var resistenciaMedia = pokemons.Min(p => p.HP);
+</pre>
+                </label>
+                <span>O método <code>Min</code> retorna o menor valor de uma sequência, e não o valor médio.</span>
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Calculando Maior Valor</h3>
+        <p>
+            Considere a seguinte lista de pokemons. Nessa lista, a propriedade <code>HP</code>
+            representa os <b>Hit Points</b>, que medem a "resistência" de cada pokemon:
+        </p>
+        <pre>
+var pokemons = new[]
+{
+    new { Nome = "Pidgey", HP = 14 },
+    new { Nome = "Ratata", HP = 21 },
+    new { Nome = "Pidgeotto", HP = 52 },
+    new { Nome = "Zubat", HP = 25 },
+    new { Nome = "Pikachu", HP = 33 }
+};
+        </pre>
+        <p>
+            Qual alternativa calcula a maior resistência entre os pokemons
+            cujo nome NÃO começa com a letra "P"?
+        </p>
+        <form>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Maximum(p => p.HP);
+</pre>
+                </label>
+                <span>Não existe um método chamado <code>Maximum</code> na biblioteca Linq.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Greater(p => p.HP);
+</pre>
+                </label>
+                <span>Não existe um método chamado <code>Greater</code> na biblioteca Linq.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Max(p => p.HP).Where(p => !p.Nome.StartsWith("P"));
+</pre>
+                </label>
+                <span>A cláusula <code>Where</code> deveria ser utilizada antes do método <code>Max</code>.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+<pre>
+    var maiorResistencia = pokemons.Where(p => !p.Nome.StartsWith("P")).Max(p => p.HP);
+</pre>
+                </label>
+<span>CORRETO: a cláusula <code>Where</code> está filtrando a consulta para trazer somente os pokemons cujo
+nome não comece com a letra "P", e o método <code>Max</code> especifica a propriedade cujo valor máximo
+                deve ser encontrado.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+<pre>
+    var maiorResistencia = pokemons.Max(p => !p.Nome.StartsWith("P"));
+</pre>
+                </label>
+                <span>O método <code>Max</code> deve receber uma expressão lambda com o valor do HP, e não
+                um filtro de dados.</span>
+            </div>
+        </form>
+    </div>
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Métodos de Extensão - Teoria</h3>
+        <p>
+            Suponha que você tenha uma função denominada <code>Mediana</code>
+            em seu código: 
+        </p>
+        <pre>
+public static decimal Mediana(IQueryable<decimal> origem)
+{
+    int contagem = origem.Count();
+    var ordenado = origem.OrderBy(p => p);
+    var elementoCentral_1 = ordenado.Skip((contagem - 1) / 2).First();
+    var elementoCentral_2 = ordenado.Skip(contagem / 2).First();
+    decimal mediana = (elementoCentral_1 + elementoCentral_2) / 2;
+    return mediana;
+}
+        </pre>
+        <p>Agora suponha que essa função <code>Mediana</code> esteja sendo usada
+        em diversas consultas Linq, como no seguinte exemplo:</p>
+        <pre>
+var vendaMediana = Mediana(contexto.NotasFiscais.Select(ag => ag.Total));
+        </pre>
+        <p>
+            Agora suponha que você queira mudar a forma como a função <code>Mediana</code>
+            é acessada no seu código, para que ela seja chamada como um método da entidade
+            <code>NotasFiscais</code> ou de outra entidade qualquer do seu modelo Entity
+            Framework:
+        </p>
+        <pre>
+vendaMediana = contexto.NotasFiscais.Mediana(ag => ag.Total);
+        </pre>
+        <p>O que seria necessário criar para que essa nova sintaxe fosse possível? 
+        Descreva de forma simples.</p>
+        <h3>Opinião da Alura</h3>
+        <p>Seria necessário reaproveitar a função já existente e criar um método de 
+        extensão chamado <code>Mediana</code>, para extender as funcionalidades da 
+        fonte de dados e adicionar essa função na lista de funções disponíveis, e 
+        assim permitir a nova sintaxe de chamada.</p>
+    </div>
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Métodos de Extensão - Prática</h3>
+        <p>Considere o seguinte trecho de código:</p>
+        <pre>            
+var tiposSanguineos = new List<TipoSanguineo> 
+{
+    new TipoSanguineo { Codigo = "A" },
+    new TipoSanguineo { Codigo = "B" },
+    new TipoSanguineo { Codigo = "AB" },
+    new TipoSanguineo { Codigo = "O" },
+};
+
+var primeiroTipoSanguineo = tiposSanguineos.First();
+Console.WriteLine(primeiroTipoSanguineo.Codigo);
+        </pre>
+        <p>Onde <code>TipoSanguineo</code> é definido na classe:</p>
+        <pre>
+class TipoSanguineo
+{
+    public string Codigo { get; set; }
+}
+        </pre>
+        <p>Acima, criamos uma lista de tipos sanguineos e em seguida pegamos o primeiro elemento
+        da lista e o imprimimos no console.</p>
+        <p>Agora, digamos que você quisesse imprimir o segundo elemento da lista, e que para isso
+        acrescentasse um novo segmento de código, utilizando um novo método chamado <code>Second</code>, 
+        da seguinte forma:</p>
+        <pre>
+var segundoTipoSanguineo = tiposSanguineos.Second();
+Console.WriteLine(segundoTipoSanguineo.Codigo);
+        </pre>
+        <p>Implemente um método de extensão chamado <code>Second</code>, que permita trazer o segundo
+        elemento de uma sequência. Utilize como exemplo a assinatura do método <code>First</code>:</p>
+        <pre>
+public static TSource First<TSource>(this IEnumerable<TSource> source)
+        </pre>
+        <h3>Opinião da Alura</h3>
+        <p>
+            Basta criar um novo método de extensão <code>Second</code>, usando a mesma assinatura do método <code>First</code>.
+            No corpo do método, pode-se utilizar a sequência <code>source</code> para pular o primeiro elemento
+            (com <code>.Skip(1)</code>) e obter o primeiro elemento do resto da sequência, ou seja, o segundo
+            elemento:
+        </p>
+        <pre>
+public static TSource Second<TSource>(this IEnumerable<TSource> source)
+{
+    return source.Skip(1).First();
+}
+        </pre>
+        <p>Também é possível obter o mesmo resultado com a função <code>ElementAt</code>, passando o valor 1, que
+        representa a segunda posição (lembrando que o índice 0 representa a primeira posição):</p>
+        <pre>
+public static TSource Second<TSource>(this IEnumerable<TSource> source)
+{
+    return source.ElementAt(1);
+}
+        </pre>
+    </div>
+
+</body>
+</html>

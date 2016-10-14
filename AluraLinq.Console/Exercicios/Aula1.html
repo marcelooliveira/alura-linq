@@ -1,0 +1,336 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20px 80px 20px 80px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #333; /* Modern Browsers */
+        }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><strong>Aula 1</strong></h1>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Sintaxe de Consulta Linq</h3>
+        <p>
+            Você é chamado por um colega desenvolvedor para ajudá-lo com uma consulta Linq. O seu colega
+            acha que a consulta que ele criou está correta, mas que mesmo assim o programa não está compilando.
+            Você pede para ver a consulta que ele criou, você encontra:
+        </p>
+        <p>
+            <pre>
+                List&lt;Cliente&gt; clientes = new List&lt;Cliente&gt;()
+                {
+                    new Cliente { Id = 1001, Nome = "José Raimundo Bernardino" },
+                    new Cliente { Id = 1002, Nome = "Alexandre Marciano da Luz" },
+                    new Cliente { Id = 1003, Nome = "Milton Guilherme da Silva" }
+                };
+                
+                var queryClientes = 
+                select cli 
+                from cli in clientes;
+            </pre>
+        </p>
+
+        <p>Qual a causa provável para o problema?</p>
+        <form>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">A tabela <code>clientes</code> não está no banco de dados, e precisa ser criada antes da consulta.<span>A coleção <code>clientes</code> não é uma tabela, e sim uma coleção em memória.</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">O nome da variável <code>cli</code> é diferente do nome da coleção <code>clientes</code><span>O nome da variável <code>cli</code> independe do nome da coleção.</span></label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">A consulta não está contida entre parênteses<span>Uma definição de consulta não precisa estar contida entre parênteses.</span></label>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">A consulta Linq implementada está começando pela cláusula <i>select</i>.
+                    <span>CORRETO. Uma expressão Linq precisa começar pela cláusula <i>from</i>, e não pela cláusula <i>select</i>:<br />
+                        <pre>
+                            var queryClientes = 
+                            from cli in clientes
+                            select cli;
+                        </pre>
+                    </span>
+                </label>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">A cláusula <i>select</i> não declara a lista de propriedades do cliente a serem trazidas pela consulta.</label>
+                <span>Uma consulta Linq não precisa descrever necessariamente as propriedades da coleção <code>clientes</code>. A variável <code>cli</code> da cláusula <i>select</i> já permite
+                acessar essas propriedades.</span>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Filtrando com Linq</h3>
+        <p>
+            A lista abaixo contém os finalistas da prova de 100m rasos das Olimpíadas Rio 2016:
+        </p>
+        <p>
+            <pre>
+                List&lt;Atleta&gt; atletas = new List&lt;Atleta&gt;()
+                {
+                    new Atleta { Posicao = 1, CodigoPais = "JAM", Nome = "BOLT Usain", Tempo = 9.81f },
+                    new Atleta { Posicao = 2, CodigoPais = "USA", Nome = "GATLIN Justin", Tempo = 9.89f },
+                    new Atleta { Posicao = 3, CodigoPais = "CAN", Nome = "DE GRASSE Andre", Tempo = 9.91f },
+                    new Atleta { Posicao = 4, CodigoPais = "JAM", Nome = "BLAKE Yohan", Tempo = 9.93f },
+                    new Atleta { Posicao = 5, CodigoPais = "RSA", Nome = "SIMBINE Akani", Tempo = 9.94f },
+                    new Atleta { Posicao = 6, CodigoPais = "CIV", Nome = "MEITE Ben Youssef", Tempo = 9.96f },
+                    new Atleta { Posicao = 7, CodigoPais = "FRA", Nome = "VICAUT Jimmy", Tempo = 10.04f },
+                    new Atleta { Posicao = 8, CodigoPais = "USA", Nome = "BROMELL Trayvon", Tempo = 10.06f }
+                };
+            </pre>
+        </p>
+        <p>Como você faria a consulta para obter a lista dos finalistas jamaicanos (CodigoPais = JAM) ?</p>
+        <form>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        var query = from a in atletas
+                        where a.CodigoPais = "JAM"
+                        select a;
+                    </pre>
+                </label>
+                <span>A cláusula <i>where</i> exige o operador de igualdade "==", e não o operador de atribuição "=".</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        var query = select a
+                        from a in atletas
+                        where a.CodigoPais == "JAM";
+                    </pre>
+                </label>
+                <span>A cláusula <i>select</i> de uma consulta Linq deve aparecer no final da consulta</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        var query = from a in atletas
+                        select a
+                        where a.CodigoPais == "JAM";
+                    </pre>
+                </label>
+                <span>A cláusula <i>select</i> de uma consulta Linq deve aparecer no final da consulta</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+                        var query = from a in atletas
+                        where a.CodigoPais == "JAM"
+                        select a;
+                    </pre>
+                </label>
+                <span>CORRETO. O operador de igualdade está certo, e a cláusula <i>select</i> está no final da consulta.</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        var query = from a in atletas
+                        where a.CodigoPais == "Jamaica"
+                        select a;
+                    </pre>
+                </label>
+                <span>A listagem não tem um atleta com CodigoPais = "Jamaica". O correto seria where a.CodigoPais == "JAM"</span>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Consulta com Filtro (Com Método Contains)</h3>
+        <p>
+            Observe a lista de gêneros musicais abaixo:
+        </p>
+        <p>
+            <pre>
+                List&lt;Genero&gt; generos = new List&lt;Genero&gt;
+                {
+                    new Genero { Id = 1, Nome = "Rock" },
+                    new Genero { Id = 2, Nome = "Reggae" },
+                    new Genero { Id = 3, Nome = "Rock Progressivo" },
+                    new Genero { Id = 4, Nome = "Jazz" },
+                    new Genero { Id = 5, Nome = "Punk Rock" },
+                    new Genero { Id = 6, Nome = "Classica" }
+                };
+            </pre>
+        </p>
+        <p>Elabore uma consulta Linq para trazer somente os gêneros que contenham a palavra "Rock".</p>
+
+        <h4>Opinião da Alura</h4>
+        <p>
+            Você pode obter os objetos da coleção <code>generos</code> com a cláusula <i>from</i>, e em seguida filtrar
+            os nomes dos gêneros com a cláusula <i>where</i>, utilizando o método <i>Contains</i>:
+        </p>
+        <p>
+            <pre>
+                var query = from g in generos
+                where g.Nome.Contains("Rock")
+                select g;
+            </pre>
+        </p>
+    </div>
+
+    <hr />
+
+    <div class="CallToAction">
+        <h3>Consulta com Filtro (Com Operador de Igualdade)</h3>
+        <p>
+            Observe a lista de músicas abaixo:
+        </p>
+        <p>
+            <pre>
+                List&lt;Musica&gt; musicas = new List&lt;Musica&gt;
+                {
+                    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
+                    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
+                    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
+                };
+            </pre>
+        </p>
+        <p>Elabore uma consulta Linq para trazer todas as músicas cujo GeneroId seja igual a 1.</p>
+
+        <h4>Opinião da Alura</h4>
+        <p>
+            Você pode obter os objetos da coleção <code>musicas</code> com a cláusula <i>from</i>, e em seguida filtrar
+            os nomes das músicas com id de gênero igual a 1:
+        </p>
+        <p>
+            <pre>
+                var query = 
+                from m in musicas
+                where m.GeneroId == 1
+                select m;
+            </pre>
+        </p>
+    </div>
+
+    <hr />
+    <div class="CallToAction">
+        <h3>Consulta com Join</h3>
+        <p>
+            Observe as listas abaixo, de gêneros musicais e de músicas:
+        </p>
+        <p>
+            <pre>
+                List&lt;Genero&gt; generos = new List&lt;Genero&gt;
+                {
+                    new Genero { Id = 1, Nome = "Rock" },
+                    new Genero { Id = 2, Nome = "Reggae" },
+                    new Genero { Id = 3, Nome = "Rock Progressivo" },
+                    new Genero { Id = 4, Nome = "Jazz" },
+                    new Genero { Id = 5, Nome = "Punk Rock" },
+                    new Genero { Id = 6, Nome = "Classica" }
+                };
+
+                List&lt;Musica&gt; musicas = new List&lt;Musica&gt;
+                {
+                    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
+                    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
+                    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
+                };
+            </pre>
+        </p>
+        <p>Crie uma consulta para listar os nomes das músicas e seus respectivos gêneros musicais.</p>
+
+        <h4>Opinião da Alura</h4>
+        <p>
+            Você pode "ligar" os objetos das coleções <code>musicas</code> e <code>generos</code> com a cláusula <i>join</i> a partir das propriedades
+            GeneroId e Id, respectivamente, e trazer um objeto anônimo na cláusula <i>select</i> com o nome da música e o nome
+            do gênero:
+        </p>
+        <p>
+            <pre>
+                var query = 
+                from m in musicas
+                join g in generos on m.GeneroId equals g.Id
+                select new { NomeMusica = m.Nome, NomeGenero = g.Nome };
+            </pre>
+        </p>
+    </div>
+
+    <hr />
+    <div class="CallToAction">
+        <h3>Filtrando Consultas com Join</h3>
+        <p>
+            Observe as listas abaixo, de gêneros musicais e de músicas:
+        </p>
+        <p>
+            <pre>
+                List&lt;Genero&gt; generos = new List&lt;Genero&gt;
+                {
+                new Genero { Id = 1, Nome = "Rock" },
+                new Genero { Id = 2, Nome = "Reggae" },
+                new Genero { Id = 3, Nome = "Rock Progressivo" },
+                new Genero { Id = 4, Nome = "Jazz" },
+                new Genero { Id = 5, Nome = "Punk Rock" },
+                new Genero { Id = 6, Nome = "Classica" }
+                };
+ 
+                List&lt;Musica&gt; musicas = new List&lt;Musica&gt;
+                {
+                    new Musica { Id = 1, Nome = "Sweet Child O'Mine", GeneroId = 1 },
+                    new Musica { Id = 2, Nome = "I Shot The Sheriff", GeneroId = 2 },
+                    new Musica { Id = 3, Nome = "Danúbio Azul", GeneroId = 6 }
+                };
+            </pre>
+        </p>
+        <p>Crie uma consulta para listar os nomes das músicas cujo gênero tenha o nome "Reggae".</p>
+
+        <h4>Opinião da Alura</h4>
+        <p>Você pode "ligar" os objetos das coleções <code>musicas</code> e <code>generos</code> a partir das propriedades
+        GeneroId e Id, respectivamente, e em seguida aplicar um filtro para o nome do gênero:</p>
+        <p>
+            <pre>
+                var query = 
+                from m in musicas
+                join g in generos on m.GeneroId equals g.Id
+                where g.Nome == "Reggae"
+                select m.Nome;
+            </pre>
+        </p>
+    </div>
+</body>
+</html>

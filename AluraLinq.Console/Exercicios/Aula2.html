@@ -1,0 +1,615 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style type="text/css">
+        body {
+            margin: 20px 80px 20px 80px;
+        }
+
+        hr {
+            border: none;
+            height: 1px;
+            /* Set the hr color */
+            color: #333; /* old IE */
+            background-color: #333; /* Modern Browsers */
+        }
+
+        .checkbox span {
+            margin: 0 10px 0 10px;
+            background-color: lightpink;
+        }
+
+        .checkbox:nth-child(4) span {
+            margin: 0 10px 0 10px;
+            background-color: lightgreen;
+        }
+
+        h4 {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1><strong>Aula 2</strong></h1>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Escolhendo a Modalidade Linq Mais Adequada</h3>
+        <p>
+            Você foi encarregado de desenvolver uma consulta para listar nomes de modelos de automóveis
+            e de seus fabricantes. Para isso, você recebe um arquivo de onde você obterá os dados
+            para sua consulta. O arquivo tem o seguinte conteúdo e está disponível no caminho Data\Automoveis.xml:
+        </p>
+
+        <p>
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
+
+        <p>Que tipo de consulta Linq você deveria desenvolver?</p>
+
+        <form>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Linq to File</label><span>Não existe um provider de Linq para arquivos em geral, apenas para formato XML</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Linq to Database</label><span>Os dados estão em arquivo em formato XML, e não em servidor de bancos de dados</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Linq to Query</label><span>Não existe um provider de Linq chamado "Linq to Query"</span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">Linq to XML
+                </label><span>Linq to XML fornece as funcionalidades necessárias para realização de consultas sobre coleções de dados em formato XML</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Linq to Objects</label><span>
+                    Linq to Objects não pode ser utilizado,
+                    porque a fonte de dados não está em memória, e sim em arquivo XML.
+                    Ela precisa ser primeiro interpretada por um provider específico para XML.
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Consulta Simples Com XML</h3>
+
+        <p>Considere o seguinte arquivo XML, existente no caminho Data\Automoveis.xml:
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
+        <p>
+            Com base nesse arquivo XML, qual alternativa representa
+            a o código adequado para retornar uma lista contendo o Id e o Nome dos fabricantes?
+        </p>
+        <form>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+
+                        var queryFabricantes =
+                        from f in automoveis.Fabricantes
+                        select new
+                        {
+                            Id = f.Element("FabricanteId").Value,
+                            Nome = f.Element("Nome").Value
+                        };
+                    </pre>
+                </label>
+                <p><span>"Fabricantes" não está acessível diretamente a partir de "automoveis". Você deve utilizar: automoveis.Element("Fabricantes").Elements("Fabricante")</span></p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+
+                        var queryFabricantes =
+                        from f in fabricantes
+                        select new
+                        {
+                            Id = f.Element("FabricanteId").Value,
+                            Nome = f.Element("Nome").Value
+                        };
+                    </pre>
+                </label>
+                <p><span>Na linha <code>from f in fabricantes</code>, a consulta está tentando acessar uma variável "fabricantes" que não existe.</span></p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        var queryFabricantes =
+                        from f in fabricantes
+                        select new
+                        {
+                            Id = f.FabricanteId,
+                            Nome = f.Nome
+                        };
+                    </pre>
+                </label>
+                <p><span>Na linha <code>from f in fabricantes</code>, a consulta está tentando acessar uma variável "fabricantes" que não existe.</span></p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">
+                    <pre>
+                        XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+                        var queryFabricantes =
+                        from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                        select new
+                        {
+                            Id = f.Element("FabricanteId").Value,
+                            Nome = f.Element("Nome").Value
+                        };
+                    </pre>
+                </label>
+                <p>
+                    <span>
+                        CORRETO. A consulta está acessando corretamente a coleção de fabricantes
+                        a partir de automoveis/Fabricantes/Fabricante, e obtendo corretamente o Id e o Nome do fabricante a partir do método <code>Element</code>:
+
+                        <pre>
+                        XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+                        var queryFabricantes =
+                        from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                        select new
+                        {
+                            Id = f.Element("FabricanteId").Value,
+                            Nome = f.Element("Nome").Value
+                        };
+                    </pre>
+                    </span>
+                </p>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">
+                    <pre>
+                        XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+
+                        var queryFabricantes =
+                        from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                        select fabricante;
+                    </pre>
+                </label>
+                <p>
+                    <span>
+                        A consulta está acessando corretamente a coleção de fabricante
+                        a partir de automoveis/Fabricantes/Fabricante, porém a linha <code>select fabricante</code>
+                        está tentando acessar uma variável <code>fabricante</code> que não existe na consulta. O correto
+                        seria acessar a variável <code>f</code>.
+                    </span>
+                </p>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Debugando Uma Consulta Linq To XML - 1</h3>
+        <p>
+            Considere o seguinte arquivo XML, existente no caminho Data\Automoveis.xml:
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
+        <p>
+            Com base nesse arquivo XML, você desenvolve o seguinte código, para
+            retornar uma consulta contendo o id do modelo, o nome do modelo e o nome do fabricante dos automóveis:
+        </p>
+
+        <p>
+            <pre>
+                XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+
+                var query = from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                select new
+                {
+                    ModeloId = m.Element("ModeloId").Value,
+                    Modelo = m.Element("Nome").Value,
+                    Fabricante = f.Element("Nome").Value
+                };
+            </pre>
+        </p>
+        <p>Ao rodar sua aplicação, você encontra um erro de compilação. O que você deveria fazer para seu código
+        funcionar conforme esperado?</p>
+        <form>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Remover da cláusula Select as referências ao Modelo de automóvel,
+                pois a consulta não está trazendo dados de modelos, apenas de fabricantes.</label>
+                <span>Isso faria a consulta compilar, porém não atenderia ao requisito do problema, que é trazer também
+                o nome do modelo, além do nome do fabricante.</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Usar a cláusula from para trazer dados de modelos de automóveis,
+                em vez de dados de fabricantes.</label>
+                <span>O requisito funcional exige que se traga também o nome do fabricante, juntamente com o nome
+                do modelo do automóvel.</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Substituir a consulta Linq do XML por uma outra consulta
+                Linq to Objects</label>
+                <span>
+                    Linq to Objects não pode ser utilizado,
+                    porque a fonte de dados não está em memória, e sim em arquivo XML.
+                    Ela precisa ser primeiro interpretada por um provider específico para XML.
+                </span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">Você se esqueceu de usar a cláusula <code>join</code>
+                    para ligar os fabricantes aos modelos.
+                </label>
+                <span>CORRETO. O requisito funcional exige a cláusula join para associar os fabricantes com os modelos de
+                automóveis:
+                
+                <pre>
+                    XElement automoveis = XElement.Load(@"Data\AluraTunes.xml");
+
+                    var query = from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                    join m in automoveis.Element("Modelos").Elements("Modelo")
+                        on f.Element("FabricanteId").Value equals m.Element("FabricanteId").Value
+                    select new
+                    {
+                        ModeloId = m.Element("ModeloId").Value,
+                        Modelo = m.Element("Nome").Value,
+                        Fabricante = f.Element("Nome").Value
+                    };
+                </pre>
+                </span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">
+                Trocar a linha 
+                <pre>
+                    var query = from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                </pre>
+                por:
+                <pre>
+                    var query = from f in automoveis.Fabricantes
+                </pre>
+                </label>
+                <span>
+                    "Fabricantes" não está acessível diretamente a partir de "automoveis", e isso também não resolve o problema de compilação.
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+
+    <div class="MultipleChoice">
+        <h3>Debugando Uma Consulta Linq To XML - 2</h3>
+        <p>
+            Considere o seguinte arquivo XML, existente no caminho Data\Automoveis.xml:
+            <pre>
+    &lt;?xml version="1.0" encoding="utf-8" ?&gt;
+    &lt;Automoveis&gt;
+        &lt;Fabricantes&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Volkswagen&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Hyundai&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+            &lt;Fabricante&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+                &lt;Nome&gt;Toyota&lt;/Nome&gt;
+            &lt;/Fabricante&gt;
+        &lt;/Fabricantes&gt;
+        &lt;Modelos&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1001&lt;/ModeloId&gt;
+                &lt;Nome&gt;Passat&lt;/Nome&gt;
+                &lt;FabricanteId&gt;1&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1002&lt;/ModeloId&gt;
+                &lt;Nome&gt;Azera&lt;/Nome&gt;
+                &lt;FabricanteId&gt;2&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;
+            &lt;Modelo&gt;
+                &lt;ModeloId&gt;1003&lt;/ModeloId&gt;
+                &lt;Nome&gt;Corolla&lt;/Nome&gt;
+                &lt;FabricanteId&gt;3&lt;/FabricanteId&gt;
+            &lt;/Modelo&gt;    
+        &lt;/Modelos&gt;
+    &lt;/Automoveis&gt;
+            </pre>
+        </p>
+        <p>
+            Com base nesse arquivo XML, você desenvolve o seguinte código, para
+            retornar uma consulta contendo o id do modelo, o nome do modelo e o nome do fabricante dos automóveis:
+        </p>
+
+        <p>
+            <pre>
+                XElement automoveis = XElement.Load(@"Data\Automoveis.xml");
+
+                var query = from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                join m in automoveis.Element("Modelos").Elements("Modelo")
+                select new
+                {
+                    ModeloId = m.Element("ModeloId").Value,
+                    Modelo = m.Element("Nome").Value,
+                    Fabricante = f.Element("Nome").Value
+                };
+            </pre>
+        </p>
+        <p>
+            Ao rodar sua aplicação, você encontra um erro de compilação. O que você deveria fazer para seu código
+            funcionar conforme esperado?
+        </p>
+        <form>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Substituir a linha
+                <code>join m in automoveis.Element("Modelos").Elements("Modelo")</code>
+                por 
+                <code>from m in automoveis.Element("Modelos").Elements("Modelo")</code>
+                </label>
+                <span>Essa consulta resultaria em um <b>produto cartesiano</b> (isto é, uma lista com todas as combinações
+                possíveis entre fabricantes e modelos de automóveis), e isso não atenderia o requisito da aplicação.</span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">Não alterar o código. Em vez disso, contatar o responsável
+                pelo arquivo XML e comunicar que o arquivo XML está mal formado.</label>
+            </div>
+            <span>O arquivo XML não está mal fomrado.</span>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="">Substituir a consulta Linq do XML por uma outra consulta
+                    Linq to Objects
+                </label>
+                <span>
+                    Linq to Objects não pode ser utilizado,
+                    porque a fonte de dados não está em memória, e sim em arquivo XML.
+                    Ela precisa ser primeiro interpretada por um provider específico para XML.
+                </span>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" value="" checked="checked">Acrescentar a linha
+                    <code>on f.Element("FabricanteId").Value equals m.Element("FabricanteId").Value</code> na cláusula join.
+                </label>
+                <span>CORRETO. A cláusula <code>join</code> precisa da definição dos campos que estão associados entre as duas coleções:
+                <pre>
+                    XElement automoveis = XElement.Load(@"Data\AluraTunes.xml");
+
+                    var query = from f in automoveis.Element("Fabricantes").Elements("Fabricante")
+                    join m in automoveis.Element("Modelos").Elements("Modelo")
+                        on f.Element("FabricanteId").Value equals m.Element("FabricanteId").Value
+                    select new
+                    {
+                        ModeloId = m.Element("ModeloId").Value,
+                        Modelo = m.Element("Nome").Value,
+                        Fabricante = f.Element("Nome").Value
+                    };
+                </pre>
+                </span>
+            </div>
+            <div class="checkbox">
+                <label><input type="checkbox" value="">
+                Substituir a linha
+                <code>join m in automoveis.Element("Modelos").Elements("Modelo")</code>
+                por
+                <code>join m in automoveis.Modelos</code>
+                </label>
+                <span>
+                    "Fabricantes" não está acessível diretamente a partir de "automoveis", e isso também não resolve o problema de compilação.
+                </span>
+            </div>
+        </form>
+    </div>
+
+    <hr />
+    <div class="CallToAction">
+        <h3>Consulta com Join com Linq To XML</h3>
+        <p>Observe o XML abaixo, que está contido no arquivo <b>Data\AluraTunes.xml</b>:</p>
+
+        <p>
+            <pre>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
+&lt;AluraTunes&gt;
+    &lt;Generos&gt;
+        &lt;Genero&gt;
+            &lt;GeneroId&gt;1&lt;/GeneroId&gt;
+            &lt;Nome&gt;Rock&lt;/Nome&gt;
+        &lt;/Genero&gt;
+        &lt;Genero&gt;
+            &lt;GeneroId&gt;2&lt;/GeneroId&gt;
+            &lt;Nome&gt;Reggae&lt;/Nome&gt;
+        &lt;/Genero&gt;
+        &lt;Genero&gt;
+            &lt;GeneroId&gt;3&lt;/GeneroId&gt;
+            &lt;Nome&gt;Classica&lt;/Nome&gt;
+        &lt;/Genero&gt;
+    &lt;/Generos&gt;
+    &lt;Musicas&gt;
+        &lt;Musica&gt;
+            &lt;MusicaId&gt;1154&lt;/MusicaId&gt;
+            &lt;Nome&gt;Sweet Child O' Mine&lt;/Nome&gt;
+            &lt;GeneroId&gt;1&lt;/GeneroId&gt;
+            &lt;Compositor&gt;Guns n Roses&lt;/Compositor&gt;
+            &lt;Milissegundos&gt;356424&lt;/Milissegundos&gt;
+            &lt;Bytes&gt;5879347&lt;/Bytes&gt;
+            &lt;PrecoUnitario&gt;0.99&lt;/PrecoUnitario&gt;
+        &lt;/Musica&gt;
+        &lt;Musica&gt;
+            &lt;MusicaId&gt;900&lt;/MusicaId&gt;
+            &lt;Nome&gt;I Shot The Sheriff&lt;/Nome&gt;
+            &lt;GeneroId&gt;2&lt;/GeneroId&gt;
+            &lt;Compositor&gt;Marley&lt;/Compositor&gt;
+            &lt;Milissegundos&gt;263862&lt;/Milissegundos&gt;
+            &lt;Bytes&gt;8738973&lt;/Bytes&gt;
+            &lt;PrecoUnitario&gt;0.99&lt;/PrecoUnitario&gt;
+        &lt;/Musica&gt;
+        &lt;Musica&gt;
+            &lt;MusicaId&gt;3445&lt;/MusicaId&gt;
+            &lt;Nome&gt;Danubio Azul&lt;/Nome&gt;
+            &lt;GeneroId&gt;3&lt;/GeneroId&gt;
+            &lt;Compositor&gt;Johann Strauss II&lt;/Compositor&gt;
+            &lt;Milissegundos&gt;526696&lt;/Milissegundos&gt;
+            &lt;Bytes&gt;8610225&lt;/Bytes&gt;
+            &lt;PrecoUnitario&gt;0.99&lt;/PrecoUnitario&gt;
+        &lt;/Musica&gt;
+    &lt;/Musicas&gt;
+&lt;/AluraTunes&gt;
+            </pre>
+        </p>
+
+        <p>
+            Desenvolva uma consulta <b>Linq to XML</b> para trazer:
+            <ul>
+                <li>O id da música,</li>
+                <li>O nome da música,</li>
+                <li>O nome do gênero</li>
+            </ul>
+        </p>
+
+        <h4>Opinião da Alura</h4>
+
+        <p>
+            Primeiro, é necessário obter o elemento raiz do XML (<code>XElement</code>). Depois,
+            os elementos <code>Generos</code> devem ser combinados com os elementos <code>Musicas</code>
+            através do elemento <code>GeneroId</code>. No final, deve-se usar a cláusula <i>select</i>
+            para se obter os elementos <code>MusicaId</code> e <code>Nome</code> da música e do gênero
+            retornados pela consulta.
+        </p>
+
+        <p>
+            <pre>
+XElement root = XElement.Load(@"Data\AluraTunes.xml");
+var query = from g in root.Element("Generos").Elements("Genero")
+join m in root.Element("Musicas").Elements("Musica")
+    on g.Element("GeneroId").Value equals m.Element("GeneroId").Value
+select new
+{
+    MusicaId = m.Element("MusicaId").Value,
+    Musica = m.Element("Nome").Value,
+    Genero = g.Element("Nome").Value
+};
+            </pre>
+        </p>
+    </div>
+</body>
+</html>

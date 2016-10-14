@@ -15,10 +15,11 @@ namespace alura_linq.Problemas.Problema20
         {
             using (var contexto = GetContextoComLog())
             {
-                
+                var queryMedia = (contexto.NotasFiscais.Average(nota => nota.Total))    ;
+
+
                 var query = from nf in contexto.NotasFiscais
-                            where nf.Total > 
-                                (contexto.NotasFiscais.Average(nota => nota.Total))
+                            where nf.Total > queryMedia
                             select new
                             {
                                 Numero = nf.NotaFiscalId,
