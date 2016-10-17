@@ -94,10 +94,10 @@
     <Compile Include="Cliente.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Exercicios\E05.cs" />
-    <Compile Include="Exercicios\E04-01.cs" />
-    <Compile Include="Exercicios\E02-01.cs" />
-    <Compile Include="Exercicios\ExercicioBase.cs" />
+    <Compile Include="Exercicios\Curso1\E05.cs" />
+    <Compile Include="Exercicios\Curso1\E04-01.cs" />
+    <Compile Include="Exercicios\Curso1\E02-01.cs" />
+    <Compile Include="Exercicios\Curso1\ExercicioBase.cs" />
     <Compile Include="Faixa.cs">
       <DependentUpon>AluraTunes.tt</DependentUpon>
     </Compile>
@@ -228,22 +228,24 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <DependentUpon>VideoAluraTunes.mdf</DependentUpon>
     </Content>
-    <Content Include="Exercicios\Aula7.html" />
-    <Content Include="Exercicios\Aula6.html" />
-    <Content Include="Exercicios\Aula5.html" />
-    <Content Include="Exercicios\Aula4.html" />
-    <Content Include="Exercicios\Aula3.html" />
-    <Content Include="Exercicios\Aula2.html" />
-    <Content Include="Exercicios\E04-02.txt" />
-    <Content Include="Exercicios\E02-03.txt" />
-    <Content Include="Exercicios\E02-02.txt" />
-    <Content Include="Exercicios\Capitulos.txt" />
-    <Content Include="Exercicios\Aula1.html" />
+    <Content Include="Exercicios\Curso1\Aula7.html" />
+    <Content Include="Exercicios\Curso1\Aula6.html" />
+    <Content Include="Exercicios\Curso1\Aula5.html" />
+    <Content Include="Exercicios\Curso1\Aula4.html" />
+    <Content Include="Exercicios\Curso1\Aula3.html" />
+    <Content Include="Exercicios\Curso1\Aula2.html" />
+    <Content Include="Exercicios\Curso1\E04-02.txt" />
+    <Content Include="Exercicios\Curso1\E02-03.txt" />
+    <Content Include="Exercicios\Curso1\E02-02.txt" />
+    <Content Include="Exercicios\Curso1\Capitulos.txt" />
+    <Content Include="Exercicios\Curso1\Aula1.html" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exercicios\Curso2\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

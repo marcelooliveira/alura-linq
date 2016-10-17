@@ -1,9 +1,0 @@
-﻿A seguinte consulta contém um erro na cláusula JOIN. Que erro é esse, e como corrigi-lo?
-
-            var query = from a in autores
-                        join l in livros on a.AutorId == l.AutorId
-                        select new
-                        {
-                            Tituo = l.Titulo,
-							Autor = a.Nome
-                        };
