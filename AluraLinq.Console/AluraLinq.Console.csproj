@@ -240,6 +240,7 @@
     <Content Include="Exercicios\Curso1\E02-02.txt" />
     <Content Include="Exercicios\Curso1\Capitulos.txt" />
     <Content Include="Exercicios\Curso1\Aula1.html" />
+    <Content Include="Exercicios\Curso2\Aula1-1.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
