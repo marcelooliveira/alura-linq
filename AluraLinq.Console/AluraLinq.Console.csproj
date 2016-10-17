@@ -146,6 +146,11 @@
     <Compile Include="Problemas\ProblemaBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="Exercicios\Curso2\Aula5.md" />
+    <None Include="Exercicios\Curso2\Aula6.md" />
+    <None Include="Exercicios\Curso2\Aula4.md" />
+    <None Include="Exercicios\Curso2\Aula3.md" />
+    <None Include="Exercicios\Curso2\Aula2.md" />
     <None Include="Exercicios\Curso2\Aula1.md" />
     <None Include="Stage\Aula3-3.cs" />
     <None Include="Stage\Aula3-1.cs" />
