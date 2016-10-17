@@ -5,6 +5,8 @@
 * Saltando elementos de uma sequência com método Skip()
 * Acessando elementos de uma página de uma sequência de dados
 
+---
+
 ### Exercício 1 ###
 
 Observe o código da consulta abaixo:
