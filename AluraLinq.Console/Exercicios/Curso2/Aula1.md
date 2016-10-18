@@ -7,7 +7,7 @@
 
 ---
 
-### Exercício 1 ###
+### 1) Definindo tamanho de resultados de uma consulta ###
 
 Observe o código da consulta abaixo:
 
@@ -109,3 +109,13 @@ d) `query = query.Take(10);`
 e) `query = query.Where(q => q.Index < 10);`
 
 >O método `Where()` é usado para filtrar dados, porém o parâmetro `q` da expressão lambda é do tipo anônimo e não possui a propriedade `Index` (as propriedades disponíveis são: Numero, Data, Cliente, Total).
+
+---
+
+---
+
+---
+
+
+### 2) Saltando elementos de uma sequência ###
+
