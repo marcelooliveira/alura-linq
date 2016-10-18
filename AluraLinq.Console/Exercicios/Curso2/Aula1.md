@@ -79,40 +79,33 @@ Ao executar esse programa, você recebe o seguinte resultado:
 
 ```
 
-Como você modificaria o código acima, para que a consulta trouxesse somente 10 elementos?
+Como você modificaria a variável `query` acima, para que a consulta trouxesse somente 10 elementos?
 
 ---
 
-a)
+a) `query = query.Skip(10);`
 
-```
-query = query.Take(10);
-```
+>O método `Skip()` serve para pular elementos, porém sem obter esses elementos.
 
 ---
 
-b)
-```
-query = query.Take(10);
-```
+b) `query = query.List(10);`
+
+>Não existe um método `List` na biblioteca de LINQ.
 
 ---
 
-c)
-```
-query = query.Take(10);
-```
+c) `query = query.ToList(10);`
+
+>O método `ToList()` não possui uma sobrecarga (overload) que aceita um número limite de elementos como argumento.
 
 ---
 
-d)
-```
-query = query.Take(10);
-```
+d) `query = query.Take(10);`
+
+>*CORRETO. O método `Take()` retorna um número especificado de elementos contíguos (vizinhos) a partir do início de uma sequência.*
 
 ---
-e)
-```
-query = query.Take(10);
-```
+e) `query = query.Where(q => q.Index < 10);`
 
+>O método `Where()` é usado para filtrar dados, porém o parâmetro `q` da expressão lambda é do tipo anônimo e não possui a propriedade `Index` (as propriedades disponíveis são: Numero, Data, Cliente, Total).
