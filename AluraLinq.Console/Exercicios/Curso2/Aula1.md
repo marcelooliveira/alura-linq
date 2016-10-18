@@ -158,3 +158,70 @@ d) `var query = meses.Skip(6);`
 e) `var query = meses.Where(m => m.Number > 6);`
 
 > A origem de dados `meses` é um *array* de strings que não possuem uma propriedade chamada `Number` que possa ser acessada através da expressão lambda do método `Where`;
+
+---
+
+---
+
+---
+
+### 3) Acessando elementos de uma página ###
+
+Considere o código da consulta abaixo:
+
+```
+
+using (var contexto = new AluraTunesEntities())
+{
+		
+	var query = from nf in contexto.NotasFiscais
+				orderby nf.NotaFiscalId
+				select new
+				{
+					Numero = nf.NotaFiscalId,
+					Data = nf.DataNotaFiscal,
+					Cliente = nf.Cliente.PrimeiroNome + " " + nf.Cliente.Sobrenome,
+					Total = nf.Total
+				};
+
+	foreach (var nf in query)
+	{
+		Console.WriteLine("{0}\t{1}\t{2}\t{3}", nf.Numero, nf.Data, nf.Cliente, nf.Total);
+	}
+}
+```
+
+Qual o código necessário para obter os elementos da terceira página de um relatório sobre a consulta acima, considerando que cada página contém 20 elementos.
+
+a) `var pagina = query.Skip(40);` 
+
+> O código `Skip(40)` pula as duas primeiras páginas de dados corretamente. Porém, como o método `Take()` não é chamado, a consulta traz todos os outros elementos da sequência, e não só os da terceira página.
+
+b) `var pagina = query.Skip(20).Take(20);` 
+
+> O código `Skip(20)` está pulando somente os elementos da primeira página.
+
+c) `var pagina = query.Skip(20).Take(10);`
+
+> O código `Skip(20)` está pulando somente os elementos da primeira página.
+ 
+d) `var pagina = query.Skip(40).Take(20);` 
+
+> CORRETO: Como cada página do relatório possui 20 elementos, e queremos obter os elementos da terceira página, então devemos utilizar o método `Skip()` para pular os elementos das duas primeiras páginas, ou seja, 2 x 20 = 40:
+> `query.Skip(40)`
+> 
+> Em seguida, precisamos obter os elementos da página, ou seja, os 20 elementos seguintes da sequência:
+> `Take(20)`
+
+e) `var pagina = query.Take(20).Skip(40);` 
+
+> O método `Take` dessa opção está trazendo os 20 primeiros elementos da sequência, e não os da terceira página.
+
+--- 
+
+--- 
+
+--- 
+
+### 4) Desenvolvendo algoritmo de paginação ###
+
