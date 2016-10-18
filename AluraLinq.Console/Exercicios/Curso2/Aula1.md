@@ -119,3 +119,42 @@ e) `query = query.Where(q => q.Index < 10);`
 
 ### 2) Saltando elementos de uma sequência ###
 
+Considere o seguinte *array* contendo nomes de meses:
+
+var meses = new [] {
+"Janeiro"
+, "Fevereiro"
+, "Março"
+, "Abril"
+, "Maio"
+, "Junho"
+, "Julho"
+, "Agosto"
+, "Setembro"
+, "Outubro"
+, "Novembro"
+, "Dezembro" };
+
+Assinale a alternativa que contém a definição da consulta necessária para se obter os nomes dos
+meses do segundo semestre.
+
+a) `var query = meses.After(6);
+
+> A biblioteca LINQ não possui nenhum método chamado `After()`.
+
+b) `var query = meses.Take(6);`
+
+> A chamada `meses.Take(6)` irá obter os 6 primeiros elementos da sequência, e não os seis últimos, que correspondem ao segundo semestre.
+
+c) `var query = meses.Where(m => String.Compare(m, "Julho") > 0);`
+
+> A expressão `Where(m => String.Compare(m, "Julho") > 0)` filtra os meses cujo nome aparece
+no dicionário após a palavra "Julho", o que não foi pedio no enunciado.  
+
+d) `var query = meses.Skip(6);`
+
+> CORRETO: o método `Skip()` pula os 6 elementos iniciais, que correspondem ao primeiro semestre, logo a consulta irá retornar os elementos restantes, ou seja, os nomes dos meses do segundo semestre.
+
+e) `var query = meses.Where(m => m.Number > 6);`
+
+> A origem de dados `meses` é um *array* de strings que não possuem uma propriedade chamada `Number` que possa ser acessada através da expressão lambda do método `Where`;
