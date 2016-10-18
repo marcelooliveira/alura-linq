@@ -223,7 +223,131 @@ e) `var pagina = query.Take(20).Skip(40);`
 
 --- 
 
-### 4) Desenvolvendo algoritmo de paginação ###
+### 4) Obtendo uma sequência de elementos a partir de uma posição ###
+
+Considere o seguinte código C#:
+
+```
+using (var contexto = new AluraTunesEntities())
+{
+		
+	var query = from c in contexto.Clientes
+				orderby c.ClienteId
+				select new { c.ClienteId, Nome = c.PrimeiroNome + " " + c.Sobrenome};
+
+		foreach (var cliente in query)
+		{
+			Console.WriteLine("{0}\t{1}", pos++, cliente.Nome);
+		}
+		Console.WriteLine();
+}
+
+```
+
+Essa consulta retorna o resultado abaixo:
+
+```
+1  Luís Gonçalves
+2  Leonie Köhler
+3  François Tremblay
+4  Bjørn Hansen
+5  František Wichterlová
+6  Helena Holý
+7  Astrid Gruber
+8  Daan Peeters
+9  Kara Nielsen
+10  Eduardo Martins
+11  Alexandre Rocha
+12  Roberto Almeida
+13  Fernanda Ramos
+14  Mark Philips
+15  Jennifer Peterson
+16  Frank Harris
+17  Jack Smith
+18  Michelle Brooks
+19  Tim Goyer
+20  Dan Miller
+21  Kathy Chase
+22  Heather Leacock
+23  John Gordon
+24  Frank Ralston
+25  Victor Stevens
+26  Richard Cunningham
+27  Patrick Gray
+28  Julia Barnett
+29  Robert Brown
+30  Edward Francis
+31  Martha Silk
+32  Aaron Mitchell
+33  Ellie Sullivan
+34  João Fernandes
+35  Madalena Sampaio
+36  Hannah Schneider
+37  Fynn Zimmermann
+38  Niklas Schröder
+39  Camille Bernard
+40  Dominique Lefebvre
+41  Marc Dubois
+42  Wyatt Girard
+43  Isabelle Mercier
+44  Terhi Hämäläinen
+45  Ladislav Kovács
+46  Hugh O'Reilly
+47  Lucas Mancini
+48  Johannes Van der Berg
+49  Stanisław Wójcik
+50  Enrique Muñoz
+51  Joakim Johansson
+52  Emma Jones
+53  Phil Hughes
+54  Steve Murray
+55  Mark Taylor
+56  Diego Gutiérrez
+57  Luis Rojas
+58  Manoj Pareek
+59  Puja Srivastava
+```
+
+Modifique o código acima para gerar o novo resultado:
+
+```
+9  Kara Nielsen
+10  Eduardo Martins
+11  Alexandre Rocha
+12  Roberto Almeida
+13  Fernanda Ramos
+14  Mark Philips
+15  Jennifer Peterson
+16  Frank Harris
+17  Jack Smith
+```
+
+> ### Opinião da Alura ###
+> A listagem acima começa a partir do nono elemento, logo devemos pular oito elementos da sequência.
+> 
+> `Skip(8)`
+>
+> E a consulta traz 9 elementos, que devemos obter através do método `Take()`.
+>
+> Assim, definimos uma nova origem de dados, a partir da query de clientes:
+>
+> `var dadosPagina = query.Skip(8).Take(9);`
+>
+> Por fim, modificamos a instrução `foreach` para obter os dados a partir da nova variável de consulta `dadosPagina`:
+>
+> `foreach (var cliente in dadosPagina)`
+
+
+
+
+
+---
+
+---
+
+---
+
+### 5) Desenvolvendo algoritmo de paginação ###
 
 Observe o código da consulta abaixo:
 
@@ -428,3 +552,10 @@ E, finalmente, teríamos o código abaixo:
 		Console.WriteLine();
 	}
 ```
+
+---
+
+---
+
+---
+
