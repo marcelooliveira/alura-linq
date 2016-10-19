@@ -16,7 +16,7 @@
 
 Considere o trecho de código abaixo:
 
-```
+```C#
 var numeros = new List<int>();
 numeros.Add (1);
 
@@ -32,7 +32,7 @@ foreach(var numero in query)
 Escolha a alternativa que apresenta o resultado desse trecho de código:
 
 a) 
-```
+```C#
 10
 ```
 
@@ -40,14 +40,14 @@ a)
 acrescentou um novo elemento à lista `numeros`, que não consta no resultado dessa alternativa.
 
 b) 
-```
+```C#
 20
 ```
 
 > Falta nesse resultado o elemento 10, resultado de `n => n * 10`, para o elemento n = 1;
  
 c) 
-```
+```C#
 1
 ```
 
@@ -55,7 +55,7 @@ c)
 > logo a alternativa está incorreta.
 
 d) 
-```
+```C#
 10
 20
 ```
@@ -63,7 +63,7 @@ d)
 > CORRETO: a consulta `query` referencia a variável `numeros`. A definição de consulta `query` só é avaliada quando a consulta é enumerada pela instrução `foreach` na linha `foreach (var numero in query)`, então nesse momento a lista `numeros` já contém 2 elementos.
 
 e) 
-```
+```C#
 1
 2
 ```
@@ -75,7 +75,7 @@ e)
 
 Considere o código abaixo:
 
-```
+```C#
 int[] numeros = { 1, 2 };
 
 int fator = 10;
@@ -93,22 +93,31 @@ Qual o resultado aparece no console após a execução do trecho acima?
 
 a)
 
-```
+```C#
 1
 2
 A consulta trouxe 2 elementos.
 ```
+> Essa opção traz os elementos da fonte de dados `numeros`, mas não leva em consideração o fator de multiplicação.
 
 b)
 
-```
+```C#
 10
 20
 A consulta trouxe 2 elementos.
 ```
 
-c)
+> A consulta é avaliada e executada na linha `foreach(var numero in query)`, e nesse momento a variável `fator` tem valor igual a 20, logo
+> o resultado deveria ser: 
+```C#
+20
+40
 ```
+
+
+c)
+```C#
 10
 20
 20
@@ -116,23 +125,30 @@ c)
 A consulta trouxe 4 elementos.
 ```
 
+> A origem de dados tem 2 elementos, logo o resultado deveria trazer somente 2 elementos.
+
 d) 
-```
+```C#
 20
 40
 A consulta trouxe 2 elementos.
 ```
 
+> CORRETO: os dois elementos da origem de dados (1, 2) devem ser multiplicados pelo fator 20.
+
 e)
-```
+```C#
 A consulta trouxe 0 elementos.
 ```
+
+> A origem de dados não foi modificada, e a consulta não possui filtro, portanto o resultado deveria
+> trazer 2 elementos.
 
 ### 3) Remoção de elementos após a definição de uma consulta ### 
 
 Veja o trecho a seguir:
 
-```
+```C#
 var numeros = new List<int>() { 1, 2 };
 
 var query = numeros.Select (n => n * 10);
@@ -141,34 +157,37 @@ numeros.Clear();
 
 foreach(var numero in query)
 	Console.WriteLine(numero);
+
 ```
 
 Qual alternativa mostra corretamente o resultado do laço foreach?
 
 a) 
-```
+```C#
 1
 2
 ```
 
 b)
-```
+```C#
 1
 ```
 
 c)
-```
+```C#
 10
 20
 ```
 
 d)
-```
+```C#
 [nenhum resultado]
 ```
+> CORRETO: somente na linha `foreach(var numero in query)` a consulta `query` é avaliada, e nesse ponto todos os elementos da origem de dados `numeros` já tinham sido removidos
+> pela linha `numeros.Clear();`
 
 e)
-```
+```C#
 [Runtime error: cannot modify "numeros" collection while it is being used by a LINQ query]
 ```
 
@@ -177,6 +196,7 @@ e)
 Observe o código abaixo:
 
 
+```C#
 var palavras = new List<string>() { "ALURA", "CURSOS" };
 
 var maiusculas = palavras
@@ -188,10 +208,11 @@ foreach(var palavra in maiusculas)
 	Console.WriteLine(palavra);
 
 Console.WriteLine("A consulta trouxe {0} elementos.", maiusculas.Count());
+```
 
 Quando esse trecho é executado, o console contém o seguinte texto:
 
-A consulta trouxe 0 elementos.
+`A consulta trouxe 0 elementos.`
 
 Por que a consulta não trouxe elementos, já que o comando palavras.Clear() foi chamado após a declaração dessa consulta? Explique.
 
@@ -199,6 +220,7 @@ Por que a consulta não trouxe elementos, já que o comando palavras.Clear() foi
 
 Observe o código abaixo:
 
+```C#
 var palavras = new List<string>() { "alura", "cursos" };
 
 var maiusculas = palavras
@@ -209,10 +231,13 @@ palavras.Clear();
 
 foreach(var palavra in maiusculas)
 	Console.WriteLine(palavra);
+```
 
 Após a execução, você obtém o seguinte resultado:
 
+```
 ALURA
 CURSOS
+```
 
 Por que o laço foreach trouxe 2 palavras, em vez de uma lista vazia, já que o código palavras.Clear() deveria ter limpado a lista? O que aconteceu?
