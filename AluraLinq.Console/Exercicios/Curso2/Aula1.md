@@ -45,7 +45,7 @@ Ao executar esse programa, você recebe o seguinte resultado:
 7  01/02/2009 00:00:00  Niklas Schröder  1,98
 8  01/02/2009 00:00:00  Dominique Lefebvre  1,98
 9  02/02/2009 00:00:00  Wyatt Girard  3,96
-10  03/02/2009 00:00:00  Hugh O'Reilly  5,94
+10  03/02/2009 00:00:00  Hugh O''Reilly  5,94
 11  06/02/2009 00:00:00  Emma Jones  8,91
 12  11/02/2009 00:00:00  Leonie Köhler  13,86
 13  19/02/2009 00:00:00  Frank Harris  0,99
@@ -121,6 +121,7 @@ e) `query = query.Where(q => q.Index < 10);`
 
 Considere o seguinte *array* contendo nomes de meses:
 
+```
 var meses = new [] {
 "Janeiro"
 , "Fevereiro"
@@ -134,6 +135,7 @@ var meses = new [] {
 , "Outubro"
 , "Novembro"
 , "Dezembro" };
+```
 
 Assinale a alternativa que contém a definição da consulta necessária para se obter os nomes dos
 meses do segundo semestre.
@@ -292,7 +294,7 @@ Essa consulta retorna o resultado abaixo:
 43  Isabelle Mercier
 44  Terhi Hämäläinen
 45  Ladislav Kovács
-46  Hugh O'Reilly
+46  Hugh O''Reilly
 47  Lucas Mancini
 48  Johannes Van der Berg
 49  Stanisław Wójcik
@@ -385,7 +387,7 @@ Ao executar esse programa, você recebe o seguinte resultado:
 7  01/02/2009 00:00:00  Niklas Schröder  1,98
 8  01/02/2009 00:00:00  Dominique Lefebvre  1,98
 9  02/02/2009 00:00:00  Wyatt Girard  3,96
-10  03/02/2009 00:00:00  Hugh O'Reilly  5,94
+10  03/02/2009 00:00:00  Hugh O''Reilly  5,94
 11  06/02/2009 00:00:00  Emma Jones  8,91
 12  11/02/2009 00:00:00  Leonie Köhler  13,86
 13  19/02/2009 00:00:00  Frank Harris  0,99
