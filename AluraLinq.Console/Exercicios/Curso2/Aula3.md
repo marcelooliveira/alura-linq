@@ -29,7 +29,7 @@ foreach(var numero in query)
 	Console.WriteLine(numero);
 ```
 
-Escolha a alternativa que representa o resultado desse trecho de código:
+Escolha a alternativa que apresenta o resultado desse trecho de código:
 
 a) 
 ```
