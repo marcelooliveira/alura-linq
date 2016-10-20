@@ -110,14 +110,15 @@ A consulta trouxe 2 elementos.
 
 > A consulta é avaliada e executada na linha `foreach(var numero in query)`, e nesse momento a variável `fator` tem valor igual a 20, logo
 > o resultado deveria ser: 
-```C#
+
+```
 20
 40
 ```
 
 
 c)
-```C#
+```
 10
 20
 20
@@ -128,7 +129,7 @@ A consulta trouxe 4 elementos.
 > A origem de dados tem 2 elementos, logo o resultado deveria trazer somente 2 elementos.
 
 d) 
-```C#
+```
 20
 40
 A consulta trouxe 2 elementos.
@@ -137,7 +138,7 @@ A consulta trouxe 2 elementos.
 > CORRETO: os dois elementos da origem de dados (1, 2) devem ser multiplicados pelo fator 20.
 
 e)
-```C#
+```
 A consulta trouxe 0 elementos.
 ```
 
@@ -162,22 +163,34 @@ foreach(var numero in query)
 
 Qual alternativa mostra corretamente o resultado do laço foreach?
 
-a) 
-```C#
+a)
+ 
+```
 1
 2
 ```
 
+> somente na linha `foreach(var numero in query)` a consulta `query` é avaliada, e nesse ponto todos os elementos da origem de dados `numeros` já tinham sido removidos
+> pela linha `numeros.Clear();`, portanto nenhum resultado deveria ser mostrado.
+ 
 b)
-```C#
+       
+```
 1
 ```
 
+> somente na linha `foreach(var numero in query)` a consulta `query` é avaliada, e nesse ponto todos os elementos da origem de dados `numeros` já tinham sido removidos
+> pela linha `numeros.Clear();`, portanto nenhum resultado deveria ser mostrado.
+
 c)
+
 ```C#
 10
 20
 ```
+
+> somente na linha `foreach(var numero in query)` a consulta `query` é avaliada, e nesse ponto todos os elementos da origem de dados `numeros` já tinham sido removidos
+> pela linha `numeros.Clear();`, portanto nenhum resultado deveria ser mostrado.
 
 d)
 ```C#
@@ -191,10 +204,11 @@ e)
 [Runtime error: cannot modify "numeros" collection while it is being used by a LINQ query]
 ```
 
+> O trecho de código roda corretamente. Nenhuma mensagem de erro deveria ser mostrada.
+
 ### 4) Execução adiada ### 
 
 Observe o código abaixo:
-
 
 ```C#
 var palavras = new List<string>() { "ALURA", "CURSOS" };
@@ -215,6 +229,10 @@ Quando esse trecho é executado, o console contém o seguinte texto:
 `A consulta trouxe 0 elementos.`
 
 Por que a consulta não trouxe elementos, já que o comando palavras.Clear() foi chamado após a declaração dessa consulta? Explique.
+
+> Porque a consulta `maiusculas` havia sido declarada, mas ainda não havia sido executada. Ela só é
+> executada na linha  `foreach(var palavra in maiusculas)`, e nesse momento a origem de dados `palavras`
+> já tinha sido esvaziada pela linha `palavras.Clear();`.
 
 ### 5) Forçando execução imediata ### 
 
@@ -240,4 +258,10 @@ ALURA
 CURSOS
 ```
 
-Por que o laço foreach trouxe 2 palavras, em vez de uma lista vazia, já que o código palavras.Clear() deveria ter limpado a lista? O que aconteceu?
+Por que o laço foreach trouxe 2 palavras, em vez de uma lista vazia, já que o código 
+    `palavras.Clear()` deveria ter limpado a lista? O que aconteceu?
+
+> Porque a instrução `Console.WriteLine()` dentro do laço `foreach` está imprimindo os elementos
+> da lista `maiusculas`, que é uma **lista em memória** (e não uma **variável de consulta**) que 
+> foi instanciada no momento em que a lista `palavras` ainda continha os dados iniciais. Depois que a lista `maiusculas` é criada, ela não
+> é mais afetada pelo esvaziamento da lista `palavras`. 
