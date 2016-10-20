@@ -212,8 +212,9 @@ foreach (var item in queryCodigos)
 }
 ```
 
-Dentro do laço `foreach`, cada imagem gerada anteriormente é salva em arquivo. Como você
-otimizaria a execução desse laço `foreach`?
+Dentro do laço `foreach`, cada imagem gerada anteriormente é salva em arquivo, em série. Como você
+otimizaria a execução desse laço `foreach` para que a gravação dos arquivos fosse feita em
+paralelo?
 
 **a**
 
@@ -224,6 +225,8 @@ forall (var item in queryCodigos)
 }
 ```
 
+> Não existe uma instrução `forall` na linguagem C#.
+
 **b**
 
 ```
@@ -232,6 +235,8 @@ foreach (var item in queryCodigos.AsParallel())
     item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
 }
 ```
+
+> A consulta `queryCodigos` já havia sido paralelizada com o método `AsParallel`.
 
 **c**
 
@@ -242,6 +247,9 @@ queryCodigos.AsParallel(item =>
 });
 ```
 
+> Não existe um método de extensão `AsParallel` na biblioteca de LINQ que possa ser aplicado a 
+> um tipo `IQueryable` como `queryCodigos`. 
+
 **d**
 
 ```
@@ -251,6 +259,8 @@ queryCodigos.ForAll(item =>
 });
 ```
 
+> CORRETO: O método `ForAll` faz com que cada método `Save` seja invocado em paralelo.
+
 **e**
 
 ```
@@ -259,4 +269,7 @@ queryCodigos.ForEach(item =>
     item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
 });
 ```
+
+> Não existe um método de extensão `ForEach` na biblioteca de LINQ que possa ser aplicado a 
+> um tipo `IQueryable` como `queryCodigos`. 
 
