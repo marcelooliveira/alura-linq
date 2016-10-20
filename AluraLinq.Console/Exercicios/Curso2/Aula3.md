@@ -93,7 +93,7 @@ Qual o resultado aparece no console após a execução do trecho acima?
 
 a)
 
-```C#
+```
 1
 2
 A consulta trouxe 2 elementos.
@@ -102,7 +102,7 @@ A consulta trouxe 2 elementos.
 
 b)
 
-```C#
+```
 10
 20
 A consulta trouxe 2 elementos.
@@ -149,7 +149,7 @@ A consulta trouxe 0 elementos.
 
 Veja o trecho a seguir:
 
-```C#
+```
 var numeros = new List<int>() { 1, 2 };
 
 var query = numeros.Select (n => n * 10);
@@ -161,7 +161,7 @@ foreach(var numero in query)
 
 ```
 
-Qual alternativa mostra corretamente o resultado do laço foreach?
+Qual alternativa mostra corretamente o resultado do laço `foreach`?
 
 a)
  
@@ -184,7 +184,7 @@ b)
 
 c)
 
-```C#
+```
 10
 20
 ```
@@ -193,14 +193,14 @@ c)
 > pela linha `numeros.Clear();`, portanto nenhum resultado deveria ser mostrado.
 
 d)
-```C#
+```
 [nenhum resultado]
 ```
 > CORRETO: somente na linha `foreach(var numero in query)` a consulta `query` é avaliada, e nesse ponto todos os elementos da origem de dados `numeros` já tinham sido removidos
 > pela linha `numeros.Clear();`
 
 e)
-```C#
+```
 [Runtime error: cannot modify "numeros" collection while it is being used by a LINQ query]
 ```
 
@@ -210,7 +210,7 @@ e)
 
 Observe o código abaixo:
 
-```C#
+```
 var palavras = new List<string>() { "ALURA", "CURSOS" };
 
 var maiusculas = palavras
@@ -238,7 +238,7 @@ Por que a consulta não trouxe elementos, já que o comando palavras.Clear() foi
 
 Observe o código abaixo:
 
-```C#
+```
 var palavras = new List<string>() { "alura", "cursos" };
 
 var maiusculas = palavras
