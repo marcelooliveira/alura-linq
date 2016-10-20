@@ -5,7 +5,7 @@
 * Paralelizando execução de consulta com método AsParallel()
 * Paralelizando execução de um laço com o método ForAll()
 
-1) Medindo tempo de execução de uma consulta
+**1) Medindo tempo de execução de uma consulta**
 
 Considere o seguinte trecho de código:
 
@@ -80,9 +80,183 @@ Console.WriteLine("A consulta executou em {0:hh\\:mm\\:ss}: ", stopwatch.Elapsed
 
 > Não existe uma propriedade `ExecutionTime` no `objeto System.Collections.Generic.List`. 
 
-2) Paralelizando execução de consulta
+**2) Paralelizando execução de consulta - Prática**
 
+Considere a seguinte consulta LINQ:
 
+```
+var queryCodigos =
+listaFaixas
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+});
+```
 
-3) Paralelizando execução de um laço foreach
-4) 
+Supondo que o método `barcodWriter.Write` exija um grande esforço computacional, como você
+modificaria o código acima para utilizar LINQ paralelo?
+
+**a**
+
+```
+var queryCodigos =
+listaFaixas
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+})
+.AsParallel();
+```
+
+> O método `AsParallel()` especifica que o restante da consulta deve ser paralelizada. Porém,
+> quando o método é utilizado neste exemplo, o resultado já tinha sido obtido através do método
+> `Select`. Ou seja, como o método `AsParallel` é o último comando da consulta, ele perdeu o
+> seu propósito. O correto seria invocar o método AsParallel depois da origem de dados
+> (`listaFaixas`).
+
+**b**
+
+```
+var queryCodigos =
+listaFaixas
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+});
+
+queryCodigos = queryCodigos.AsParallel();
+```
+
+> O método `AsParallel()` especifica que o restante da consulta deve ser paralelizada. Porém,
+> quando o método é utilizado neste exemplo, o resultado já tinha sido obtido através do método
+> `Select`. Ou seja, como o método `AsParallel` é o último comando da consulta, ele perdeu o
+> seu propósito. O correto seria invocar o método AsParallel depois da origem de dados
+> (`listaFaixas`).
+
+**c**
+
+```
+var queryCodigos =
+new Parallel(listaFaixas
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+}));
+```
+
+> A biblioteca LINQ não possui uma classe `Parallel` que possa ser usada para paralelizar uma
+> consulta.
+
+**d**
+
+```
+var queryCodigos =
+listaFaixas
+.AsParallel()
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+});
+```
+
+> CORRETO: o método `AsParallel()` é aplicado a um objeto do tipo `IEnumerable` (`listaFaixas`) 
+> e especifica que o restante da consulta deve ser paralelizada, se possível.  
+
+**e**
+
+```
+var queryCodigos =
+listaFaixas
+.Paralelize()
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+});
+```
+
+> Não existe um método de extensão chamado `Paralelize` que possa ser aplicado à origem de dados
+> `listaFaixas`. 
+
+**3) Paralelizando execução de consulta - Teoria**
+
+Qual a principal diferença entre o LINQ e o LINQ paralelo? Explique com suas palavras.
+
+> A principal diferença é que PLINQ tentar usar completamente todos os processadores no sistema. 
+> Ele faz isso particionando a fonte de dados em segmentos, e então executando a consulta em cada 
+> segmento em segmentos separados de trabalho paralelamente em vários processadores. Em muitos casos, 
+> a execução em paralelo significa que a consulta é executada de forma significativamente mais rápida.
+
+**4) Paralelizando execução de um laço foreach**
+
+Considere o código abaixo, que usa o método `AsParallel()` para paralelizar a consulta:
+
+```
+var queryCodigos =
+listaFaixas
+.AsParallel()
+.Select(f => new
+{
+    Arquivo = string.Format("{0}\\{1}.jpg", Imagens, f.FaixaId),
+    Imagem = barcodWriter.Write(string.Format("aluratunes.com/faixa/{0}", f.FaixaId))
+});
+
+foreach (var item in queryCodigos)
+{
+    item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
+}
+```
+
+Dentro do laço `foreach`, cada imagem gerada anteriormente é salva em arquivo. Como você
+otimizaria a execução desse laço `foreach`?
+
+**a**
+
+```
+forall (var item in queryCodigos)
+{
+    item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
+}
+```
+
+**b**
+
+```
+foreach (var item in queryCodigos.AsParallel())
+{
+    item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
+}
+```
+
+**c**
+
+```
+queryCodigos.AsParallel(item => 
+{
+    item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
+});
+```
+
+**d**
+
+```
+queryCodigos.ForAll(item => 
+{
+    item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
+});
+```
+
+**e**
+
+```
+queryCodigos.ForEach(item => 
+{
+    item.Imagem.Save(item.Arquivo, ImageFormat.Jpeg);
+});
+```
+
